@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Heart, ShoppingBag, Star, ArrowUpRight } from 'lucide-react';
-import { Product } from '../types';
-import { handleImageError } from '../utils/imageFallback';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Heart, ShoppingBag, Star, ArrowUpRight } from "lucide-react";
+import { Product } from "../types";
+import { handleImageError } from "../utils/imageFallback";
 
 interface ProductCardProps {
   product: Product;
@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onAddToCart,
 }) => {
   const discountPercent = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
+    ((product.originalPrice - product.price) / product.originalPrice) * 100,
   );
 
   return (
@@ -59,13 +59,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           }}
           className={`absolute top-3.5 right-3.5 p-2.5 rounded-full backdrop-blur-xs transition-all z-10 ${
             isWishlisted
-              ? 'bg-[#961A38] text-white shadow-sm'
-              : 'bg-white/85 hover:bg-white text-[#4A3B36] hover:text-[#961A38]'
+              ? "bg-[#961A38] text-white shadow-sm"
+              : "bg-white/85 hover:bg-white text-[#4A3B36] hover:text-[#961A38]"
           }`}
-          aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+          aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart
-            className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-white text-white' : ''}`}
+            className={`w-3.5 h-3.5 ${isWishlisted ? "fill-white text-white" : ""}`}
           />
         </button>
 
@@ -116,8 +116,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   key={i}
                   className={`w-3 h-3 ${
                     i < Math.floor(product.rating)
-                      ? 'fill-current'
-                      : 'fill-transparent text-[#E0D4C7]'
+                      ? "fill-current"
+                      : "fill-transparent text-[#E0D4C7]"
                   }`}
                 />
               ))}

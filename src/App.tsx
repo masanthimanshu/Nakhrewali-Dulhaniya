@@ -1,21 +1,40 @@
-import React, { useState, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { ShopProvider, useShop } from './context/ShopContext';
-import { AnnouncementTicker } from './components/AnnouncementTicker';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { CartDrawer } from './components/CartDrawer';
-import { WishlistDrawer } from './components/WishlistDrawer';
-import { HamperBuilderModal } from './components/HamperBuilderModal';
-import { GiftFinderQuizModal } from './components/GiftFinderQuizModal';
-import { ScrollToTop } from './components/ScrollToTop';
+import React, { useState, Suspense, lazy } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+import { ShopProvider, useShop } from "./context/ShopContext";
+import { AnnouncementTicker } from "./components/AnnouncementTicker";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
+import { CartDrawer } from "./components/CartDrawer";
+import { WishlistDrawer } from "./components/WishlistDrawer";
+import { HamperBuilderModal } from "./components/HamperBuilderModal";
+import { GiftFinderQuizModal } from "./components/GiftFinderQuizModal";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 // Code-split pages for instant initial paint & smaller entry bundle
-const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })));
-const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage').then((m) => ({ default: m.ProductDetailPage })));
-const CollectionPage = lazy(() => import('./pages/CollectionPage').then((m) => ({ default: m.CollectionPage })));
-const CheckoutPage = lazy(() => import('./pages/CheckoutPage').then((m) => ({ default: m.CheckoutPage })));
-const OrderSuccessPage = lazy(() => import('./pages/OrderSuccessPage').then((m) => ({ default: m.OrderSuccessPage })));
+const HomePage = lazy(() =>
+  import("./pages/HomePage").then((m) => ({ default: m.HomePage })),
+);
+const ProductDetailPage = lazy(() =>
+  import("./pages/ProductDetailPage").then((m) => ({
+    default: m.ProductDetailPage,
+  })),
+);
+const CollectionPage = lazy(() =>
+  import("./pages/CollectionPage").then((m) => ({ default: m.CollectionPage })),
+);
+const CheckoutPage = lazy(() =>
+  import("./pages/CheckoutPage").then((m) => ({ default: m.CheckoutPage })),
+);
+const OrderSuccessPage = lazy(() =>
+  import("./pages/OrderSuccessPage").then((m) => ({
+    default: m.OrderSuccessPage,
+  })),
+);
 
 const PageLoader = () => (
   <div className="min-h-[60vh] flex items-center justify-center">
@@ -45,15 +64,20 @@ const AppContent: React.FC = () => {
     cartSubtotal,
   } = useShop();
 
-  const [activeCoupon, setActiveCoupon] = useState<string | null>('NAKHRA15');
+  const [activeCoupon, setActiveCoupon] = useState<string | null>("NAKHRA15");
   const [discountAmount, setDiscountAmount] = useState<number>(() => {
     return Math.round(cartSubtotal * 0.15);
   });
 
   const handleApplyCoupon = (code: string) => {
-    if (code === 'NAKHRA10' || code === 'NAKHRA15' || code === 'FILMYLOVE' || code === 'BAE15') {
+    if (
+      code === "NAKHRA10" ||
+      code === "NAKHRA15" ||
+      code === "FILMYLOVE" ||
+      code === "BAE15"
+    ) {
       setActiveCoupon(code);
-      const pct = code === 'NAKHRA10' ? 0.10 : 0.15;
+      const pct = code === "NAKHRA10" ? 0.1 : 0.15;
       setDiscountAmount(Math.round(cartSubtotal * pct));
       return true;
     }
@@ -84,9 +108,15 @@ const AppContent: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
-            <Route path="/collection/:categoryId" element={<CollectionPage />} />
+            <Route
+              path="/collection/:categoryId"
+              element={<CollectionPage />}
+            />
             <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/order-success/:orderId" element={<OrderSuccessPage />} />
+            <Route
+              path="/order-success/:orderId"
+              element={<OrderSuccessPage />}
+            />
             <Route path="*" element={<HomePage />} />
           </Routes>
         </Suspense>
@@ -107,7 +137,7 @@ const AppContent: React.FC = () => {
         onRemoveItem={(id) => removeFromCart(id)}
         onOpenCheckout={() => {
           setIsCartOpen(false);
-          navigate('/checkout');
+          navigate("/checkout");
         }}
         onApplyCoupon={handleApplyCoupon}
         activeCoupon={activeCoupon}

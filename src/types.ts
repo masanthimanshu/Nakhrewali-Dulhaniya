@@ -1,4 +1,5 @@
-export type CategoryId = 'all' | 'earrings' | 'bangles' | 'hair' | 'romantic-gifts';
+export type CategoryId =
+  "all" | "earrings" | "bangles" | "hair" | "romantic-gifts";
 
 export interface Product {
   id: string;
@@ -11,7 +12,14 @@ export interface Product {
   galleryImages?: string[];
   rating: number;
   reviewsCount: number;
-  badge?: 'Bestseller' | 'Trending' | 'GF Favorite' | 'Viral Reel' | 'Romantic Hit' | 'Limited Stock' | 'Bespoke Hit';
+  badge?:
+    | "Bestseller"
+    | "Trending"
+    | "GF Favorite"
+    | "Viral Reel"
+    | "Romantic Hit"
+    | "Limited Stock"
+    | "Bespoke Hit";
   vibeTags?: string[];
   bollywoodDialogue: string;
   description: string;
@@ -53,7 +61,7 @@ export interface OrderDetails {
 }
 
 export interface HamperState {
-  boxType: 'gulabi-velvet' | 'emerald-trunk' | 'vintage-tin';
+  boxType: "gulabi-velvet" | "emerald-trunk" | "vintage-tin";
   selectedProductIds: string[];
   giftNotePreset: string;
   customNote: string;

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { X, Sparkles, Heart, ArrowRight, RefreshCw } from 'lucide-react';
-import { Product } from '../types';
-import { PRODUCTS } from '../data/products';
+import React, { useState } from "react";
+import { X, Sparkles, Heart, ArrowRight, RefreshCw } from "lucide-react";
+import { Product } from "../types";
+import { PRODUCTS } from "../data/products";
 
 interface GiftFinderQuizModalProps {
   isOpen: boolean;
@@ -18,36 +18,42 @@ export const GiftFinderQuizModal: React.FC<GiftFinderQuizModalProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const [vibe, setVibe] = useState<'drama-queen' | 'pinterest' | 'classic-simran' | 'royal-rani'>('drama-queen');
-  const [occasion, setOccasion] = useState<'anniversary' | 'apology' | 'birthday' | 'just-because'>('anniversary');
-  const [budget, setBudget] = useState<'budget' | 'mid' | 'luxury'>('mid');
+  const [vibe, setVibe] = useState<
+    "drama-queen" | "pinterest" | "classic-simran" | "royal-rani"
+  >("drama-queen");
+  const [occasion, setOccasion] = useState<
+    "anniversary" | "apology" | "birthday" | "just-because"
+  >("anniversary");
+  const [budget, setBudget] = useState<"budget" | "mid" | "luxury">("mid");
   const [submitted, setSubmitted] = useState(false);
 
   // Recommendation engine based on quiz answers
   const getRecommendations = (): Product[] => {
     let list = [...PRODUCTS];
 
-    if (vibe === 'drama-queen') {
-      list = list.filter((p) => p.category === 'earrings' || p.id === 'gift-6');
-    } else if (vibe === 'pinterest') {
-      list = list.filter((p) => p.category === 'hair' || p.id === 'gift-3');
-    } else if (vibe === 'classic-simran') {
-      list = list.filter((p) => p.category === 'bangles' || p.id === 'gift-4');
-    } else if (vibe === 'royal-rani') {
-      list = list.filter((p) => p.category === 'romantic-gifts' || p.id === 'jhumka-3');
+    if (vibe === "drama-queen") {
+      list = list.filter((p) => p.category === "earrings" || p.id === "gift-6");
+    } else if (vibe === "pinterest") {
+      list = list.filter((p) => p.category === "hair" || p.id === "gift-3");
+    } else if (vibe === "classic-simran") {
+      list = list.filter((p) => p.category === "bangles" || p.id === "gift-4");
+    } else if (vibe === "royal-rani") {
+      list = list.filter(
+        (p) => p.category === "romantic-gifts" || p.id === "jhumka-3",
+      );
     }
 
-    if (occasion === 'apology') {
+    if (occasion === "apology") {
       // Apology requires big romantic gestures
-      const apologyFav = PRODUCTS.find((p) => p.id === 'gift-1');
+      const apologyFav = PRODUCTS.find((p) => p.id === "gift-1");
       if (apologyFav && !list.some((p) => p.id === apologyFav.id)) {
         list.unshift(apologyFav);
       }
     }
 
-    if (budget === 'budget') {
+    if (budget === "budget") {
       list = list.filter((p) => p.price <= 1000);
-    } else if (budget === 'luxury') {
+    } else if (budget === "luxury") {
       list = list.filter((p) => p.price >= 1500);
     }
 
@@ -95,38 +101,39 @@ export const GiftFinderQuizModal: React.FC<GiftFinderQuizModalProps> = ({
         <div className="p-6 overflow-y-auto flex-1 space-y-6">
           {!submitted ? (
             <div className="space-y-6">
-              
               {/* Question 1: Her Vibe */}
               <div className="space-y-3">
                 <label className="text-xs font-black uppercase tracking-wider text-stone-800 flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-full bg-[#E60050] text-white text-[11px] flex items-center justify-center">1</span>
+                  <span className="w-5 h-5 rounded-full bg-[#E60050] text-white text-[11px] flex items-center justify-center">
+                    1
+                  </span>
                   <span>What is her dominant vibe?</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {[
                     {
-                      id: 'drama-queen' as const,
-                      emoji: '👑',
-                      title: 'Geet from Jab We Met',
-                      desc: 'Full of drama, speaks fast, loves heavy jhumkas & grand romantic gestures',
+                      id: "drama-queen" as const,
+                      emoji: "👑",
+                      title: "Geet from Jab We Met",
+                      desc: "Full of drama, speaks fast, loves heavy jhumkas & grand romantic gestures",
                     },
                     {
-                      id: 'pinterest' as const,
-                      emoji: '🎀',
-                      title: 'Aesthetic Pinterest Girlie',
-                      desc: 'Clean girl look, oversized organza hair bows, pearls & soft pastels',
+                      id: "pinterest" as const,
+                      emoji: "🎀",
+                      title: "Aesthetic Pinterest Girlie",
+                      desc: "Clean girl look, oversized organza hair bows, pearls & soft pastels",
                     },
                     {
-                      id: 'classic-simran' as const,
-                      emoji: '💚',
-                      title: 'Classic Simran Saree Lover',
-                      desc: 'Old-school romance, tinkling glass choodiyan & vintage melodies',
+                      id: "classic-simran" as const,
+                      emoji: "💚",
+                      title: "Classic Simran Saree Lover",
+                      desc: "Old-school romance, tinkling glass choodiyan & vintage melodies",
                     },
                     {
-                      id: 'royal-rani' as const,
-                      emoji: '✨',
-                      title: 'Opulent Royal Rani',
-                      desc: 'Loves luxury trunks, 22k gold finish kundan, and high drama unboxings',
+                      id: "royal-rani" as const,
+                      emoji: "✨",
+                      title: "Opulent Royal Rani",
+                      desc: "Loves luxury trunks, 22k gold finish kundan, and high drama unboxings",
                     },
                   ].map((item) => (
                     <button
@@ -134,13 +141,17 @@ export const GiftFinderQuizModal: React.FC<GiftFinderQuizModalProps> = ({
                       onClick={() => setVibe(item.id)}
                       className={`p-3 text-left rounded-xl border transition-all ${
                         vibe === item.id
-                          ? 'border-[#E60050] bg-rose-50/50 ring-1 ring-[#E60050]'
-                          : 'border-stone-200 hover:border-pink-300 bg-white'
+                          ? "border-[#E60050] bg-rose-50/50 ring-1 ring-[#E60050]"
+                          : "border-stone-200 hover:border-pink-300 bg-white"
                       }`}
                     >
                       <span className="text-xl mb-1 block">{item.emoji}</span>
-                      <span className="text-xs font-bold text-stone-900 block">{item.title}</span>
-                      <span className="text-[11px] text-stone-500 line-clamp-2 mt-0.5">{item.desc}</span>
+                      <span className="text-xs font-bold text-stone-900 block">
+                        {item.title}
+                      </span>
+                      <span className="text-[11px] text-stone-500 line-clamp-2 mt-0.5">
+                        {item.desc}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -149,23 +160,41 @@ export const GiftFinderQuizModal: React.FC<GiftFinderQuizModalProps> = ({
               {/* Question 2: Occasion */}
               <div className="space-y-3">
                 <label className="text-xs font-black uppercase tracking-wider text-stone-800 flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-full bg-[#E60050] text-white text-[11px] flex items-center justify-center">2</span>
+                  <span className="w-5 h-5 rounded-full bg-[#E60050] text-white text-[11px] flex items-center justify-center">
+                    2
+                  </span>
                   <span>What’s the gifting emergency / occasion?</span>
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { id: 'anniversary' as const, emoji: '🥂', label: 'Anniversary' },
-                    { id: 'apology' as const, emoji: '🚨', label: 'Urgent Apology' },
-                    { id: 'birthday' as const, emoji: '🎂', label: 'Her Birthday' },
-                    { id: 'just-because' as const, emoji: '💖', label: 'Just Because' },
+                    {
+                      id: "anniversary" as const,
+                      emoji: "🥂",
+                      label: "Anniversary",
+                    },
+                    {
+                      id: "apology" as const,
+                      emoji: "🚨",
+                      label: "Urgent Apology",
+                    },
+                    {
+                      id: "birthday" as const,
+                      emoji: "🎂",
+                      label: "Her Birthday",
+                    },
+                    {
+                      id: "just-because" as const,
+                      emoji: "💖",
+                      label: "Just Because",
+                    },
                   ].map((occ) => (
                     <button
                       key={occ.id}
                       onClick={() => setOccasion(occ.id)}
                       className={`p-2.5 text-center rounded-xl border transition-all ${
                         occasion === occ.id
-                          ? 'border-[#E60050] bg-rose-50/50 text-[#C2185B] font-bold ring-1 ring-[#E60050]'
-                          : 'border-stone-200 bg-white text-stone-700 hover:border-pink-300'
+                          ? "border-[#E60050] bg-rose-50/50 text-[#C2185B] font-bold ring-1 ring-[#E60050]"
+                          : "border-stone-200 bg-white text-stone-700 hover:border-pink-300"
                       }`}
                     >
                       <span className="text-lg block mb-1">{occ.emoji}</span>
@@ -178,26 +207,42 @@ export const GiftFinderQuizModal: React.FC<GiftFinderQuizModalProps> = ({
               {/* Question 3: Budget */}
               <div className="space-y-3">
                 <label className="text-xs font-black uppercase tracking-wider text-stone-800 flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-full bg-[#E60050] text-white text-[11px] flex items-center justify-center">3</span>
+                  <span className="w-5 h-5 rounded-full bg-[#E60050] text-white text-[11px] flex items-center justify-center">
+                    3
+                  </span>
                   <span>What’s your budget comfort zone?</span>
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { id: 'budget' as const, label: 'Under ₹1,000', note: 'Cute sweet tokens' },
-                    { id: 'mid' as const, label: '₹1,000 - ₹1,999', note: 'Most popular zone' },
-                    { id: 'luxury' as const, label: '₹2,000+', note: 'Full Bollywood hero' },
+                    {
+                      id: "budget" as const,
+                      label: "Under ₹1,000",
+                      note: "Cute sweet tokens",
+                    },
+                    {
+                      id: "mid" as const,
+                      label: "₹1,000 - ₹1,999",
+                      note: "Most popular zone",
+                    },
+                    {
+                      id: "luxury" as const,
+                      label: "₹2,000+",
+                      note: "Full Bollywood hero",
+                    },
                   ].map((b) => (
                     <button
                       key={b.id}
                       onClick={() => setBudget(b.id)}
                       className={`p-2.5 text-center rounded-xl border transition-all ${
                         budget === b.id
-                          ? 'border-[#E60050] bg-rose-50/50 text-[#C2185B] font-bold ring-1 ring-[#E60050]'
-                          : 'border-stone-200 bg-white text-stone-700 hover:border-pink-300'
+                          ? "border-[#E60050] bg-rose-50/50 text-[#C2185B] font-bold ring-1 ring-[#E60050]"
+                          : "border-stone-200 bg-white text-stone-700 hover:border-pink-300"
                       }`}
                     >
                       <span className="text-xs font-bold block">{b.label}</span>
-                      <span className="text-[10px] text-stone-500 block mt-0.5">{b.note}</span>
+                      <span className="text-[10px] text-stone-500 block mt-0.5">
+                        {b.note}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -223,7 +268,15 @@ export const GiftFinderQuizModal: React.FC<GiftFinderQuizModalProps> = ({
                     ✨ 99.8% Heart-Melting Match Found
                   </span>
                   <h3 className="text-base font-display font-extrabold text-[#2B1B17]">
-                    Handpicked for your {vibe === 'drama-queen' ? 'Geet Drama Queen' : vibe === 'pinterest' ? 'Aesthetic Girlie' : vibe === 'classic-simran' ? 'Classic Simran' : 'Royal Rani'}!
+                    Handpicked for your{" "}
+                    {vibe === "drama-queen"
+                      ? "Geet Drama Queen"
+                      : vibe === "pinterest"
+                        ? "Aesthetic Girlie"
+                        : vibe === "classic-simran"
+                          ? "Classic Simran"
+                          : "Royal Rani"}
+                    !
                   </h3>
                 </div>
                 <button
@@ -297,7 +350,8 @@ export const GiftFinderQuizModal: React.FC<GiftFinderQuizModalProps> = ({
               <div className="bg-[#FFF9F5] p-3.5 rounded-xl border border-rose-200 text-xs text-stone-600 flex items-center gap-2">
                 <span className="text-lg">💌</span>
                 <span>
-                  <strong>Tip for Boyfriend:</strong> All gifts come packed in our signature Gulabi gift box with a wax-sealed love letter!
+                  <strong>Tip for Boyfriend:</strong> All gifts come packed in
+                  our signature Gulabi gift box with a wax-sealed love letter!
                 </span>
               </div>
             </div>

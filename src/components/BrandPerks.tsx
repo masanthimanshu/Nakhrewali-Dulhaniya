@@ -1,42 +1,41 @@
-import React from 'react';
-import { Feather, ShieldCheck, Mail, Package, Sparkles } from 'lucide-react';
+import React from "react";
+import { Feather, ShieldCheck, Mail, Package, Sparkles } from "lucide-react";
 
 export const BrandPerks: React.FC = () => {
   const perks = [
     {
       icon: Feather,
-      title: 'Featherlight Hollow Craft',
+      title: "Featherlight Hollow Craft",
       description:
-        'Engineered with hollowed brass cores so she can dance to Bole Chudiyan all night without heavy, pulled earlobes or sore ears.',
-      metric: 'Under 16 Grams',
+        "Engineered with hollowed brass cores so she can dance to Bole Chudiyan all night without heavy, pulled earlobes or sore ears.",
+      metric: "Under 16 Grams",
     },
     {
       icon: ShieldCheck,
-      title: '22K Anti-Tarnish Shield',
+      title: "22K Anti-Tarnish Shield",
       description:
-        'Electro-plated with 22K micro gold and sealed with a nano-ceramic barrier. Impervious to party perfumes, humid weather, and sweat.',
-      metric: 'Lifetime Finish Assurance',
+        "Electro-plated with 22K micro gold and sealed with a nano-ceramic barrier. Impervious to party perfumes, humid weather, and sweat.",
+      metric: "Lifetime Finish Assurance",
     },
     {
       icon: Mail,
-      title: 'Wax-Sealed Bollywood Letter',
+      title: "Wax-Sealed Bollywood Letter",
       description:
-        'Every order includes your personal quote printed on vintage deckle-edge parchment, hand-sealed with authentic crimson wax.',
-      metric: 'Complimentary ₹199 Gift',
+        "Every order includes your personal quote printed on vintage deckle-edge parchment, hand-sealed with authentic crimson wax.",
+      metric: "Complimentary ₹199 Gift",
     },
     {
       icon: Package,
-      title: '100% Discreet Gift Packaging',
+      title: "100% Discreet Gift Packaging",
       description:
-        'Shipped in a plain outer box so she won’t suspect a thing. Inside is our signature Gulabi velvet box with zero price tags or receipts.',
-      metric: 'Doorstep Ready',
+        "Shipped in a plain outer box so she won’t suspect a thing. Inside is our signature Gulabi velvet box with zero price tags or receipts.",
+      metric: "Doorstep Ready",
     },
   ];
 
   return (
     <section className="py-16 bg-[#FAF7F2] border-t border-[#EAE1D7]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#FAF2F4] text-[#7A152E] text-[11px] font-semibold uppercase tracking-widest border border-[#F2D6DC]">
@@ -47,7 +46,8 @@ export const BrandPerks: React.FC = () => {
             Why A Nakhrewali Gift Hits Different
           </h2>
           <p className="text-xs sm:text-sm text-[#70605A]">
-            We threw out heavy costume jewelry and generic brown courier boxes. Here is why she will scream when she opens this.
+            We threw out heavy costume jewelry and generic brown courier boxes.
+            Here is why she will scream when she opens this.
           </p>
         </div>
 
@@ -83,7 +83,6 @@ export const BrandPerks: React.FC = () => {
             );
           })}
         </div>
-
       </div>
     </section>
   );

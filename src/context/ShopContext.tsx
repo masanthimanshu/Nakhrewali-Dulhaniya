@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Product, CartItem, OrderDetails } from '../types';
-import { PRODUCTS } from '../data/products';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { Product, CartItem, OrderDetails } from "../types";
+import { PRODUCTS } from "../data/products";
 
 interface ShopContextType {
   cart: CartItem[];
@@ -13,8 +13,22 @@ interface ShopContextType {
   setIsHamperBuilderOpen: (open: boolean) => void;
   isGiftQuizOpen: boolean;
   setIsGiftQuizOpen: (open: boolean) => void;
-  addToCart: (product: Product, quantity?: number, giftNote?: string, customNote?: string, recipientName?: string) => void;
-  addHamperToCart: (hamper: { title: string; boxStyle: string; items: Product[]; totalPrice: number; loveNote: string; toName: string; fromName: string }) => void;
+  addToCart: (
+    product: Product,
+    quantity?: number,
+    giftNote?: string,
+    customNote?: string,
+    recipientName?: string,
+  ) => void;
+  addHamperToCart: (hamper: {
+    title: string;
+    boxStyle: string;
+    items: Product[];
+    totalPrice: number;
+    loveNote: string;
+    toName: string;
+    fromName: string;
+  }) => void;
   removeFromCart: (itemId: string) => void;
   updateCartQuantity: (itemId: string, delta: number) => void;
   clearCart: () => void;
@@ -29,11 +43,13 @@ interface ShopContextType {
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
 
-export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   // Local storage persistence
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
-      const saved = localStorage.getItem('nakhrewali_cart');
+      const saved = localStorage.getItem("nakhrewali_cart");
       if (saved) return JSON.parse(saved);
     } catch (e) {
       console.error(e);
@@ -41,19 +57,20 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Default welcome items in bag
     return [
       {
-        id: 'cart-init-1',
+        id: "cart-init-1",
         product: PRODUCTS[0],
         quantity: 1,
-        giftBoxChoice: 'Gulabi Velvet Box',
-        giftNote: '“Main apni favorite hoon... par tum mere sabse favorite ho!”',
-        giftRecipient: 'My Sweetheart',
+        giftBoxChoice: "Gulabi Velvet Box",
+        giftNote:
+          "“Main apni favorite hoon... par tum mere sabse favorite ho!”",
+        giftRecipient: "My Sweetheart",
       },
     ];
   });
 
   const [wishlist, setWishlist] = useState<Product[]>(() => {
     try {
-      const saved = localStorage.getItem('nakhrewali_wishlist');
+      const saved = localStorage.getItem("nakhrewali_wishlist");
       if (saved) return JSON.parse(saved);
     } catch (e) {
       console.error(e);
@@ -67,7 +84,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isGiftQuizOpen, setIsGiftQuizOpen] = useState(false);
   const [lastOrder, setLastOrder] = useState<OrderDetails | null>(() => {
     try {
-      const saved = localStorage.getItem('nakhrewali_last_order');
+      const saved = localStorage.getItem("nakhrewali_last_order");
       if (saved) return JSON.parse(saved);
     } catch (e) {
       console.error(e);
@@ -77,7 +94,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     try {
-      localStorage.setItem('nakhrewali_cart', JSON.stringify(cart));
+      localStorage.setItem("nakhrewali_cart", JSON.stringify(cart));
     } catch (e) {
       console.error(e);
     }
@@ -85,7 +102,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     try {
-      localStorage.setItem('nakhrewali_wishlist', JSON.stringify(wishlist));
+      localStorage.setItem("nakhrewali_wishlist", JSON.stringify(wishlist));
     } catch (e) {
       console.error(e);
     }
@@ -94,7 +111,10 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     if (lastOrder) {
       try {
-        localStorage.setItem('nakhrewali_last_order', JSON.stringify(lastOrder));
+        localStorage.setItem(
+          "nakhrewali_last_order",
+          JSON.stringify(lastOrder),
+        );
       } catch (e) {
         console.error(e);
       }
@@ -106,21 +126,21 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
     quantity = 1,
     giftNote?: string,
     customNote?: string,
-    recipientName?: string
+    recipientName?: string,
   ) => {
     setCart((prev) => {
       const existing = prev.find(
         (item) =>
           item.product.id === product.id &&
           item.giftNote === giftNote &&
-          item.customNote === customNote
+          item.customNote === customNote,
       );
 
       if (existing) {
         return prev.map((item) =>
           item.id === existing.id
             ? { ...item, quantity: item.quantity + quantity }
-            : item
+            : item,
         );
       }
 
@@ -128,10 +148,12 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
         id: `cart-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
         product,
         quantity,
-        giftBoxChoice: 'Gulabi Velvet Box (Complimentary)',
-        giftNote: giftNote || '“Main apni favorite hoon... par tum mere sabse favorite ho!”',
+        giftBoxChoice: "Gulabi Velvet Box (Complimentary)",
+        giftNote:
+          giftNote ||
+          "“Main apni favorite hoon... par tum mere sabse favorite ho!”",
         customNote,
-        giftRecipient: recipientName || 'My Nakhrewali Bae',
+        giftRecipient: recipientName || "My Nakhrewali Bae",
       };
 
       return [...prev, newItem];
@@ -152,23 +174,25 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const virtualHamperProduct: Product = {
       id: `custom-hamper-${Date.now()}`,
       name: hamper.title,
-      category: 'romantic-gifts',
-      categoryLabel: 'Dil Tu Jaan Tu',
+      category: "romantic-gifts",
+      categoryLabel: "Dil Tu Jaan Tu",
       price: hamper.totalPrice,
       originalPrice: Math.round(hamper.totalPrice * 1.25),
-      image: hamper.items[0]?.image || 'https://i.pinimg.com/1200x/ee/14/fc/ee14fc1b2d6ad53b35f3a8cafe3068df.jpg',
+      image:
+        hamper.items[0]?.image ||
+        "https://i.pinimg.com/1200x/ee/14/fc/ee14fc1b2d6ad53b35f3a8cafe3068df.jpg",
       rating: 5.0,
       reviewsCount: 1,
-      badge: 'Bespoke Hit',
+      badge: "Bespoke Hit",
       bollywoodDialogue: `“To ${hamper.toName}: ${hamper.loveNote} — Forever, ${hamper.fromName}”`,
       description: `Bespoke curated hamper featuring ${hamper.boxStyle} with ${hamper.items.length} handpicked pieces and complimentary calligraphy parchment note.`,
       whySheLovesIt: [
-        'Curated with love by you',
-        `Includes: ${hamper.items.map((i) => i.name).join(', ')}`,
-        'Sealed with crimson wax and fragrant dried rose petals',
+        "Curated with love by you",
+        `Includes: ${hamper.items.map((i) => i.name).join(", ")}`,
+        "Sealed with crimson wax and fragrant dried rose petals",
       ],
-      stylingTip: 'Ready for presentation upon delivery.',
-      material: 'Velvet trunk, brass accents, satin ribbons',
+      stylingTip: "Ready for presentation upon delivery.",
+      material: "Velvet trunk, brass accents, satin ribbons",
     };
 
     addToCart(
@@ -176,7 +200,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
       1,
       hamper.loveNote,
       `From: ${hamper.fromName} to: ${hamper.toName}`,
-      hamper.toName
+      hamper.toName,
     );
   };
 
@@ -185,16 +209,17 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const updateCartQuantity = (itemId: string, delta: number) => {
-    setCart((prev) =>
-      prev
-        .map((item) => {
-          if (item.id === itemId) {
-            const newQty = item.quantity + delta;
-            return newQty > 0 ? { ...item, quantity: newQty } : null;
-          }
-          return item;
-        })
-        .filter(Boolean) as CartItem[]
+    setCart(
+      (prev) =>
+        prev
+          .map((item) => {
+            if (item.id === itemId) {
+              const newQty = item.quantity + delta;
+              return newQty > 0 ? { ...item, quantity: newQty } : null;
+            }
+            return item;
+          })
+          .filter(Boolean) as CartItem[],
     );
   };
 
@@ -219,12 +244,12 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const cartSubtotal = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
-    0
+    0,
   );
   const cartTotalDiscount = cart.reduce(
     (sum, item) =>
       sum + (item.product.originalPrice - item.product.price) * item.quantity,
-    0
+    0,
   );
 
   return (
@@ -262,7 +287,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useShop = () => {
   const context = useContext(ShopContext);
   if (!context) {
-    throw new Error('useShop must be used within a ShopProvider');
+    throw new Error("useShop must be used within a ShopProvider");
   }
   return context;
 };

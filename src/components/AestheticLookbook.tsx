@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, Eye } from 'lucide-react';
-import { handleImageError } from '../utils/imageFallback';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Sparkles, ArrowRight, Eye } from "lucide-react";
+import { handleImageError } from "../utils/imageFallback";
 
 interface LookbookItem {
   id: string;
@@ -18,47 +18,55 @@ interface LookbookItem {
 export const AestheticLookbook: React.FC = () => {
   const looks: LookbookItem[] = [
     {
-      id: 'look-1',
-      tag: 'Festive & Sangeet',
-      vibe: 'Kajra Re Chandbali + Lucknowi Chikankari',
-      image: 'https://i.pinimg.com/1200x/69/06/d9/6906d9d10843730960f22245a47b64f5.jpg',
-      heading: 'The Sangeet Showstopper',
-      pairingQuote: '“Heavy on drama, featherlight on the ears. For the girl who won’t leave the dancefloor until the DJ stops.”',
-      featuredProductId: 'jhumka-1',
-      featuredProductName: 'Kajra Re Mirror Chandbali',
+      id: "look-1",
+      tag: "Festive & Sangeet",
+      vibe: "Kajra Re Chandbali + Lucknowi Chikankari",
+      image:
+        "https://i.pinimg.com/1200x/69/06/d9/6906d9d10843730960f22245a47b64f5.jpg",
+      heading: "The Sangeet Showstopper",
+      pairingQuote:
+        "“Heavy on drama, featherlight on the ears. For the girl who won’t leave the dancefloor until the DJ stops.”",
+      featuredProductId: "jhumka-1",
+      featuredProductName: "Kajra Re Mirror Chandbali",
       price: 1199,
     },
     {
-      id: 'look-2',
-      tag: 'Bollywood Poo Era',
-      vibe: 'Velvet Bangles + Emerald Latkan Kadas',
-      image: 'https://i.pinimg.com/1200x/8e/92/9b/8e929bd4037d189c792ad059dd01b878.jpg',
-      heading: 'The Modern Begum Stack',
-      pairingQuote: '“Soft velvet against the skin with the gentle romantic chime of brass ghungroos.”',
-      featuredProductId: 'bangle-2',
-      featuredProductName: 'Noor-e-Kashmir Resham Bangles',
+      id: "look-2",
+      tag: "Bollywood Poo Era",
+      vibe: "Velvet Bangles + Emerald Latkan Kadas",
+      image:
+        "https://i.pinimg.com/1200x/8e/92/9b/8e929bd4037d189c792ad059dd01b878.jpg",
+      heading: "The Modern Begum Stack",
+      pairingQuote:
+        "“Soft velvet against the skin with the gentle romantic chime of brass ghungroos.”",
+      featuredProductId: "bangle-2",
+      featuredProductName: "Noor-e-Kashmir Resham Bangles",
       price: 899,
     },
     {
-      id: 'look-3',
-      tag: 'Pinterest Girl Aesthetic',
-      vibe: 'Silk Organza Bow + Minimal Pearl Drops',
-      image: 'https://i.pinimg.com/736x/49/0e/6e/490e6ee4b020f17df2722c794465331a.jpg',
-      heading: 'Sunday Cafe & Brunch',
-      pairingQuote: '“Effortless French-meets-Bollywood chic for linen dresses, cozy sweaters, and soft hair waves.”',
-      featuredProductId: 'hair-1',
-      featuredProductName: 'Nazakat Silk Organza Bow',
+      id: "look-3",
+      tag: "Pinterest Girl Aesthetic",
+      vibe: "Silk Organza Bow + Minimal Pearl Drops",
+      image:
+        "https://i.pinimg.com/736x/49/0e/6e/490e6ee4b020f17df2722c794465331a.jpg",
+      heading: "Sunday Cafe & Brunch",
+      pairingQuote:
+        "“Effortless French-meets-Bollywood chic for linen dresses, cozy sweaters, and soft hair waves.”",
+      featuredProductId: "hair-1",
+      featuredProductName: "Nazakat Silk Organza Bow",
       price: 649,
     },
     {
-      id: 'look-4',
-      tag: 'Anniversary Gift Trunk',
-      vibe: 'The Dil Tu Jaan Tu Keepsake Trunk',
-      image: 'https://i.pinimg.com/1200x/ee/14/fc/ee14fc1b2d6ad53b35f3a8cafe3068df.jpg',
-      heading: 'The Ultimate Royal Hamper',
-      pairingQuote: '“Filled with dried red rose petals, crimson wax seal letter, and her dream jewelry pieces.”',
-      featuredProductId: 'gift-1',
-      featuredProductName: 'Deewani Mastani Royal Box',
+      id: "look-4",
+      tag: "Anniversary Gift Trunk",
+      vibe: "The Dil Tu Jaan Tu Keepsake Trunk",
+      image:
+        "https://i.pinimg.com/1200x/ee/14/fc/ee14fc1b2d6ad53b35f3a8cafe3068df.jpg",
+      heading: "The Ultimate Royal Hamper",
+      pairingQuote:
+        "“Filled with dried red rose petals, crimson wax seal letter, and her dream jewelry pieces.”",
+      featuredProductId: "gift-1",
+      featuredProductName: "Deewani Mastani Royal Box",
       price: 1899,
     },
   ];
@@ -66,7 +74,6 @@ export const AestheticLookbook: React.FC = () => {
   return (
     <section className="py-16 bg-white border-t border-[#EAE1D7]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Masthead */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div className="space-y-2 max-w-xl">
@@ -78,7 +85,8 @@ export const AestheticLookbook: React.FC = () => {
               Style The Bollywood Aesthetic
             </h2>
             <p className="text-xs sm:text-sm text-[#70605A]">
-              How our Nakhrewali community pairs each piece with contemporary outfits, college kurtis, and wedding lehengas.
+              How our Nakhrewali community pairs each piece with contemporary
+              outfits, college kurtis, and wedding lehengas.
             </p>
           </div>
 
@@ -104,10 +112,10 @@ export const AestheticLookbook: React.FC = () => {
                   src={look.image}
                   alt={look.heading}
                   referrerPolicy="no-referrer"
-                  onError={(e) => handleImageError(e, 'earrings')}
+                  onError={(e) => handleImageError(e, "earrings")}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                
+
                 {/* Floating Tag */}
                 <div className="absolute top-3 left-3">
                   <span className="px-2.5 py-0.5 bg-white/95 backdrop-blur-xs text-[#1C1412] text-[10px] font-bold uppercase tracking-wider rounded-full border border-[#DFCFC1]">
@@ -143,7 +151,9 @@ export const AestheticLookbook: React.FC = () => {
 
                 <div className="pt-2 border-t border-[#EAE1D7] flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-[#8C7A75] block">Featured:</span>
+                    <span className="text-[10px] text-[#8C7A75] block">
+                      Featured:
+                    </span>
                     <span className="text-xs font-semibold text-[#1C1412]">
                       ₹{look.price.toLocaleString()}
                     </span>
@@ -158,11 +168,9 @@ export const AestheticLookbook: React.FC = () => {
                   </Link>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

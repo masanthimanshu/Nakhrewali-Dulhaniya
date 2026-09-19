@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, ShoppingBag, Tag, ArrowRight, ShieldCheck } from 'lucide-react';
-import { CartItem } from '../types';
-import { handleImageError } from '../utils/imageFallback';
+import React, { useState } from "react";
+import {
+  X,
+  Trash2,
+  Plus,
+  Minus,
+  ShoppingBag,
+  Tag,
+  ArrowRight,
+  ShieldCheck,
+} from "lucide-react";
+import { CartItem } from "../types";
+import { handleImageError } from "../utils/imageFallback";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -28,18 +37,25 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const [couponInput, setCouponInput] = useState('');
-  const [couponError, setCouponError] = useState('');
+  const [couponInput, setCouponInput] = useState("");
+  const [couponError, setCouponError] = useState("");
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
-    0
+    0,
   );
 
   const freeShippingThreshold = 999;
-  const progressToFreeShipping = Math.min(100, (subtotal / freeShippingThreshold) * 100);
-  const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
-  const shippingFee = subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 99;
+  const progressToFreeShipping = Math.min(
+    100,
+    (subtotal / freeShippingThreshold) * 100,
+  );
+  const remainingForFreeShipping = Math.max(
+    0,
+    freeShippingThreshold - subtotal,
+  );
+  const shippingFee =
+    subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 99;
   const finalTotal = Math.max(0, subtotal - discountAmount + shippingFee);
 
   const handleApply = (codeToApply?: string) => {
@@ -47,10 +63,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     if (!code) return;
     const success = onApplyCoupon(code);
     if (success) {
-      setCouponError('');
-      setCouponInput('');
+      setCouponError("");
+      setCouponInput("");
     } else {
-      setCouponError('Invalid promo code. Try NAKHRA10 or FILMYLOVE');
+      setCouponError("Invalid promo code. Try NAKHRA10 or FILMYLOVE");
     }
   };
 
@@ -84,8 +100,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             {remainingForFreeShipping > 0 ? (
               <div className="space-y-1.5">
                 <p className="font-semibold text-[#880E4F] flex items-center justify-between">
-                  <span>Add ₹{remainingForFreeShipping} more for FREE Express Delivery! 🚚</span>
-                  <span className="text-[10px] text-stone-500">{Math.round(progressToFreeShipping)}%</span>
+                  <span>
+                    Add ₹{remainingForFreeShipping} more for FREE Express
+                    Delivery! 🚚
+                  </span>
+                  <span className="text-[10px] text-stone-500">
+                    {Math.round(progressToFreeShipping)}%
+                  </span>
                 </p>
                 <div className="w-full bg-rose-200 h-2 rounded-full overflow-hidden">
                   <div
@@ -112,7 +133,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   Your trunk is feeling lonely!
                 </h3>
                 <p className="text-xs text-stone-500 max-w-xs mx-auto">
-                  Add some dramatic jhumkas, velvet choodiyan, or build a custom gift hamper for your special someone.
+                  Add some dramatic jhumkas, velvet choodiyan, or build a custom
+                  gift hamper for your special someone.
                 </p>
                 <button
                   onClick={onClose}
@@ -133,7 +155,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       src={item.product.image}
                       alt={item.product.name}
                       referrerPolicy="no-referrer"
-                      onError={(e) => handleImageError(e, item.product.category)}
+                      onError={(e) =>
+                        handleImageError(e, item.product.category)
+                      }
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -196,7 +220,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           {/* Bottom Summary & Actions */}
           {cart.length > 0 && (
             <div className="p-5 border-t border-stone-200 bg-[#FFFDF9] space-y-4">
-              
               {/* Promo code bar */}
               <div>
                 <div className="flex space-x-2">
@@ -206,7 +229,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       type="text"
                       placeholder="Promo code (e.g. NAKHRA10)"
                       value={couponInput}
-                      onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
+                      onChange={(e) =>
+                        setCouponInput(e.target.value.toUpperCase())
+                      }
                       className="w-full pl-8 pr-3 py-2 text-xs bg-white border border-stone-200 rounded-xl uppercase tracking-wider text-stone-800 focus:outline-none focus:ring-1 focus:ring-[#E60050]"
                     />
                   </div>
@@ -219,7 +244,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 </div>
 
                 {couponError && (
-                  <p className="text-[10px] text-rose-600 mt-1 font-semibold">{couponError}</p>
+                  <p className="text-[10px] text-rose-600 mt-1 font-semibold">
+                    {couponError}
+                  </p>
                 )}
 
                 {/* Quick chip shortcuts */}
@@ -227,13 +254,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <div className="flex items-center space-x-2 mt-2">
                     <span className="text-[10px] text-stone-400">Try:</span>
                     <button
-                      onClick={() => handleApply('NAKHRA10')}
+                      onClick={() => handleApply("NAKHRA10")}
                       className="text-[10px] bg-rose-50 text-[#E60050] font-bold px-2 py-0.5 rounded border border-rose-200"
                     >
                       NAKHRA10 (10% OFF)
                     </button>
                     <button
-                      onClick={() => handleApply('FILMYLOVE')}
+                      onClick={() => handleApply("FILMYLOVE")}
                       className="text-[10px] bg-rose-50 text-[#E60050] font-bold px-2 py-0.5 rounded border border-rose-200"
                     >
                       FILMYLOVE (₹200 OFF)
@@ -253,7 +280,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               <div className="space-y-1.5 text-xs text-stone-600 pt-2 border-t border-stone-100">
                 <div className="flex justify-between">
                   <span>Bag Subtotal</span>
-                  <span className="font-semibold text-stone-900">₹{subtotal.toLocaleString()}</span>
+                  <span className="font-semibold text-stone-900">
+                    ₹{subtotal.toLocaleString()}
+                  </span>
                 </div>
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-emerald-700 font-semibold">
@@ -264,12 +293,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <div className="flex justify-between">
                   <span>Express Delivery</span>
                   <span className="font-semibold text-stone-900">
-                    {shippingFee === 0 ? 'FREE' : `₹${shippingFee}`}
+                    {shippingFee === 0 ? "FREE" : `₹${shippingFee}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm font-extrabold text-[#2B1B17] pt-2 border-t border-stone-200">
                   <span>Total Amount</span>
-                  <span className="text-base text-[#E60050]">₹{finalTotal.toLocaleString()}</span>
+                  <span className="text-base text-[#E60050]">
+                    ₹{finalTotal.toLocaleString()}
+                  </span>
                 </div>
               </div>
 
@@ -294,10 +325,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <span>•</span>
                 <span>🎁 Free Wax Seal Packaging</span>
               </div>
-
             </div>
           )}
-
         </div>
       </div>
     </div>

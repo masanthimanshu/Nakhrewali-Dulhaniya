@@ -1,7 +1,7 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { CategoryId } from '../types';
-import { handleImageError } from '../utils/imageFallback';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import { CategoryId } from "../types";
+import { handleImageError } from "../utils/imageFallback";
 
 interface CategoryShowcaseProps {
   selectedCategory: CategoryId;
@@ -14,47 +14,50 @@ export const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
 }) => {
   const ranges = [
     {
-      id: 'earrings' as const,
-      roman: 'Range I',
-      title: 'Haye Jhumka',
-      subtitle: 'Statement Chandbalis, Kundan Drops & Royal Meenakari',
-      image: 'https://i.pinimg.com/1200x/69/06/d9/6906d9d10843730960f22245a47b64f5.jpg',
-      count: 'Earrings & Drops',
-      quote: '“Aankhon ki gustakhiyan maaf hon...”',
+      id: "earrings" as const,
+      roman: "Range I",
+      title: "Haye Jhumka",
+      subtitle: "Statement Chandbalis, Kundan Drops & Royal Meenakari",
+      image:
+        "https://i.pinimg.com/1200x/69/06/d9/6906d9d10843730960f22245a47b64f5.jpg",
+      count: "Earrings & Drops",
+      quote: "“Aankhon ki gustakhiyan maaf hon...”",
     },
     {
-      id: 'bangles' as const,
-      roman: 'Range II',
-      title: 'Bole Chudiyan',
-      subtitle: 'Velvet Stacks, Resham Bangles & Latkan Kadas',
-      image: 'https://i.pinimg.com/1200x/8e/92/9b/8e929bd4037d189c792ad059dd01b878.jpg',
-      count: 'Bangles & Kadas',
-      quote: '“The sweet musical chime of royal glass.”',
+      id: "bangles" as const,
+      roman: "Range II",
+      title: "Bole Chudiyan",
+      subtitle: "Velvet Stacks, Resham Bangles & Latkan Kadas",
+      image:
+        "https://i.pinimg.com/1200x/8e/92/9b/8e929bd4037d189c792ad059dd01b878.jpg",
+      count: "Bangles & Kadas",
+      quote: "“The sweet musical chime of royal glass.”",
     },
     {
-      id: 'hair' as const,
-      roman: 'Range III',
-      title: 'Yeh Reshmi Zulfen',
-      subtitle: 'Silk Organza Bows, Pearl Vines & Embroidered Bands',
-      image: 'https://i.pinimg.com/736x/49/0e/6e/490e6ee4b020f17df2722c794465331a.jpg',
-      count: 'Hair Adornments',
-      quote: '“Sharbat jaise meethi zulfon ke liye.”',
+      id: "hair" as const,
+      roman: "Range III",
+      title: "Yeh Reshmi Zulfen",
+      subtitle: "Silk Organza Bows, Pearl Vines & Embroidered Bands",
+      image:
+        "https://i.pinimg.com/736x/49/0e/6e/490e6ee4b020f17df2722c794465331a.jpg",
+      count: "Hair Adornments",
+      quote: "“Sharbat jaise meethi zulfon ke liye.”",
     },
     {
-      id: 'romantic-gifts' as const,
-      roman: 'Range IV',
-      title: 'Dil Tu Jaan Tu',
-      subtitle: 'Curated Trunks, Wax-Sealed Notes & Scented Keepsakes',
-      image: 'https://i.pinimg.com/1200x/67/b4/b4/67b4b4c4f8eb32d68b45123acb0e0f90.jpg',
-      count: 'Romantic Hampers',
-      quote: '“Grand cinematic love stories in a box.”',
+      id: "romantic-gifts" as const,
+      roman: "Range IV",
+      title: "Dil Tu Jaan Tu",
+      subtitle: "Curated Trunks, Wax-Sealed Notes & Scented Keepsakes",
+      image:
+        "https://i.pinimg.com/1200x/67/b4/b4/67b4b4c4f8eb32d68b45123acb0e0f90.jpg",
+      count: "Romantic Hampers",
+      quote: "“Grand cinematic love stories in a box.”",
     },
   ];
 
   return (
     <section className="py-12 bg-white border-b border-[#EAE1D7]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
           <div className="inline-flex items-center space-x-2 text-[11px] font-semibold text-[#8C7A75] uppercase tracking-[0.25em]">
@@ -64,7 +67,8 @@ export const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
             Curated by Cinematic Tradition
           </h2>
           <p className="text-xs sm:text-sm text-[#70605A] leading-relaxed">
-            Four signature chapters of romance, from featherlight mirror jhumkas to heirloom velvet gifting trunks.
+            Four signature chapters of romance, from featherlight mirror jhumkas
+            to heirloom velvet gifting trunks.
           </p>
         </div>
 
@@ -79,8 +83,8 @@ export const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
                 onClick={() => onSelectCategory(range.id)}
                 className={`group text-left relative rounded-2xl overflow-hidden bg-[#FAF7F2] border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
                   isSelected
-                    ? 'border-[#961A38] ring-1 ring-[#961A38] shadow-md'
-                    : 'border-[#EAE1D7] hover:border-[#C5A880] hover:shadow-lg'
+                    ? "border-[#961A38] ring-1 ring-[#961A38] shadow-md"
+                    : "border-[#EAE1D7] hover:border-[#C5A880] hover:shadow-lg"
                 }`}
               >
                 {/* Image Container with Elegant Portrait Framing */}
@@ -119,21 +123,26 @@ export const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-[#F2ECE4] flex items-center justify-between text-xs font-semibold">
-                    <span className={`text-[11px] font-medium transition-colors ${
-                      isSelected ? 'text-[#961A38]' : 'text-[#8C7A75] group-hover:text-[#1C1412]'
-                    }`}>
-                      {isSelected ? 'Viewing Range' : 'Explore Range'}
+                    <span
+                      className={`text-[11px] font-medium transition-colors ${
+                        isSelected
+                          ? "text-[#961A38]"
+                          : "text-[#8C7A75] group-hover:text-[#1C1412]"
+                      }`}
+                    >
+                      {isSelected ? "Viewing Range" : "Explore Range"}
                     </span>
-                    <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${
-                      isSelected ? 'text-[#961A38]' : 'text-[#8C7A75]'
-                    }`} />
+                    <ArrowRight
+                      className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${
+                        isSelected ? "text-[#961A38]" : "text-[#8C7A75]"
+                      }`}
+                    />
                   </div>
                 </div>
               </button>
             );
           })}
         </div>
-
       </div>
     </section>
   );

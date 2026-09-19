@@ -1,57 +1,60 @@
-import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
-import { Product } from '../types';
+import React, { useState } from "react";
+import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
+import { Product } from "../types";
 
 interface ProductFaqSectionProps {
   product: Product;
 }
 
-export const ProductFaqSection: React.FC<ProductFaqSectionProps> = ({ product }) => {
-  const [openId, setOpenId] = useState<string | null>('faq-1');
+export const ProductFaqSection: React.FC<ProductFaqSectionProps> = ({
+  product,
+}) => {
+  const [openId, setOpenId] = useState<string | null>("faq-1");
 
   const faqs = [
     {
-      id: 'faq-1',
+      id: "faq-1",
       question: `How light does ${product.name} feel on the ears during long events?`,
       answer:
-        'All our statement pieces are engineered with an ultra-light hollowed brass core, keeping the total pair weight under 16 grams. She can dance through an entire 8-hour sangeet or wedding reception without heavy pulling, redness, or sore earlobes. Each pair also includes our broad hypoallergenic silicone comfort backing disc for extra weight distribution.',
+        "All our statement pieces are engineered with an ultra-light hollowed brass core, keeping the total pair weight under 16 grams. She can dance through an entire 8-hour sangeet or wedding reception without heavy pulling, redness, or sore earlobes. Each pair also includes our broad hypoallergenic silicone comfort backing disc for extra weight distribution.",
     },
     {
-      id: 'faq-2',
-      question: 'Will the 22K gold polish turn dull, black, or peel with perfume and sweat?',
+      id: "faq-2",
+      question:
+        "Will the 22K gold polish turn dull, black, or peel with perfume and sweat?",
       answer:
-        'Never. We electro-plate each piece with 22K micro gold and cure it with a proprietary nano-ceramic glaze barrier. This locks in the imperial candlelight sheen and shields it against party perfumes, humid wedding heat, and perspiration. It is also 100% lead-free and nickel-free for sensitive skin.',
+        "Never. We electro-plate each piece with 22K micro gold and cure it with a proprietary nano-ceramic glaze barrier. This locks in the imperial candlelight sheen and shields it against party perfumes, humid wedding heat, and perspiration. It is also 100% lead-free and nickel-free for sensitive skin.",
     },
     {
-      id: 'faq-3',
-      question: 'Is the outer courier package 100% surprise-proof for gifting?',
+      id: "faq-3",
+      question: "Is the outer courier package 100% surprise-proof for gifting?",
       answer:
-        'Absolutely. The external shipping carton is completely plain and unbranded. There are zero brand logos, product descriptions, or pricing labels printed on the outside. Inside is our signature Gulabi Velvet keepsake box with dried rose petals and your wax-sealed envelope. All payment receipts and invoices are sent strictly to your personal email.',
+        "Absolutely. The external shipping carton is completely plain and unbranded. There are zero brand logos, product descriptions, or pricing labels printed on the outside. Inside is our signature Gulabi Velvet keepsake box with dried rose petals and your wax-sealed envelope. All payment receipts and invoices are sent strictly to your personal email.",
     },
     {
-      id: 'faq-4',
-      question: 'Can I change my love note text or recipient name after placing the order?',
+      id: "faq-4",
+      question:
+        "Can I change my love note text or recipient name after placing the order?",
       answer:
-        'Yes! If you want to refine your note or alter the recipient name, simply WhatsApp our concierge (+91 98765 43210) or reply to your order confirmation email within 4 hours of ordering. We will hand-stamp your revised parchment before sealing the crimson wax.',
+        "Yes! If you want to refine your note or alter the recipient name, simply WhatsApp our concierge (+91 98765 43210) or reply to your order confirmation email within 4 hours of ordering. We will hand-stamp your revised parchment before sealing the crimson wax.",
     },
     {
-      id: 'faq-5',
-      question: 'What if she wants a different design or needs an exchange?',
+      id: "faq-5",
+      question: "What if she wants a different design or needs an exchange?",
       answer:
-        'We offer a seamless 7-day doorstep exchange policy across India! If she prefers another colorway, style, or collection, our courier partner will pick up the parcel directly from her location with zero hassle.',
+        "We offer a seamless 7-day doorstep exchange policy across India! If she prefers another colorway, style, or collection, our courier partner will pick up the parcel directly from her location with zero hassle.",
     },
     {
-      id: 'faq-6',
-      question: 'How fast will my order arrive? Can I track the live dispatch?',
+      id: "faq-6",
+      question: "How fast will my order arrive? Can I track the live dispatch?",
       answer:
-        'All orders are prioritized and dispatched within 24 hours via Bluedart Air Express. Metro cities (Mumbai, Delhi-NCR, Bangalore, Hyderabad, Chennai, Kolkata, Pune) arrive in 2 business days. You will receive real-time SMS and WhatsApp tracking updates the moment the parcel leaves our Delhi atelier.',
+        "All orders are prioritized and dispatched within 24 hours via Bluedart Air Express. Metro cities (Mumbai, Delhi-NCR, Bangalore, Hyderabad, Chennai, Kolkata, Pune) arrive in 2 business days. You will receive real-time SMS and WhatsApp tracking updates the moment the parcel leaves our Delhi atelier.",
     },
   ];
 
   return (
     <section className="py-16 bg-[#FAF7F2] border-b border-[#EAE1D7]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#FAF2F4] text-[#7A152E] text-[11px] font-semibold uppercase tracking-widest border border-[#F2D6DC]">
@@ -62,7 +65,8 @@ export const ProductFaqSection: React.FC<ProductFaqSectionProps> = ({ product })
             Frequently Asked Questions
           </h2>
           <p className="text-xs sm:text-sm text-[#70605A]">
-            Everything you need to know about craftsmanship, discreet surprise packaging, and comfort.
+            Everything you need to know about craftsmanship, discreet surprise
+            packaging, and comfort.
           </p>
         </div>
 
@@ -84,7 +88,7 @@ export const ProductFaqSection: React.FC<ProductFaqSectionProps> = ({ product })
                   </span>
                   <div
                     className={`w-7 h-7 rounded-full bg-[#FAF7F2] border border-[#EAE1D7] flex items-center justify-center shrink-0 text-[#961A38] transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-[#FAF2F4]' : ''
+                      isOpen ? "rotate-180 bg-[#FAF2F4]" : ""
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -112,7 +116,8 @@ export const ProductFaqSection: React.FC<ProductFaqSectionProps> = ({ product })
                 Have a quick question or custom request?
               </h4>
               <p className="text-xs text-[#8C7A75]">
-                Our Mumbai atelier concierge is available on WhatsApp 7 days a week.
+                Our Mumbai atelier concierge is available on WhatsApp 7 days a
+                week.
               </p>
             </div>
           </div>
@@ -126,7 +131,6 @@ export const ProductFaqSection: React.FC<ProductFaqSectionProps> = ({ product })
             Chat with Concierge
           </a>
         </div>
-
       </div>
     </section>
   );

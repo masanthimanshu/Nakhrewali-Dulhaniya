@@ -1,26 +1,25 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { CheckCircle2, Gift, Truck, Calendar, ArrowRight } from 'lucide-react';
-import { useShop } from '../context/ShopContext';
+import React, { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { CheckCircle2, Gift, Truck, Calendar, ArrowRight } from "lucide-react";
+import { useShop } from "../context/ShopContext";
 
 export const OrderSuccessPage: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const { lastOrder } = useShop();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const displayId = orderId || lastOrder?.orderId || 'ND-894210';
-  const customer = lastOrder?.customerName || 'Romantic Soul';
-  const recipient = lastOrder?.recipientName || 'My Nakhrewali Bae';
+  const displayId = orderId || lastOrder?.orderId || "ND-894210";
+  const customer = lastOrder?.customerName || "Romantic Soul";
+  const recipient = lastOrder?.recipientName || "My Nakhrewali Bae";
   const items = lastOrder?.items || [];
   const total = lastOrder?.total || 1199;
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto space-y-6">
-        
         {/* Celebration Banner */}
         <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#EAE1D7] text-center shadow-sm space-y-4">
           <div className="w-16 h-16 bg-emerald-50 text-emerald-800 rounded-full flex items-center justify-center mx-auto shadow-xs border border-emerald-100">
@@ -36,12 +35,16 @@ export const OrderSuccessPage: React.FC = () => {
           </h1>
 
           <p className="text-xs sm:text-sm text-[#6E5D57] max-w-md mx-auto leading-relaxed">
-            Thank you, <strong>{customer}</strong>! Your order for <strong>{recipient}</strong> has reached our master jewelers and calligraphy desk.
+            Thank you, <strong>{customer}</strong>! Your order for{" "}
+            <strong>{recipient}</strong> has reached our master jewelers and
+            calligraphy desk.
           </p>
 
           <div className="p-3.5 bg-[#FAF7F2] rounded-2xl border border-[#DFCFC1] inline-flex items-center space-x-3 text-xs">
             <span className="text-[#8C7A75]">Order Reference:</span>
-            <span className="font-mono font-bold text-[#1C1412] text-sm">#{displayId}</span>
+            <span className="font-mono font-bold text-[#1C1412] text-sm">
+              #{displayId}
+            </span>
           </div>
         </div>
 
@@ -58,8 +61,12 @@ export const OrderSuccessPage: React.FC = () => {
                 ✓
               </div>
               <div className="text-xs">
-                <span className="font-bold text-[#1C1412] block">Order Verified</span>
-                <span className="text-[#8C7A75]">Payment confirmed & receipt sent to email.</span>
+                <span className="font-bold text-[#1C1412] block">
+                  Order Verified
+                </span>
+                <span className="text-[#8C7A75]">
+                  Payment confirmed & receipt sent to email.
+                </span>
               </div>
             </div>
 
@@ -68,8 +75,13 @@ export const OrderSuccessPage: React.FC = () => {
                 2
               </div>
               <div className="text-xs">
-                <span className="font-bold text-[#1C1412] block">Hand-Crafted Wax Sealing & Scenting</span>
-                <span className="text-[#8C7A75]">Parchment love letter is being printed and sealed with crimson wax.</span>
+                <span className="font-bold text-[#1C1412] block">
+                  Hand-Crafted Wax Sealing & Scenting
+                </span>
+                <span className="text-[#8C7A75]">
+                  Parchment love letter is being printed and sealed with crimson
+                  wax.
+                </span>
               </div>
             </div>
 
@@ -78,8 +90,12 @@ export const OrderSuccessPage: React.FC = () => {
                 3
               </div>
               <div className="text-xs">
-                <span className="font-bold text-[#1C1412] block">Gulabi Velvet Boxing</span>
-                <span className="text-[#8C7A75]">Cushioned in dried rose petals & satin ribbons.</span>
+                <span className="font-bold text-[#1C1412] block">
+                  Gulabi Velvet Boxing
+                </span>
+                <span className="text-[#8C7A75]">
+                  Cushioned in dried rose petals & satin ribbons.
+                </span>
               </div>
             </div>
 
@@ -88,8 +104,12 @@ export const OrderSuccessPage: React.FC = () => {
                 4
               </div>
               <div className="text-xs">
-                <span className="font-bold text-[#1C1412] block">Air Express Dispatch</span>
-                <span className="text-[#8C7A75]">Bluedart Express tracking link will be sent to your WhatsApp.</span>
+                <span className="font-bold text-[#1C1412] block">
+                  Air Express Dispatch
+                </span>
+                <span className="text-[#8C7A75]">
+                  Bluedart Express tracking link will be sent to your WhatsApp.
+                </span>
               </div>
             </div>
           </div>
@@ -113,7 +133,10 @@ export const OrderSuccessPage: React.FC = () => {
             </h4>
             <div className="space-y-2">
               {items.map((item) => (
-                <div key={item.id} className="flex items-center justify-between text-xs py-1.5 border-b border-[#F5ECE4] last:border-0">
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between text-xs py-1.5 border-b border-[#F5ECE4] last:border-0"
+                >
                   <div className="flex items-center space-x-2">
                     <img
                       src={item.product.image}
@@ -152,7 +175,6 @@ export const OrderSuccessPage: React.FC = () => {
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-
       </div>
     </div>
   );

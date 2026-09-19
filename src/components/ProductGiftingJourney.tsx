@@ -1,46 +1,45 @@
-import React from 'react';
-import { Sparkles, Heart, ShieldCheck, Lock } from 'lucide-react';
+import React from "react";
+import { Sparkles, Heart, ShieldCheck, Lock } from "lucide-react";
 
 export const ProductGiftingJourney: React.FC = () => {
   const steps = [
     {
-      num: '01',
-      title: 'Artisanal Inspection & Polish',
-      subtitle: 'Ultrasonic cleansing',
+      num: "01",
+      title: "Artisanal Inspection & Polish",
+      subtitle: "Ultrasonic cleansing",
       description:
-        'Every single piece is scrutinized under magnifying jeweler lamps, wiped with lint-free microfiber, and given an ultrasonic polish to guarantee immaculate shine.',
-      badge: 'Step 1: Purity',
+        "Every single piece is scrutinized under magnifying jeweler lamps, wiped with lint-free microfiber, and given an ultrasonic polish to guarantee immaculate shine.",
+      badge: "Step 1: Purity",
     },
     {
-      num: '02',
-      title: 'Wax-Sealed Love Letter',
-      subtitle: 'Deckle-edge vintage parchment',
+      num: "02",
+      title: "Wax-Sealed Love Letter",
+      subtitle: "Deckle-edge vintage parchment",
       description:
-        'Your custom romantic quote or iconic Bollywood dialogue is laser-printed on fibrous vintage ivory parchment, then hand-stamped with genuine molten crimson red wax.',
-      badge: 'Step 2: Romance',
+        "Your custom romantic quote or iconic Bollywood dialogue is laser-printed on fibrous vintage ivory parchment, then hand-stamped with genuine molten crimson red wax.",
+      badge: "Step 2: Romance",
     },
     {
-      num: '03',
-      title: 'Gulabi Velvet Presentation Trunk',
-      subtitle: 'Bed of fragrant dried roses',
+      num: "03",
+      title: "Gulabi Velvet Presentation Trunk",
+      subtitle: "Bed of fragrant dried roses",
       description:
-        'Your jewelry is nestled inside our signature Gulabi Velvet keepsake box, bedded in real fragrant dried rose petals. It smells like an imperial Mughal garden the second she lifts the lid.',
-      badge: 'Step 3: Goosebumps',
+        "Your jewelry is nestled inside our signature Gulabi Velvet keepsake box, bedded in real fragrant dried rose petals. It smells like an imperial Mughal garden the second she lifts the lid.",
+      badge: "Step 3: Goosebumps",
     },
     {
-      num: '04',
-      title: '100% Discreet Surprise Parcel',
-      subtitle: 'Zero prices or invoices inside',
+      num: "04",
+      title: "100% Discreet Surprise Parcel",
+      subtitle: "Zero prices or invoices inside",
       description:
-        'Shipped in a plain, unmarked courier box. She will never suspect what is inside. Invoices and payment proofs are sent strictly to your private email address.',
-      badge: 'Step 4: The Surprise',
+        "Shipped in a plain, unmarked courier box. She will never suspect what is inside. Invoices and payment proofs are sent strictly to your private email address.",
+      badge: "Step 4: The Surprise",
     },
   ];
 
   return (
     <section className="py-16 bg-[#FAF7F2] border-b border-[#EAE1D7]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#FAF2F4] text-[#7A152E] text-[11px] font-semibold uppercase tracking-widest border border-[#F2D6DC]">
@@ -51,7 +50,8 @@ export const ProductGiftingJourney: React.FC = () => {
             From Our Atelier Bench To Her Doorstep
           </h2>
           <p className="text-xs sm:text-sm text-[#70605A]">
-            A gift from Nakhrewali is not just a parcel; it is a cinematic slow-burn reveal engineered to make her eyes widen with delight.
+            A gift from Nakhrewali is not just a parcel; it is a cinematic
+            slow-burn reveal engineered to make her eyes widen with delight.
           </p>
         </div>
 
@@ -103,7 +103,9 @@ export const ProductGiftingJourney: React.FC = () => {
                 Planning a Stealth Surprise? We Have Your Back.
               </h4>
               <p className="text-xs text-[#DECFC2] leading-relaxed max-w-xl">
-                The outer courier carton gives away zero clues. No logos, no brand stamps, and no pricing stickers. She won't suspect a thing until she unboxes the inner Gulabi velvet trunk.
+                The outer courier carton gives away zero clues. No logos, no
+                brand stamps, and no pricing stickers. She won't suspect a thing
+                until she unboxes the inner Gulabi velvet trunk.
               </p>
             </div>
           </div>
@@ -112,7 +114,6 @@ export const ProductGiftingJourney: React.FC = () => {
             <span>100% Surprise Certified</span>
           </div>
         </div>
-
       </div>
     </section>
   );

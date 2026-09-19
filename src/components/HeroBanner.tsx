@@ -1,6 +1,6 @@
-import React from 'react';
-import { ArrowRight, ShieldCheck, Star } from 'lucide-react';
-import { CategoryId } from '../types';
+import React from "react";
+import { ArrowRight, ShieldCheck, Star } from "lucide-react";
+import { CategoryId } from "../types";
 
 interface HeroBannerProps {
   onSelectCategory: (cat: CategoryId) => void;
@@ -21,10 +21,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
           {/* Left Column: High-End Editorial Storytelling */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
             {/* Range Monogram Eyebrow */}
             <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#F0E6DC] border border-[#DFCFC1] text-[#7A152E] text-[11px] font-semibold tracking-widest uppercase">
               <span className="text-[#C5A880]">✦</span>
@@ -34,7 +32,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
             {/* Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-display font-bold text-[#1C1412] leading-[1.16]">
-              She isn’t high maintenance, she’s{' '}
+              She isn’t high maintenance, she’s{" "}
               <span className="font-serif-romance italic font-normal text-[#961A38] block sm:inline">
                 Nakhrewali.
               </span>
@@ -42,7 +40,23 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
             {/* Subtitle */}
             <p className="text-sm sm:text-base text-[#61514B] max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Curated across four distinct cinematic ranges: iconic <strong className="text-[#1C1412] font-semibold">Haye Jhumka</strong>, musical <strong className="text-[#1C1412] font-semibold">Bole Chudiyan</strong>, poetic <strong className="text-[#1C1412] font-semibold">Yeh Reshmi Zulfen</strong>, and heirloom <strong className="text-[#1C1412] font-semibold">Dil Tu Jaan Tu</strong> keepsakes.
+              Curated across four distinct cinematic ranges: iconic{" "}
+              <strong className="text-[#1C1412] font-semibold">
+                Haye Jhumka
+              </strong>
+              , musical{" "}
+              <strong className="text-[#1C1412] font-semibold">
+                Bole Chudiyan
+              </strong>
+              , poetic{" "}
+              <strong className="text-[#1C1412] font-semibold">
+                Yeh Reshmi Zulfen
+              </strong>
+              , and heirloom{" "}
+              <strong className="text-[#1C1412] font-semibold">
+                Dil Tu Jaan Tu
+              </strong>{" "}
+              keepsakes.
             </p>
 
             {/* Premium CTAs */}
@@ -85,13 +99,11 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 <span>Wax-Sealed Love Note Included</span>
               </div>
             </div>
-
           </div>
 
           {/* Right Column: Refined Editorial Showcase (No angled stickers or chaotic clutter) */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-sm rounded-2xl p-3 bg-white border border-[#E8DDD2] shadow-xl">
-              
               {/* Main Portrait Showcase Image */}
               <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#F5EFEB]">
                 <img
@@ -116,7 +128,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                     Tujh Mein Rab Dikhta Hai
                   </p>
                   <p className="font-serif-romance italic text-xs text-[#EAD8C7]">
-                    Velvet bridal trunk with complimentary wax-sealed parchment note.
+                    Velvet bridal trunk with complimentary wax-sealed parchment
+                    note.
                   </p>
                 </div>
               </div>
@@ -124,38 +137,52 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               {/* Four Range Quick Switcher Strip Below */}
               <div className="grid grid-cols-4 gap-1.5 pt-3">
                 <button
-                  onClick={() => onSelectCategory('earrings')}
+                  onClick={() => onSelectCategory("earrings")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">I</span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">Jhumka</span>
+                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
+                    I
+                  </span>
+                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
+                    Jhumka
+                  </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory('bangles')}
+                  onClick={() => onSelectCategory("bangles")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">II</span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">Chudiyan</span>
+                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
+                    II
+                  </span>
+                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
+                    Chudiyan
+                  </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory('hair')}
+                  onClick={() => onSelectCategory("hair")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">III</span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">Zulfen</span>
+                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
+                    III
+                  </span>
+                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
+                    Zulfen
+                  </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory('romantic-gifts')}
+                  onClick={() => onSelectCategory("romantic-gifts")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">IV</span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">Dil Tu</span>
+                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
+                    IV
+                  </span>
+                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
+                    Dil Tu
+                  </span>
                 </button>
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
     </section>

@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Gift, Sparkles, CheckCircle2, ArrowRight, HelpCircle, AlertCircle } from 'lucide-react';
-import { PRODUCTS } from '../data/products';
-import { useShop } from '../context/ShopContext';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Gift,
+  Sparkles,
+  CheckCircle2,
+  ArrowRight,
+  HelpCircle,
+  AlertCircle,
+} from "lucide-react";
+import { PRODUCTS } from "../data/products";
+import { useShop } from "../context/ShopContext";
 
 interface GuideScenario {
   id: string;
@@ -10,7 +17,7 @@ interface GuideScenario {
   emoji: string;
   occasion: string;
   situation: string;
-  heroProduct: typeof PRODUCTS[0];
+  heroProduct: (typeof PRODUCTS)[0];
   recommendedDialogue: string;
   greenFlagMove: string;
   avoidThisMistake: string;
@@ -23,62 +30,78 @@ export const BoyfriendGuide: React.FC = () => {
 
   const scenarios: GuideScenario[] = [
     {
-      id: 'birthday',
-      tabLabel: 'Her Birthday / V-Day',
-      emoji: '🎂',
-      occasion: 'Birthday or Major Milestone',
-      situation: 'She says "I don’t want anything expensive", but she definitely wants to feel like the main character of a Dharma movie.',
+      id: "birthday",
+      tabLabel: "Her Birthday / V-Day",
+      emoji: "🎂",
+      occasion: "Birthday or Major Milestone",
+      situation:
+        'She says "I don’t want anything expensive", but she definitely wants to feel like the main character of a Dharma movie.',
       heroProduct: PRODUCTS[0], // Kajra Re Chandbali
-      recommendedDialogue: '“Main apni favorite hoon... par tum mere sabse favorite ho!”',
-      greenFlagMove: 'Pair the grand Chandbalis with our complimentary Gulabi Velvet box and a handwritten love note. Film her reaction as she cracks the wax seal.',
-      avoidThisMistake: 'Do NOT give her cash or an unbranded courier box. Presentation is 80% of the emotion.',
-      boxColor: 'from-rose-50 to-pink-50',
+      recommendedDialogue:
+        "“Main apni favorite hoon... par tum mere sabse favorite ho!”",
+      greenFlagMove:
+        "Pair the grand Chandbalis with our complimentary Gulabi Velvet box and a handwritten love note. Film her reaction as she cracks the wax seal.",
+      avoidThisMistake:
+        "Do NOT give her cash or an unbranded courier box. Presentation is 80% of the emotion.",
+      boxColor: "from-rose-50 to-pink-50",
     },
     {
-      id: 'apology',
-      tabLabel: 'You Messed Up (Apology)',
-      emoji: '🥺',
-      occasion: 'Emergency Romantic Patch-Up',
-      situation: 'You replied late, forgot a small detail, or she is giving you the classic Bollywood "silent treatment".',
+      id: "apology",
+      tabLabel: "You Messed Up (Apology)",
+      emoji: "🥺",
+      occasion: "Emergency Romantic Patch-Up",
+      situation:
+        'You replied late, forgot a small detail, or she is giving you the classic Bollywood "silent treatment".',
       heroProduct: PRODUCTS[1], // Mastani Meenakari Lotus
-      recommendedDialogue: '“Kismat badi kutti cheez hai... par tum meri sabse pyari kismat ho. Sorry baba!”',
-      greenFlagMove: 'Soft pastel lotus jhumkas that match everything. The wax seal note says you are genuinely sorry before you even speak.',
-      avoidThisMistake: 'Don’t buy cheap generic chocolates. A keepsake piece of jewelry shows lasting effort and remorse.',
-      boxColor: 'from-amber-50 to-rose-50',
+      recommendedDialogue:
+        "“Kismat badi kutti cheez hai... par tum meri sabse pyari kismat ho. Sorry baba!”",
+      greenFlagMove:
+        "Soft pastel lotus jhumkas that match everything. The wax seal note says you are genuinely sorry before you even speak.",
+      avoidThisMistake:
+        "Don’t buy cheap generic chocolates. A keepsake piece of jewelry shows lasting effort and remorse.",
+      boxColor: "from-amber-50 to-rose-50",
     },
     {
-      id: 'anniversary',
-      tabLabel: 'Anniversary / 6-Months',
-      emoji: '💍',
-      occasion: 'Celebrating Your Love Story',
-      situation: 'You want to show her that your love has only grown deeper since day one.',
+      id: "anniversary",
+      tabLabel: "Anniversary / 6-Months",
+      emoji: "💍",
+      occasion: "Celebrating Your Love Story",
+      situation:
+        "You want to show her that your love has only grown deeper since day one.",
       heroProduct: PRODUCTS[5], // Noor-e-Kashmir Resham Bangles
-      recommendedDialogue: '“Aap hume bhool jao hume koi gham nahi... jis din humne aapko bhula diya, samajh lijiyega hum duniya chhod gaye.”',
-      greenFlagMove: 'A velvet bangle stack or custom multi-piece trunk. When she hears the soft chime of the kadas, she’ll think of you all day.',
-      avoidThisMistake: 'Guessing wrong ring sizes. Bangles & earrings have zero sizing risk and fit guaranteed.',
-      boxColor: 'from-emerald-50 to-teal-50',
+      recommendedDialogue:
+        "“Aap hume bhool jao hume koi gham nahi... jis din humne aapko bhula diya, samajh lijiyega hum duniya chhod gaye.”",
+      greenFlagMove:
+        "A velvet bangle stack or custom multi-piece trunk. When she hears the soft chime of the kadas, she’ll think of you all day.",
+      avoidThisMistake:
+        "Guessing wrong ring sizes. Bangles & earrings have zero sizing risk and fit guaranteed.",
+      boxColor: "from-emerald-50 to-teal-50",
     },
     {
-      id: 'surprise',
-      tabLabel: 'Just Because / Date Night',
-      emoji: '✨',
+      id: "surprise",
+      tabLabel: "Just Because / Date Night",
+      emoji: "✨",
       occasion: 'Spontaneous "Saw This & Thought of You"',
-      situation: 'No reason at all—just a surprise drop at her door or across the dinner table before a college fest or weekend cafe date.',
+      situation:
+        "No reason at all—just a surprise drop at her door or across the dinner table before a college fest or weekend cafe date.",
       heroProduct: PRODUCTS[8], // Nazakat Organza Bow
-      recommendedDialogue: '“Tumhare baalon mein ye clip dekh kar, hum shayar ban gaye!”',
-      greenFlagMove: 'A delicate silk hair bow or mirror latkan kada. Effortless under-₹1000 flex that will be on her Instagram stories within 10 minutes.',
-      avoidThisMistake: 'Waiting only for annual birthdays. Unannounced little gifts create 10x more dopamine.',
-      boxColor: 'from-purple-50 to-pink-50',
+      recommendedDialogue:
+        "“Tumhare baalon mein ye clip dekh kar, hum shayar ban gaye!”",
+      greenFlagMove:
+        "A delicate silk hair bow or mirror latkan kada. Effortless under-₹1000 flex that will be on her Instagram stories within 10 minutes.",
+      avoidThisMistake:
+        "Waiting only for annual birthdays. Unannounced little gifts create 10x more dopamine.",
+      boxColor: "from-purple-50 to-pink-50",
     },
   ];
 
-  const [activeScenarioId, setActiveScenarioId] = useState<string>('birthday');
-  const currentScenario = scenarios.find((s) => s.id === activeScenarioId) || scenarios[0];
+  const [activeScenarioId, setActiveScenarioId] = useState<string>("birthday");
+  const currentScenario =
+    scenarios.find((s) => s.id === activeScenarioId) || scenarios[0];
 
   return (
     <section className="py-16 bg-[#FAF7F2] border-t border-[#EAE1D7]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#FAF2F4] text-[#7A152E] text-[11px] font-semibold uppercase tracking-widest border border-[#F2D6DC]">
@@ -89,7 +112,8 @@ export const BoyfriendGuide: React.FC = () => {
             How To Score 1000 Green Flag Points
           </h2>
           <p className="text-xs sm:text-sm text-[#70605A] leading-relaxed">
-            Stuck on what she actually wants? We decoded female psychology, Bollywood nostalgia, and aesthetic moodboards so you never miss.
+            Stuck on what she actually wants? We decoded female psychology,
+            Bollywood nostalgia, and aesthetic moodboards so you never miss.
           </p>
         </div>
 
@@ -103,8 +127,8 @@ export const BoyfriendGuide: React.FC = () => {
                 onClick={() => setActiveScenarioId(scenario.id)}
                 className={`px-4 py-2 rounded-2xl text-xs font-semibold transition-all flex items-center space-x-2 shrink-0 border cursor-pointer ${
                   isSelected
-                    ? 'bg-[#1C1412] text-white border-[#1C1412] shadow-sm'
-                    : 'bg-white text-[#6E5D57] border-[#EAE1D7] hover:border-[#1C1412]'
+                    ? "bg-[#1C1412] text-white border-[#1C1412] shadow-sm"
+                    : "bg-white text-[#6E5D57] border-[#EAE1D7] hover:border-[#1C1412]"
                 }`}
               >
                 <span>{scenario.emoji}</span>
@@ -117,11 +141,9 @@ export const BoyfriendGuide: React.FC = () => {
         {/* Interactive Scenario Card */}
         <div className="bg-white rounded-3xl border border-[#EAE1D7] overflow-hidden shadow-xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-            
             {/* Left Column: The Strategic Playbook */}
             <div className="lg:col-span-7 p-6 sm:p-10 space-y-6 flex flex-col justify-between">
               <div className="space-y-4">
-                
                 <div className="flex items-center space-x-2">
                   <span className="text-xs font-bold text-[#961A38] bg-[#FAF2F4] px-2.5 py-1 rounded-full uppercase tracking-wider">
                     {currentScenario.occasion}
@@ -184,7 +206,6 @@ export const BoyfriendGuide: React.FC = () => {
                   <span>Take 3-Question Vibe Quiz</span>
                 </button>
               </div>
-
             </div>
 
             {/* Right Column: The Recommended Hero Piece Spotlight */}
@@ -202,7 +223,7 @@ export const BoyfriendGuide: React.FC = () => {
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-[#1C1412]/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full border border-[#DFCFC1]/30">
-                      {currentScenario.heroProduct.badge || 'Hero Gift'}
+                      {currentScenario.heroProduct.badge || "Hero Gift"}
                     </span>
                   </div>
                   <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs text-[#961A38] text-[10px] font-bold px-2 py-0.5 rounded-full">
@@ -227,7 +248,8 @@ export const BoyfriendGuide: React.FC = () => {
                       ₹{currentScenario.heroProduct.price.toLocaleString()}
                     </span>
                     <span className="text-xs text-[#A89893] line-through">
-                      ₹{currentScenario.heroProduct.originalPrice.toLocaleString()}
+                      ₹
+                      {currentScenario.heroProduct.originalPrice.toLocaleString()}
                     </span>
                   </div>
                 </div>
@@ -243,15 +265,19 @@ export const BoyfriendGuide: React.FC = () => {
                 </Link>
 
                 <button
-                  onClick={() => addToCart(currentScenario.heroProduct, 1, currentScenario.recommendedDialogue)}
+                  onClick={() =>
+                    addToCart(
+                      currentScenario.heroProduct,
+                      1,
+                      currentScenario.recommendedDialogue,
+                    )
+                  }
                   className="w-full py-2.5 bg-white hover:bg-[#1C1412] text-[#1C1412] hover:text-white border border-[#1C1412] text-xs font-semibold uppercase tracking-wider rounded-xl transition-all cursor-pointer"
                 >
                   Instant 1-Click Add To Bag
                 </button>
               </div>
-
             </div>
-
           </div>
         </div>
 
@@ -261,15 +287,21 @@ export const BoyfriendGuide: React.FC = () => {
             <span className="text-xl">🤫</span>
             <div className="text-xs">
               <h5 className="font-bold text-[#1C1412]">Zero Invoices Inside</h5>
-              <p className="text-[#8C7A75] mt-0.5">We never display prices or receipts in the gift box.</p>
+              <p className="text-[#8C7A75] mt-0.5">
+                We never display prices or receipts in the gift box.
+              </p>
             </div>
           </div>
 
           <div className="bg-white p-4 rounded-2xl border border-[#EAE1D7] flex items-start space-x-3">
             <span className="text-xl">💌</span>
             <div className="text-xs">
-              <h5 className="font-bold text-[#1C1412]">Free Wax-Sealed Letter</h5>
-              <p className="text-[#8C7A75] mt-0.5">Hand-poured crimson wax seal on vintage calligraphy parchment.</p>
+              <h5 className="font-bold text-[#1C1412]">
+                Free Wax-Sealed Letter
+              </h5>
+              <p className="text-[#8C7A75] mt-0.5">
+                Hand-poured crimson wax seal on vintage calligraphy parchment.
+              </p>
             </div>
           </div>
 
@@ -277,11 +309,13 @@ export const BoyfriendGuide: React.FC = () => {
             <span className="text-xl">🔄</span>
             <div className="text-xs">
               <h5 className="font-bold text-[#1C1412]">Free Doorstep Swaps</h5>
-              <p className="text-[#8C7A75] mt-0.5">If she wants a different color, we exchange it free via WhatsApp.</p>
+              <p className="text-[#8C7A75] mt-0.5">
+                If she wants a different color, we exchange it free via
+                WhatsApp.
+              </p>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

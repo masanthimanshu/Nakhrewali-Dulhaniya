@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   Heart,
   ShoppingBag,
@@ -14,16 +14,16 @@ import {
   Flame,
   ChevronRight,
   Zap,
-} from 'lucide-react';
-import { PRODUCTS, BOLLYWOOD_LOVE_NOTES, CATEGORIES } from '../data/products';
-import { useShop } from '../context/ShopContext';
-import { ProductCard } from '../components/ProductCard';
-import { handleImageError } from '../utils/imageFallback';
-import { ProductCraftsmanship } from '../components/ProductCraftsmanship';
-import { ProductGiftingJourney } from '../components/ProductGiftingJourney';
-import { ProductReviewsSection } from '../components/ProductReviewsSection';
-import { ProductFaqSection } from '../components/ProductFaqSection';
-import { BrandPerks } from '../components/BrandPerks';
+} from "lucide-react";
+import { PRODUCTS, BOLLYWOOD_LOVE_NOTES, CATEGORIES } from "../data/products";
+import { useShop } from "../context/ShopContext";
+import { ProductCard } from "../components/ProductCard";
+import { handleImageError } from "../utils/imageFallback";
+import { ProductCraftsmanship } from "../components/ProductCraftsmanship";
+import { ProductGiftingJourney } from "../components/ProductGiftingJourney";
+import { ProductReviewsSection } from "../components/ProductReviewsSection";
+import { ProductFaqSection } from "../components/ProductFaqSection";
+import { BrandPerks } from "../components/BrandPerks";
 
 export const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,23 +35,27 @@ export const ProductDetailPage: React.FC = () => {
   // Gallery images
   const gallery = [
     product.image,
-    'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1000&q=80',
-    'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=1000&q=80',
-    'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1000&q=80',
+    "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1000&q=80",
+    "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=1000&q=80",
+    "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1000&q=80",
   ];
 
   const [activeImage, setActiveImage] = useState(gallery[0]);
   const [quantity, setQuantity] = useState(1);
-  const [selectedNote, setSelectedNote] = useState(BOLLYWOOD_LOVE_NOTES[0].text);
-  const [customNote, setCustomNote] = useState('');
-  const [recipientName, setRecipientName] = useState('My Sweetheart');
-  const [pincode, setPincode] = useState('');
+  const [selectedNote, setSelectedNote] = useState(
+    BOLLYWOOD_LOVE_NOTES[0].text,
+  );
+  const [customNote, setCustomNote] = useState("");
+  const [recipientName, setRecipientName] = useState("My Sweetheart");
+  const [pincode, setPincode] = useState("");
   const [deliveryEstimate, setDeliveryEstimate] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  const [activeTab, setActiveTab] = useState<'details' | 'styling' | 'packaging'>('details');
+  const [activeTab, setActiveTab] = useState<
+    "details" | "styling" | "packaging"
+  >("details");
 
   const discountPercent = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
+    ((product.originalPrice - product.price) / product.originalPrice) * 100,
   );
 
   const finalNote = customNote.trim() ? customNote : selectedNote;
@@ -59,17 +63,17 @@ export const ProductDetailPage: React.FC = () => {
   const handleCheckPincode = (e: React.FormEvent) => {
     e.preventDefault();
     if (pincode.length === 6) {
-      const days = pincode.startsWith('11') || pincode.startsWith('40') ? 2 : 3;
+      const days = pincode.startsWith("11") || pincode.startsWith("40") ? 2 : 3;
       const date = new Date();
       date.setDate(date.getDate() + days);
-      const formatted = date.toLocaleDateString('en-IN', {
-        weekday: 'long',
-        month: 'short',
-        day: 'numeric',
+      const formatted = date.toLocaleDateString("en-IN", {
+        weekday: "long",
+        month: "short",
+        day: "numeric",
       });
       setDeliveryEstimate(`Express Delivery guaranteed by ${formatted} 🚀`);
     } else {
-      setDeliveryEstimate('Please enter a valid 6-digit Indian PIN code.');
+      setDeliveryEstimate("Please enter a valid 6-digit Indian PIN code.");
     }
   };
 
@@ -79,7 +83,7 @@ export const ProductDetailPage: React.FC = () => {
 
   const handleBuyNow = () => {
     addToCart(product, quantity, finalNote, customNote, recipientName);
-    navigate('/checkout');
+    navigate("/checkout");
   };
 
   const handleShare = () => {
@@ -91,7 +95,7 @@ export const ProductDetailPage: React.FC = () => {
 
   // Pair with recommendations from other collections
   const relatedProducts = PRODUCTS.filter(
-    (p) => p.id !== product.id && p.category !== product.category
+    (p) => p.id !== product.id && p.category !== product.category,
   ).slice(0, 3);
 
   const categoryMeta = CATEGORIES.find((c) => c.id === product.category);
@@ -123,7 +127,7 @@ export const ProductDetailPage: React.FC = () => {
             className="flex items-center space-x-1.5 text-xs text-[#6E5D57] hover:text-[#961A38] font-medium transition-colors ml-4 shrink-0"
           >
             <Share2 className="w-3.5 h-3.5" />
-            <span>{copied ? 'Link Copied!' : 'Share Hint with Bae'}</span>
+            <span>{copied ? "Link Copied!" : "Share Hint with Bae"}</span>
           </button>
         </div>
       </div>
@@ -131,7 +135,6 @@ export const ProductDetailPage: React.FC = () => {
       {/* 2. Main Product Hero (Gallery + Narrative + Conversion Hub) */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
           {/* Left Column: Interactive Image Gallery */}
           <div className="lg:col-span-6 space-y-4">
             <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden bg-white border border-[#EAE1D7] shadow-sm">
@@ -160,13 +163,13 @@ export const ProductDetailPage: React.FC = () => {
                 onClick={() => toggleWishlist(product)}
                 className={`absolute top-4 right-4 p-3 rounded-full backdrop-blur-xs transition-all z-10 ${
                   isWishlisted(product.id)
-                    ? 'bg-[#961A38] text-white shadow-md'
-                    : 'bg-white/90 text-[#4A3B36] hover:text-[#961A38]'
+                    ? "bg-[#961A38] text-white shadow-md"
+                    : "bg-white/90 text-[#4A3B36] hover:text-[#961A38]"
                 }`}
                 aria-label="Wishlist"
               >
                 <Heart
-                  className={`w-4 h-4 ${isWishlisted(product.id) ? 'fill-white' : ''}`}
+                  className={`w-4 h-4 ${isWishlisted(product.id) ? "fill-white" : ""}`}
                 />
               </button>
 
@@ -192,8 +195,8 @@ export const ProductDetailPage: React.FC = () => {
                   onClick={() => setActiveImage(img)}
                   className={`aspect-square rounded-2xl overflow-hidden border-2 transition-all ${
                     activeImage === img
-                      ? 'border-[#961A38] scale-102 shadow-xs'
-                      : 'border-[#EAE1D7] opacity-75 hover:opacity-100'
+                      ? "border-[#961A38] scale-102 shadow-xs"
+                      : "border-[#EAE1D7] opacity-75 hover:opacity-100"
                   }`}
                 >
                   <img
@@ -210,15 +213,21 @@ export const ProductDetailPage: React.FC = () => {
             {/* Gen-Z Quick Assurance Card */}
             <div className="p-4 bg-white rounded-2xl border border-[#EAE1D7] grid grid-cols-3 gap-2 text-center text-[11px] text-[#6E5D57]">
               <div className="p-2">
-                <span className="block font-bold text-[#1C1412] text-xs">22K Micron</span>
+                <span className="block font-bold text-[#1C1412] text-xs">
+                  22K Micron
+                </span>
                 <span>Anti-Tarnish Shine</span>
               </div>
               <div className="p-2 border-x border-[#EAE1D7]">
-                <span className="block font-bold text-[#1C1412] text-xs">Featherlight</span>
+                <span className="block font-bold text-[#1C1412] text-xs">
+                  Featherlight
+                </span>
                 <span>Zero Ear Strain</span>
               </div>
               <div className="p-2">
-                <span className="block font-bold text-[#1C1412] text-xs">Velvet Box</span>
+                <span className="block font-bold text-[#1C1412] text-xs">
+                  Velvet Box
+                </span>
                 <span>Wax Seal Included</span>
               </div>
             </div>
@@ -226,7 +235,6 @@ export const ProductDetailPage: React.FC = () => {
 
           {/* Right Column: Product Narrative, Customizer & Checkout Actions */}
           <div className="lg:col-span-6 space-y-6">
-            
             {/* Header / Category / Title */}
             <div>
               <div className="flex items-center space-x-2 text-xs font-semibold text-[#8C7A75] uppercase tracking-widest mb-1.5">
@@ -248,8 +256,8 @@ export const ProductDetailPage: React.FC = () => {
                       key={i}
                       className={`w-3.5 h-3.5 ${
                         i < Math.floor(product.rating)
-                          ? 'fill-current'
-                          : 'text-[#DECFC2]'
+                          ? "fill-current"
+                          : "text-[#DECFC2]"
                       }`}
                     />
                   ))}
@@ -274,7 +282,8 @@ export const ProductDetailPage: React.FC = () => {
                     ₹{product.originalPrice.toLocaleString()}
                   </span>
                   <span className="text-xs font-bold text-[#961A38] bg-[#FAF2F4] px-2.5 py-0.5 rounded-full border border-[#F2D6DC]">
-                    Save ₹{(product.originalPrice - product.price).toLocaleString()}
+                    Save ₹
+                    {(product.originalPrice - product.price).toLocaleString()}
                   </span>
                 </div>
                 <p className="text-[11px] text-[#8C7A75] mt-1">
@@ -340,7 +349,7 @@ export const ProductDetailPage: React.FC = () => {
                   value={selectedNote}
                   onChange={(e) => {
                     setSelectedNote(e.target.value);
-                    setCustomNote('');
+                    setCustomNote("");
                   }}
                   className="w-full text-xs bg-[#FAF7F2] border border-[#DFCFC1] rounded-xl px-3 py-2 text-[#1C1412] focus:outline-none focus:border-[#961A38]"
                 >
@@ -363,13 +372,18 @@ export const ProductDetailPage: React.FC = () => {
 
             {/* Pincode Estimator */}
             <div className="p-4 bg-white rounded-2xl border border-[#EAE1D7]">
-              <form onSubmit={handleCheckPincode} className="flex items-center space-x-2">
+              <form
+                onSubmit={handleCheckPincode}
+                className="flex items-center space-x-2"
+              >
                 <Truck className="w-4 h-4 text-[#8C7A75] shrink-0" />
                 <input
                   type="text"
                   maxLength={6}
                   value={pincode}
-                  onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
+                  onChange={(e) =>
+                    setPincode(e.target.value.replace(/\D/g, ""))
+                  }
                   placeholder="Enter 6-digit Pincode"
                   className="w-full text-xs bg-[#FAF7F2] border border-[#DFCFC1] rounded-xl px-3 py-2 text-[#1C1412] focus:outline-none focus:border-[#961A38]"
                 />
@@ -398,7 +412,9 @@ export const ProductDetailPage: React.FC = () => {
                   >
                     -
                   </button>
-                  <span className="px-3 text-xs font-bold text-[#1C1412]">{quantity}</span>
+                  <span className="px-3 text-xs font-bold text-[#1C1412]">
+                    {quantity}
+                  </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="px-3 py-3 text-[#6E5D57] hover:text-[#1C1412] text-sm font-bold"
@@ -438,7 +454,6 @@ export const ProductDetailPage: React.FC = () => {
                 <span>💳 COD / UPI Available</span>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -446,34 +461,33 @@ export const ProductDetailPage: React.FC = () => {
       {/* 3. Deep-Dive Story & Atelier Tabs */}
       <section className="bg-white border-y border-[#EAE1D7] py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="flex items-center justify-center space-x-3 border-b border-[#EAE1D7] pb-4 mb-6">
             <button
-              onClick={() => setActiveTab('details')}
+              onClick={() => setActiveTab("details")}
               className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-all relative ${
-                activeTab === 'details'
-                  ? 'text-[#961A38] border-b-2 border-[#961A38]'
-                  : 'text-[#8C7A75] hover:text-[#1C1412]'
+                activeTab === "details"
+                  ? "text-[#961A38] border-b-2 border-[#961A38]"
+                  : "text-[#8C7A75] hover:text-[#1C1412]"
               }`}
             >
               Why She'll Love It
             </button>
             <button
-              onClick={() => setActiveTab('styling')}
+              onClick={() => setActiveTab("styling")}
               className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-all relative ${
-                activeTab === 'styling'
-                  ? 'text-[#961A38] border-b-2 border-[#961A38]'
-                  : 'text-[#8C7A75] hover:text-[#1C1412]'
+                activeTab === "styling"
+                  ? "text-[#961A38] border-b-2 border-[#961A38]"
+                  : "text-[#8C7A75] hover:text-[#1C1412]"
               }`}
             >
               Atelier Styling Playbook
             </button>
             <button
-              onClick={() => setActiveTab('packaging')}
+              onClick={() => setActiveTab("packaging")}
               className={`pb-2 text-xs uppercase tracking-wider font-semibold transition-all relative ${
-                activeTab === 'packaging'
-                  ? 'text-[#961A38] border-b-2 border-[#961A38]'
-                  : 'text-[#8C7A75] hover:text-[#1C1412]'
+                activeTab === "packaging"
+                  ? "text-[#961A38] border-b-2 border-[#961A38]"
+                  : "text-[#8C7A75] hover:text-[#1C1412]"
               }`}
             >
               The Unboxing Experience
@@ -481,7 +495,7 @@ export const ProductDetailPage: React.FC = () => {
           </div>
 
           <div className="space-y-4">
-            {activeTab === 'details' && (
+            {activeTab === "details" && (
               <div className="space-y-3">
                 <h4 className="text-sm font-bold text-[#1C1412] flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#C5A880]" />
@@ -504,7 +518,7 @@ export const ProductDetailPage: React.FC = () => {
               </div>
             )}
 
-            {activeTab === 'styling' && (
+            {activeTab === "styling" && (
               <div className="space-y-3 text-xs sm:text-sm text-[#6E5D57]">
                 <h4 className="text-sm font-bold text-[#1C1412]">
                   How Bollywood Heroines Style This
@@ -515,33 +529,39 @@ export const ProductDetailPage: React.FC = () => {
                     <span className="font-semibold text-[#1C1412] block mb-1">
                       Daywear & Brunch:
                     </span>
-                    Pair with an oversized crisp white shirt, distressed denim, and silver kolhapuris.
+                    Pair with an oversized crisp white shirt, distressed denim,
+                    and silver kolhapuris.
                   </div>
                   <div className="p-3 bg-[#FAF7F2] rounded-xl border border-[#EAE1D7]">
                     <span className="font-semibold text-[#1C1412] block mb-1">
                       Festive & Sangeet:
                     </span>
-                    Compliments blush organza lehengas, raw silk dupattas, and classic gajra hair buns.
+                    Compliments blush organza lehengas, raw silk dupattas, and
+                    classic gajra hair buns.
                   </div>
                 </div>
               </div>
             )}
 
-            {activeTab === 'packaging' && (
+            {activeTab === "packaging" && (
               <div className="space-y-3 text-xs sm:text-sm text-[#6E5D57]">
                 <h4 className="text-sm font-bold text-[#1C1412]">
                   Packed to Create Goosebumps
                 </h4>
                 <p>
-                  Every order arrives in our signature <strong>Gulabi Velvet presentation box</strong>, lined with soft ivory velvet padding, fragrant dried rose petals, and an authentic crimson wax-sealed envelope bearing your chosen love quote.
+                  Every order arrives in our signature{" "}
+                  <strong>Gulabi Velvet presentation box</strong>, lined with
+                  soft ivory velvet padding, fragrant dried rose petals, and an
+                  authentic crimson wax-sealed envelope bearing your chosen love
+                  quote.
                 </p>
                 <div className="p-4 bg-[#FAF7F2] rounded-2xl border border-[#EAE1D7] text-xs text-[#70605A]">
-                  ✦ No price tags or invoices are included inside the luxury box—ready for immediate gifting!
+                  ✦ No price tags or invoices are included inside the luxury
+                  box—ready for immediate gifting!
                 </div>
               </div>
             )}
           </div>
-
         </div>
       </section>
 

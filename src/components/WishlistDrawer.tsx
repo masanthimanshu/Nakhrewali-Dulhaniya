@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { X, Heart, Trash2, ShoppingBag, Share2, Check } from 'lucide-react';
-import { Product } from '../types';
+import React, { useState } from "react";
+import { X, Heart, Trash2, ShoppingBag, Share2, Check } from "lucide-react";
+import { Product } from "../types";
 
 interface WishlistDrawerProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
   const [copied, setCopied] = useState(false);
 
   const handleShareHint = () => {
-    const itemNames = wishlist.map((p) => p.name).join(', ');
+    const itemNames = wishlist.map((p) => p.name).join(", ");
     const message = `Hey sweetheart 😉 Dropping a little filmy hint for date night! I’m in love with these from Nakhrewali Dulhaniya: ${itemNames} ✨ Check them out at nakhrewalidulhaniya.com`;
     navigator.clipboard.writeText(message);
     setCopied(true);
@@ -70,8 +70,12 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
                 onClick={handleShareHint}
                 className="px-3 py-1.5 bg-[#E60050] hover:bg-[#C2185B] text-white text-[11px] font-bold rounded-lg shadow-xs flex items-center gap-1 transition-all"
               >
-                {copied ? <Check className="w-3.5 h-3.5" /> : <Share2 className="w-3.5 h-3.5" />}
-                <span>{copied ? 'Copied!' : 'Copy Hint'}</span>
+                {copied ? (
+                  <Check className="w-3.5 h-3.5" />
+                ) : (
+                  <Share2 className="w-3.5 h-3.5" />
+                )}
+                <span>{copied ? "Copied!" : "Copy Hint"}</span>
               </button>
             </div>
           )}
@@ -87,7 +91,8 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
                   No saved treasures yet!
                 </h3>
                 <p className="text-xs text-stone-500 max-w-xs mx-auto">
-                  Click the heart icon on any jhumka, bangle stack, or hamper to save it here.
+                  Click the heart icon on any jhumka, bangle stack, or hamper to
+                  save it here.
                 </p>
                 <button
                   onClick={onClose}
@@ -162,7 +167,6 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
               </button>
             </div>
           )}
-
         </div>
       </div>
     </div>

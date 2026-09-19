@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Heart, ShoppingBag, Search, Gift, HelpCircle, X } from 'lucide-react';
-import { CategoryId } from '../types';
+import React from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Heart, ShoppingBag, Search, Gift, HelpCircle, X } from "lucide-react";
+import { CategoryId } from "../types";
 
 interface NavbarProps {
   selectedCategory?: CategoryId;
@@ -18,9 +18,9 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  selectedCategory = 'all',
+  selectedCategory = "all",
   onSelectCategory,
-  searchQuery = '',
+  searchQuery = "",
   onSearchChange,
   wishlistCount,
   onOpenWishlist,
@@ -34,17 +34,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   const location = useLocation();
 
   const categories: { id: CategoryId; label: string; roman: string }[] = [
-    { id: 'all', label: 'All Drops', roman: '✦' },
-    { id: 'earrings', label: 'Haye Jhumka', roman: 'I' },
-    { id: 'bangles', label: 'Bole Chudiyan', roman: 'II' },
-    { id: 'hair', label: 'Yeh Reshmi Zulfen', roman: 'III' },
-    { id: 'romantic-gifts', label: 'Dil Tu Jaan Tu', roman: 'IV' },
+    { id: "all", label: "All Drops", roman: "✦" },
+    { id: "earrings", label: "Haye Jhumka", roman: "I" },
+    { id: "bangles", label: "Bole Chudiyan", roman: "II" },
+    { id: "hair", label: "Yeh Reshmi Zulfen", roman: "III" },
+    { id: "romantic-gifts", label: "Dil Tu Jaan Tu", roman: "IV" },
   ];
 
   const handleCategoryClick = (catId: CategoryId) => {
-    if (catId === 'all') {
-      navigate('/');
-      if (onSelectCategory) onSelectCategory('all');
+    if (catId === "all") {
+      navigate("/");
+      if (onSelectCategory) onSelectCategory("all");
     } else {
       navigate(`/collection/${catId}`);
       if (onSelectCategory) onSelectCategory(catId);
@@ -56,7 +56,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Header Bar */}
         <div className="flex items-center justify-between h-20 gap-4">
-          
           {/* Brand Wordmark (Clean editorial typography, without cluttered icons) */}
           <Link
             to="/"
@@ -85,12 +84,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 type="text"
                 placeholder="Search jhumkas, choodiyan, hair bows..."
                 value={searchQuery}
-                onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
+                onChange={(e) =>
+                  onSearchChange && onSearchChange(e.target.value)
+                }
                 className="w-full pl-9 pr-8 py-2 text-xs bg-[#F2ECE4] border border-[#DECFC2] rounded-full text-[#1C1412] placeholder-[#9E8E89] focus:outline-none focus:border-[#961A38] focus:bg-white transition-all"
               />
               {searchQuery && (
                 <button
-                  onClick={() => onSearchChange && onSearchChange('')}
+                  onClick={() => onSearchChange && onSearchChange("")}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-0.5"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -153,7 +154,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 )}
               </div>
               <span className="text-xs font-semibold hidden sm:inline">
-                {cartSubtotal > 0 ? `₹${cartSubtotal.toLocaleString()}` : 'Trunk'}
+                {cartSubtotal > 0
+                  ? `₹${cartSubtotal.toLocaleString()}`
+                  : "Trunk"}
               </span>
             </button>
           </div>
@@ -163,7 +166,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="border-t border-[#EAE1D7] py-2 flex items-center justify-start sm:justify-center overflow-x-auto space-x-1 sm:space-x-2 no-scrollbar">
           {categories.map((cat) => {
             const isCollectionActive =
-              (cat.id === 'all' && location.pathname === '/') ||
+              (cat.id === "all" && location.pathname === "/") ||
               location.pathname === `/collection/${cat.id}`;
 
             return (
@@ -173,11 +176,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleCategoryClick(cat.id)}
                 className={`relative px-3.5 py-1.5 rounded-full text-xs transition-all flex items-center space-x-1.5 whitespace-nowrap cursor-pointer ${
                   isCollectionActive
-                    ? 'bg-[#1C1412] text-[#F5EFEB] font-bold shadow-xs'
-                    : 'text-[#5C4944] hover:text-[#1C1412] hover:bg-[#EFE6DC] font-medium'
+                    ? "bg-[#1C1412] text-[#F5EFEB] font-bold shadow-xs"
+                    : "text-[#5C4944] hover:text-[#1C1412] hover:bg-[#EFE6DC] font-medium"
                 }`}
               >
-                <span className={`text-[10px] ${isCollectionActive ? 'text-[#D4AF37]' : 'text-[#A89893]'}`}>
+                <span
+                  className={`text-[10px] ${isCollectionActive ? "text-[#D4AF37]" : "text-[#A89893]"}`}
+                >
                   {cat.roman}
                 </span>
                 <span className="tracking-wide">{cat.label}</span>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Heart, Send, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
-import { CategoryId } from '../types';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Heart, Send, ShieldCheck, Truck, RefreshCw } from "lucide-react";
+import { CategoryId } from "../types";
 
 interface FooterProps {
   onSelectCategory?: (cat: CategoryId) => void;
@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenGiftQuiz,
 }) => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -32,7 +32,6 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer className="bg-[#1C1412] text-[#B5A49D] pt-14 pb-8 border-t border-[#2E201C]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
         {/* Top Feature Pillars */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-10 border-b border-[#2E201C] text-xs">
           <div className="flex items-start space-x-3">
@@ -40,8 +39,12 @@ export const Footer: React.FC<FooterProps> = ({
               <span className="text-sm">👑</span>
             </div>
             <div>
-              <h4 className="font-semibold text-white text-xs">Bollywood Romance</h4>
-              <p className="text-[#8C7A75] mt-0.5">Bespoke jewelry & keepsakes for your drama queen.</p>
+              <h4 className="font-semibold text-white text-xs">
+                Bollywood Romance
+              </h4>
+              <p className="text-[#8C7A75] mt-0.5">
+                Bespoke jewelry & keepsakes for your drama queen.
+              </p>
             </div>
           </div>
 
@@ -50,8 +53,12 @@ export const Footer: React.FC<FooterProps> = ({
               <ShieldCheck className="w-4 h-4 text-[#C5A880]" />
             </div>
             <div>
-              <h4 className="font-semibold text-white text-xs">22K Anti-Tarnish</h4>
-              <p className="text-[#8C7A75] mt-0.5">Tested for sensitive skin and featherlight comfort.</p>
+              <h4 className="font-semibold text-white text-xs">
+                22K Anti-Tarnish
+              </h4>
+              <p className="text-[#8C7A75] mt-0.5">
+                Tested for sensitive skin and featherlight comfort.
+              </p>
             </div>
           </div>
 
@@ -60,8 +67,12 @@ export const Footer: React.FC<FooterProps> = ({
               <Truck className="w-4 h-4 text-[#C5A880]" />
             </div>
             <div>
-              <h4 className="font-semibold text-white text-xs">Express Gifting</h4>
-              <p className="text-[#8C7A75] mt-0.5">Dispatched in 24 hours in velvet presentation trunks.</p>
+              <h4 className="font-semibold text-white text-xs">
+                Express Gifting
+              </h4>
+              <p className="text-[#8C7A75] mt-0.5">
+                Dispatched in 24 hours in velvet presentation trunks.
+              </p>
             </div>
           </div>
 
@@ -70,15 +81,18 @@ export const Footer: React.FC<FooterProps> = ({
               <RefreshCw className="w-4 h-4 text-[#C5A880]" />
             </div>
             <div>
-              <h4 className="font-semibold text-white text-xs">Seamless Exchange</h4>
-              <p className="text-[#8C7A75] mt-0.5">Complimentary sizing assistance and doorstep exchanges.</p>
+              <h4 className="font-semibold text-white text-xs">
+                Seamless Exchange
+              </h4>
+              <p className="text-[#8C7A75] mt-0.5">
+                Complimentary sizing assistance and doorstep exchanges.
+              </p>
             </div>
           </div>
         </div>
 
         {/* Main Footer Links */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          
           {/* Brand Column */}
           <div className="md:col-span-4 space-y-4">
             <Link to="/" className="block">
@@ -96,7 +110,9 @@ export const Footer: React.FC<FooterProps> = ({
             </Link>
 
             <p className="text-xs text-[#8C7A75] leading-relaxed">
-              Curated with high drama, deep romance, and cinematic nostalgia. The premier gifting haven for lovers, bride squads, and hopeless romantics.
+              Curated with high drama, deep romance, and cinematic nostalgia.
+              The premier gifting haven for lovers, bride squads, and hopeless
+              romantics.
             </p>
 
             <div className="text-xs text-[#8C7A75] space-y-1">
@@ -113,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2 text-xs">
               <li>
                 <button
-                  onClick={() => handleRangeClick('earrings')}
+                  onClick={() => handleRangeClick("earrings")}
                   className="hover:text-[#FAF7F2] transition-colors text-left flex items-center space-x-1.5 cursor-pointer"
                 >
                   <span className="text-[#C5A880] text-[10px]">I.</span>
@@ -122,7 +138,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => handleRangeClick('bangles')}
+                  onClick={() => handleRangeClick("bangles")}
                   className="hover:text-[#FAF7F2] transition-colors text-left flex items-center space-x-1.5 cursor-pointer"
                 >
                   <span className="text-[#C5A880] text-[10px]">II.</span>
@@ -131,7 +147,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => handleRangeClick('hair')}
+                  onClick={() => handleRangeClick("hair")}
                   className="hover:text-[#FAF7F2] transition-colors text-left flex items-center space-x-1.5 cursor-pointer"
                 >
                   <span className="text-[#C5A880] text-[10px]">III.</span>
@@ -140,7 +156,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => handleRangeClick('romantic-gifts')}
+                  onClick={() => handleRangeClick("romantic-gifts")}
                   className="hover:text-[#FAF7F2] transition-colors text-left flex items-center space-x-1.5 cursor-pointer"
                 >
                   <span className="text-[#C5A880] text-[10px]">IV.</span>
@@ -173,12 +189,17 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
-                <Link to="/checkout" className="hover:text-[#FAF7F2] transition-colors text-left">
+                <Link
+                  to="/checkout"
+                  className="hover:text-[#FAF7F2] transition-colors text-left"
+                >
                   Track Order Dispatch
                 </Link>
               </li>
               <li>
-                <span className="text-[#6E5D57]">Corporate & Sangeet Favors</span>
+                <span className="text-[#6E5D57]">
+                  Corporate & Sangeet Favors
+                </span>
               </li>
             </ul>
           </div>
@@ -189,7 +210,8 @@ export const Footer: React.FC<FooterProps> = ({
               Filmy Love Letters
             </h4>
             <p className="text-xs text-[#8C7A75] leading-relaxed">
-              Get secret drops, anniversary reminders, and Bollywood dialogue poetry once a month.
+              Get secret drops, anniversary reminders, and Bollywood dialogue
+              poetry once a month.
             </p>
 
             {subscribed ? (
@@ -221,21 +243,28 @@ export const Footer: React.FC<FooterProps> = ({
               </form>
             )}
           </div>
-
         </div>
 
         {/* Bottom Copyright & Disclaimer */}
         <div className="pt-8 border-t border-[#2E201C] flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#705F59] gap-4">
-          <p>© {new Date().getFullYear()} Nakhrewali Dulhaniya (nakhrewalidulhaniya.com). All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Nakhrewali Dulhaniya
+            (nakhrewalidulhaniya.com). All rights reserved.
+          </p>
           <div className="flex space-x-4">
-            <span className="hover:text-[#B5A49D] cursor-pointer">Privacy & Cookie Policy</span>
+            <span className="hover:text-[#B5A49D] cursor-pointer">
+              Privacy & Cookie Policy
+            </span>
             <span>•</span>
-            <span className="hover:text-[#B5A49D] cursor-pointer">Terms of Gifting</span>
+            <span className="hover:text-[#B5A49D] cursor-pointer">
+              Terms of Gifting
+            </span>
             <span>•</span>
-            <span className="hover:text-[#B5A49D] cursor-pointer">Shipping & Returns</span>
+            <span className="hover:text-[#B5A49D] cursor-pointer">
+              Shipping & Returns
+            </span>
           </div>
         </div>
-
       </div>
     </footer>
   );

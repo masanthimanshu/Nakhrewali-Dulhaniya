@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { X, Gift, Check, Plus, ArrowRight } from 'lucide-react';
-import { Product } from '../types';
-import { PRODUCTS, BOLLYWOOD_LOVE_NOTES } from '../data/products';
-import { handleImageError } from '../utils/imageFallback';
+import React, { useState } from "react";
+import { X, Gift, Check, Plus, ArrowRight } from "lucide-react";
+import { Product } from "../types";
+import { PRODUCTS, BOLLYWOOD_LOVE_NOTES } from "../data/products";
+import { handleImageError } from "../utils/imageFallback";
 
 interface HamperBuilderModalProps {
   isOpen: boolean;
@@ -20,25 +20,28 @@ interface HamperBuilderModalProps {
 
 const BOX_STYLES = [
   {
-    id: 'gulabi-velvet',
-    name: 'Gulabi Rani Pink Velvet Box',
+    id: "gulabi-velvet",
+    name: "Gulabi Rani Pink Velvet Box",
     price: 199,
-    image: 'https://i.pinimg.com/1200x/e7/a4/97/e7a49785c30b44fb3c4c234d264e51d4.jpg',
-    vibe: 'Plush velvet, oversized satin ribbon & gold foil logo',
+    image:
+      "https://i.pinimg.com/1200x/e7/a4/97/e7a49785c30b44fb3c4c234d264e51d4.jpg",
+    vibe: "Plush velvet, oversized satin ribbon & gold foil logo",
   },
   {
-    id: 'emerald-trunk',
-    name: 'Royal Emerald Keepsake Trunk',
+    id: "emerald-trunk",
+    name: "Royal Emerald Keepsake Trunk",
     price: 299,
-    image: 'https://i.pinimg.com/1200x/ee/14/fc/ee14fc1b2d6ad53b35f3a8cafe3068df.jpg',
-    vibe: 'Vintage brass lock, velvet interior & fairy light string',
+    image:
+      "https://i.pinimg.com/1200x/ee/14/fc/ee14fc1b2d6ad53b35f3a8cafe3068df.jpg",
+    vibe: "Vintage brass lock, velvet interior & fairy light string",
   },
   {
-    id: 'vintage-tin',
-    name: 'Classic Bollywood Love Box',
+    id: "vintage-tin",
+    name: "Classic Bollywood Love Box",
     price: 149,
-    image: 'https://i.pinimg.com/1200x/34/26/3c/34263ce3c26d0638d05b3dd1a3b357bd.jpg',
-    vibe: 'Hand-painted florals, fragrant rose potpourri base',
+    image:
+      "https://i.pinimg.com/1200x/34/26/3c/34263ce3c26d0638d05b3dd1a3b357bd.jpg",
+    vibe: "Hand-painted florals, fragrant rose potpourri base",
   },
 ];
 
@@ -55,25 +58,31 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
     PRODUCTS[0].id,
     PRODUCTS[5].id,
   ]);
-  const [selectedNote, setSelectedNote] = useState(BOLLYWOOD_LOVE_NOTES[0].text);
-  const [customNote, setCustomNote] = useState('');
-  const [toName, setToName] = useState('My Sweetheart');
-  const [fromName, setFromName] = useState('');
+  const [selectedNote, setSelectedNote] = useState(
+    BOLLYWOOD_LOVE_NOTES[0].text,
+  );
+  const [customNote, setCustomNote] = useState("");
+  const [toName, setToName] = useState("My Sweetheart");
+  const [fromName, setFromName] = useState("");
 
   const selectedProducts = PRODUCTS.filter((p) =>
-    selectedProductIds.includes(p.id)
+    selectedProductIds.includes(p.id),
   );
 
   const rawItemsPrice = selectedProducts.reduce((sum, p) => sum + p.price, 0);
   const boxPrice = selectedProductIds.length >= 3 ? 0 : selectedBox.price; // Free box on 3+ items
   const discountPercent = 15; // 15% hamper bundle discount
-  const discountedItemsPrice = Math.round(rawItemsPrice * (1 - discountPercent / 100));
+  const discountedItemsPrice = Math.round(
+    rawItemsPrice * (1 - discountPercent / 100),
+  );
   const finalHamperPrice = discountedItemsPrice + boxPrice;
 
   const toggleProduct = (productId: string) => {
     if (selectedProductIds.includes(productId)) {
       if (selectedProductIds.length <= 1) return; // Keep at least 1
-      setSelectedProductIds(selectedProductIds.filter((id) => id !== productId));
+      setSelectedProductIds(
+        selectedProductIds.filter((id) => id !== productId),
+      );
     } else {
       if (selectedProductIds.length >= 4) return; // Max 4
       setSelectedProductIds([...selectedProductIds, productId]);
@@ -89,8 +98,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
       items: selectedProducts,
       totalPrice: finalHamperPrice,
       loveNote: finalLoveNote,
-      toName: toName.trim() || 'My Sweetheart',
-      fromName: fromName.trim() || 'Your Boyfriend',
+      toName: toName.trim() || "My Sweetheart",
+      fromName: fromName.trim() || "Your Boyfriend",
     });
     onClose();
   };
@@ -136,8 +145,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
             onClick={() => setStep(1)}
             className={`flex-1 py-3 text-center border-b-2 transition-all flex items-center justify-center gap-1.5 ${
               step === 1
-                ? 'border-[#E60050] text-[#E60050] bg-rose-50/50'
-                : 'border-transparent text-stone-500 hover:text-stone-800'
+                ? "border-[#E60050] text-[#E60050] bg-rose-50/50"
+                : "border-transparent text-stone-500 hover:text-stone-800"
             }`}
           >
             <span>1. Pick Luxury Box</span>
@@ -146,8 +155,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
             onClick={() => setStep(2)}
             className={`flex-1 py-3 text-center border-b-2 transition-all flex items-center justify-center gap-1.5 ${
               step === 2
-                ? 'border-[#E60050] text-[#E60050] bg-rose-50/50'
-                : 'border-transparent text-stone-500 hover:text-stone-800'
+                ? "border-[#E60050] text-[#E60050] bg-rose-50/50"
+                : "border-transparent text-stone-500 hover:text-stone-800"
             }`}
           >
             <span>2. Add Treasures ({selectedProductIds.length}/4)</span>
@@ -156,8 +165,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
             onClick={() => setStep(3)}
             className={`flex-1 py-3 text-center border-b-2 transition-all flex items-center justify-center gap-1.5 ${
               step === 3
-                ? 'border-[#E60050] text-[#E60050] bg-rose-50/50'
-                : 'border-transparent text-stone-500 hover:text-stone-800'
+                ? "border-[#E60050] text-[#E60050] bg-rose-50/50"
+                : "border-transparent text-stone-500 hover:text-stone-800"
             }`}
           >
             <span>3. Filmy Love Note</span>
@@ -166,7 +175,6 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
 
         {/* Content Body */}
         <div className="p-6 overflow-y-auto flex-1 space-y-6">
-          
           {/* STEP 1: PICK BOX */}
           {step === 1 && (
             <div className="space-y-4">
@@ -188,8 +196,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                       onClick={() => setSelectedBox(box)}
                       className={`cursor-pointer rounded-2xl p-4 border transition-all duration-200 flex flex-col justify-between ${
                         isSelected
-                          ? 'border-[#E60050] ring-2 ring-[#E60050]/20 bg-rose-50/30 shadow-md'
-                          : 'border-stone-200 hover:border-pink-300 bg-white'
+                          ? "border-[#E60050] ring-2 ring-[#E60050]/20 bg-rose-50/30 shadow-md"
+                          : "border-stone-200 hover:border-pink-300 bg-white"
                       }`}
                     >
                       <div className="aspect-[4/3] rounded-xl overflow-hidden mb-3 bg-stone-100 relative">
@@ -197,7 +205,7 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                           src={box.image}
                           alt={box.name}
                           referrerPolicy="no-referrer"
-                          onError={(e) => handleImageError(e, 'romantic-gifts')}
+                          onError={(e) => handleImageError(e, "romantic-gifts")}
                           className="w-full h-full object-cover"
                         />
                         {isSelected && (
@@ -216,10 +224,12 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                       </div>
                       <div className="mt-3 pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
                         <span className="font-extrabold text-stone-800">
-                          {selectedProductIds.length >= 3 ? 'FREE' : `₹${box.price}`}
+                          {selectedProductIds.length >= 3
+                            ? "FREE"
+                            : `₹${box.price}`}
                         </span>
                         <span className="text-[#E60050] font-bold">
-                          {isSelected ? 'Selected' : 'Select'}
+                          {isSelected ? "Selected" : "Select"}
                         </span>
                       </div>
                     </div>
@@ -238,7 +248,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                     Step 2: Choose 2 to 4 Products for the Hamper
                   </h3>
                   <p className="text-xs text-stone-500">
-                    Mix & match jhumkas, velvet bangles, hair accessories & gifts
+                    Mix & match jhumkas, velvet bangles, hair accessories &
+                    gifts
                   </p>
                 </div>
                 <div className="text-xs font-bold bg-pink-100 text-[#C2185B] px-3 py-1 rounded-full">
@@ -255,8 +266,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                       onClick={() => toggleProduct(prod.id)}
                       className={`cursor-pointer rounded-xl p-2.5 border transition-all text-left flex flex-col justify-between relative ${
                         isChecked
-                          ? 'border-[#E60050] bg-rose-50/40 ring-1 ring-[#E60050] shadow-sm'
-                          : 'border-stone-200 bg-white hover:border-stone-300'
+                          ? "border-[#E60050] bg-rose-50/40 ring-1 ring-[#E60050] shadow-sm"
+                          : "border-stone-200 bg-white hover:border-stone-300"
                       }`}
                     >
                       <div className="aspect-square rounded-lg overflow-hidden bg-stone-100 mb-2 relative">
@@ -270,11 +281,15 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                         <div
                           className={`absolute top-1.5 right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-xs transition-colors ${
                             isChecked
-                              ? 'bg-[#E60050] text-white shadow-xs'
-                              : 'bg-white/80 text-stone-400 border border-stone-300'
+                              ? "bg-[#E60050] text-white shadow-xs"
+                              : "bg-white/80 text-stone-400 border border-stone-300"
                           }`}
                         >
-                          {isChecked ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
+                          {isChecked ? (
+                            <Check className="w-3 h-3" />
+                          ) : (
+                            <Plus className="w-3 h-3" />
+                          )}
                         </div>
                       </div>
 
@@ -309,7 +324,8 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                   Step 3: Personalize Her Wax-Sealed Bollywood Love Letter
                 </h3>
                 <p className="text-xs text-stone-500">
-                  Every hamper includes this luxury parchment letter sealed with our custom red wax emblem
+                  Every hamper includes this luxury parchment letter sealed with
+                  our custom red wax emblem
                 </p>
               </div>
 
@@ -353,12 +369,12 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                       key={note.id}
                       onClick={() => {
                         setSelectedNote(note.text);
-                        setCustomNote('');
+                        setCustomNote("");
                       }}
                       className={`p-3 text-left rounded-xl border text-xs transition-all ${
                         selectedNote === note.text && !customNote
-                          ? 'border-[#E60050] bg-rose-50/50 text-[#880E4F] font-semibold ring-1 ring-[#E60050]'
-                          : 'border-stone-200 bg-white text-stone-600 hover:border-pink-300'
+                          ? "border-[#E60050] bg-rose-50/50 text-[#880E4F] font-semibold ring-1 ring-[#E60050]"
+                          : "border-stone-200 bg-white text-stone-600 hover:border-pink-300"
                       }`}
                     >
                       <span className="font-bold text-stone-900 block mb-1">
@@ -395,24 +411,22 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                 </div>
                 <div className="py-3 text-center space-y-2">
                   <p className="text-xs font-bold text-amber-950">
-                    Dearest {toName || 'Sweetheart'},
+                    Dearest {toName || "Sweetheart"},
                   </p>
                   <p className="font-serif-romance italic text-sm text-stone-700 max-w-md mx-auto leading-relaxed">
                     {finalLoveNote}
                   </p>
                   <p className="text-xs font-bold text-amber-950 pt-1">
                     With all my filmy love, <br />
-                    {fromName || 'Yours Forever'} ❤️
+                    {fromName || "Yours Forever"} ❤️
                   </p>
                 </div>
                 <div className="absolute top-3 right-3 text-rose-700 text-lg">
                   💌
                 </div>
               </div>
-
             </div>
           )}
-
         </div>
 
         {/* Footer: Live Pricing Bar and Actions */}
@@ -426,7 +440,13 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                 ₹{(rawItemsPrice + selectedBox.price).toLocaleString()}
               </span>
               <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-                Saved ₹{(rawItemsPrice + selectedBox.price - finalHamperPrice).toLocaleString()} (15% Off)
+                Saved ₹
+                {(
+                  rawItemsPrice +
+                  selectedBox.price -
+                  finalHamperPrice
+                ).toLocaleString()}{" "}
+                (15% Off)
               </span>
             </div>
             <p className="text-[11px] text-stone-500">
@@ -464,7 +484,6 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
             )}
           </div>
         </div>
-
       </div>
     </div>
   );

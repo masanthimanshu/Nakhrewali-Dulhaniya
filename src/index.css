@@ -2,27 +2,31 @@
 
 @layer base {
   :root {
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", sans-serif;
   }
-  
+
   body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
   }
 }
 
 .font-display {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: "Playfair Display", Georgia, serif;
 }
 
 .font-serif-romance {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: "Cormorant Garamond", Georgia, serif;
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {
@@ -41,12 +45,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FDF8F5;
+  background: #fdf8f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #E8B4C8;
+  background: #e8b4c8;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF4D8D;
+  background: #ff4d8d;
 }
