@@ -2,19 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Heart, Send, ShieldCheck, Truck, RefreshCw } from "lucide-react";
 import { CategoryId } from "../types";
+import { useShop } from "../context/ShopContext";
 
-interface FooterProps {
-  onSelectCategory?: (cat: CategoryId) => void;
-  onOpenHamperBuilder?: () => void;
-  onOpenGiftQuiz?: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({
-  onSelectCategory,
-  onOpenHamperBuilder,
-  onOpenGiftQuiz,
-}) => {
+export const Footer: React.FC = () => {
   const navigate = useNavigate();
+  const { setIsHamperBuilderOpen, setIsGiftQuizOpen } = useShop();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -26,7 +18,6 @@ export const Footer: React.FC<FooterProps> = ({
 
   const handleRangeClick = (cat: CategoryId) => {
     navigate(`/collection/${cat}`);
-    if (onSelectCategory) onSelectCategory(cat);
   };
 
   return (
@@ -174,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2 text-xs">
               <li>
                 <button
-                  onClick={onOpenHamperBuilder}
+                  onClick={() => setIsHamperBuilderOpen(true)}
                   className="hover:text-[#FAF7F2] transition-colors text-left cursor-pointer"
                 >
                   Curate Bespoke Hamper
@@ -182,7 +173,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={onOpenGiftQuiz}
+                  onClick={() => setIsGiftQuizOpen(true)}
                   className="hover:text-[#FAF7F2] transition-colors text-left cursor-pointer"
                 >
                   Filmy Gift Concierge

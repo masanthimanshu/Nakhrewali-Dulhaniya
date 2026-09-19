@@ -1,6 +1,7 @@
 import React from "react";
-import { Star, Heart, Camera } from "lucide-react";
+import { Heart, Camera } from "lucide-react";
 import { REVIEWS_WALL } from "../data/products";
+import { StarRating } from "./StarRating";
 
 export const SocialProofWall: React.FC = () => {
   return (
@@ -30,11 +31,7 @@ export const SocialProofWall: React.FC = () => {
               <div>
                 {/* Stars & Tag */}
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex text-[#C5A880]">
-                    {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-current" />
-                    ))}
-                  </div>
+                  <StarRating rating={rev.rating} />
                   <span className="text-[9px] font-semibold text-[#7A152E] bg-[#FAF2F4] px-2 py-0.5 rounded-full uppercase tracking-wider">
                     {rev.tag}
                   </span>

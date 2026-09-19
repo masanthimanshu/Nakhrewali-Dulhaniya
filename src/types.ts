@@ -1,6 +1,9 @@
 export type CategoryId =
   "all" | "earrings" | "bangles" | "hair" | "romantic-gifts";
 
+export type PriceFilter = "all" | "under1000" | "1000to1500" | "above1500";
+export type SortOption = "popular" | "price-asc" | "price-desc" | "rating";
+
 export interface Product {
   id: string;
   name: string;
@@ -9,7 +12,6 @@ export interface Product {
   price: number;
   originalPrice: number;
   image: string;
-  galleryImages?: string[];
   rating: number;
   reviewsCount: number;
   badge?:
@@ -20,15 +22,11 @@ export interface Product {
     | "Romantic Hit"
     | "Limited Stock"
     | "Bespoke Hit";
-  vibeTags?: string[];
   bollywoodDialogue: string;
   description: string;
   whySheLovesIt: string[];
   stylingTip: string;
   material: string;
-  weightGrams?: string;
-  isBestSeller?: boolean;
-  inStock?: boolean;
 }
 
 export interface CartItem {
@@ -58,13 +56,4 @@ export interface OrderDetails {
   date: string;
   loveLetter?: string;
   recipientName?: string;
-}
-
-export interface HamperState {
-  boxType: "gulabi-velvet" | "emerald-trunk" | "vintage-tin";
-  selectedProductIds: string[];
-  giftNotePreset: string;
-  customNote: string;
-  recipientName: string;
-  senderName: string;
 }

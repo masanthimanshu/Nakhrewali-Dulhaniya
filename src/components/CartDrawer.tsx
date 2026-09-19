@@ -9,59 +9,52 @@ import {
   ArrowRight,
   ShieldCheck,
 } from "lucide-react";
-import { CartItem } from "../types";
+import { useShop } from "../context/ShopContext";
 import { handleImageError } from "../utils/imageFallback";
 
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  cart: CartItem[];
-  onUpdateQuantity: (id: string, delta: number) => void;
-  onRemoveItem: (id: string) => void;
   onOpenCheckout: () => void;
-  onApplyCoupon: (code: string) => boolean;
-  activeCoupon: string | null;
-  discountAmount: number;
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({
   isOpen,
   onClose,
-  cart,
-  onUpdateQuantity,
-  onRemoveItem,
   onOpenCheckout,
-  onApplyCoupon,
-  activeCoupon,
-  discountAmount,
 }) => {
   if (!isOpen) return null;
+
+  const {
+    cart,
+    removeFromCart,
+    updateCartQuantity,
+    cartCount,
+    cartSubtotal,
+    activeCoupon,
+    discountAmount,
+    applyCoupon,
+    shippingFee,
+    finalTotal,
+    freeShippingThreshold,
+  } = useShop();
 
   const [couponInput, setCouponInput] = useState("");
   const [couponError, setCouponError] = useState("");
 
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0,
-  );
-
-  const freeShippingThreshold = 999;
   const progressToFreeShipping = Math.min(
     100,
-    (subtotal / freeShippingThreshold) * 100,
+    (cartSubtotal / freeShippingThreshold) * 100,
   );
   const remainingForFreeShipping = Math.max(
     0,
-    freeShippingThreshold - subtotal,
+    freeShippingThreshold - cartSubtotal,
   );
-  const shippingFee =
-    subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 99;
-  const finalTotal = Math.max(0, subtotal - discountAmount + shippingFee);
 
   const handleApply = (codeToApply?: string) => {
     const code = (codeToApply || couponInput).trim().toUpperCase();
     if (!code) return;
-    const success = onApplyCoupon(code);
+    const success = applyCoupon(code);
     if (success) {
       setCouponError("");
       setCouponInput("");
@@ -84,7 +77,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             <div className="flex items-center space-x-2">
               <ShoppingBag className="w-5 h-5 text-[#E60050]" />
               <h2 className="text-base font-display font-extrabold text-[#2B1B17]">
-                Your Filmy Trunk ({cart.reduce((a, b) => a + b.quantity, 0)})
+                Your Filmy Trunk ({cartCount})
               </h2>
             </div>
             <button
@@ -155,9 +148,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       src={item.product.image}
                       alt={item.product.name}
                       referrerPolicy="no-referrer"
-                      onError={(e) =>
-                        handleImageError(e, item.product.category)
-                      }
+                      onError={handleImageError}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -170,7 +161,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                           {item.product.name}
                         </h4>
                         <button
-                          onClick={() => onRemoveItem(item.id)}
+                          onClick={() => removeFromCart(item.id)}
                           className="text-stone-400 hover:text-rose-600 transition-colors p-0.5"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -190,8 +181,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       {/* Quantity buttons */}
                       <div className="flex items-center space-x-2 bg-white border border-stone-200 rounded-lg px-2 py-0.5">
                         <button
-                          onClick={() => onUpdateQuantity(item.id, -1)}
-                          className="text-stone-500 hover:text-black text-xs"
+                          onClick={() => updateCartQuantity(item.id, -1)}
+                          className="text-stone-500 hover:text-black text-xs cursor-pointer"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -199,8 +190,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                           {item.quantity}
                         </span>
                         <button
-                          onClick={() => onUpdateQuantity(item.id, 1)}
-                          className="text-stone-500 hover:text-black text-xs"
+                          onClick={() => updateCartQuantity(item.id, 1)}
+                          className="text-stone-500 hover:text-black text-xs cursor-pointer"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -237,7 +228,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   </div>
                   <button
                     onClick={() => handleApply()}
-                    className="px-4 py-2 bg-stone-800 hover:bg-black text-white text-xs font-bold rounded-xl"
+                    className="px-4 py-2 bg-stone-800 hover:bg-black text-white text-xs font-bold rounded-xl cursor-pointer"
                   >
                     Apply
                   </button>
@@ -255,15 +246,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     <span className="text-[10px] text-stone-400">Try:</span>
                     <button
                       onClick={() => handleApply("NAKHRA10")}
-                      className="text-[10px] bg-rose-50 text-[#E60050] font-bold px-2 py-0.5 rounded border border-rose-200"
+                      className="text-[10px] bg-rose-50 text-[#E60050] font-bold px-2 py-0.5 rounded border border-rose-200 cursor-pointer"
                     >
                       NAKHRA10 (10% OFF)
                     </button>
                     <button
                       onClick={() => handleApply("FILMYLOVE")}
-                      className="text-[10px] bg-rose-50 text-[#E60050] font-bold px-2 py-0.5 rounded border border-rose-200"
+                      className="text-[10px] bg-rose-50 text-[#E60050] font-bold px-2 py-0.5 rounded border border-rose-200 cursor-pointer"
                     >
-                      FILMYLOVE (₹200 OFF)
+                      FILMYLOVE (15% OFF)
                     </button>
                   </div>
                 )}
@@ -281,7 +272,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <div className="flex justify-between">
                   <span>Bag Subtotal</span>
                   <span className="font-semibold text-stone-900">
-                    ₹{subtotal.toLocaleString()}
+                    ₹{cartSubtotal.toLocaleString()}
                   </span>
                 </div>
                 {discountAmount > 0 && (

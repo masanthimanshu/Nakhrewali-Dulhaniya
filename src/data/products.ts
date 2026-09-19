@@ -65,7 +65,6 @@ export const PRODUCTS: Product[] = [
     stylingTip:
       "Pair with an ivory or blush Chikankari Anarkali and soft curls.",
     material: "22k Micro Gold Polish, Brass, Faux Seed Pearls",
-    isBestSeller: true,
   },
   {
     id: "jhumka-2",
@@ -115,8 +114,7 @@ export const PRODUCTS: Product[] = [
       "Includes silicone comfort stoppers",
     ],
     stylingTip: "Sleek middle-parted bun with fresh gajra and winged liner.",
-    material: "Foil-backed Kundan Stones, Hydro Beads, Brass Base",
-    isBestSeller: true,
+    material: "Polished Brass Core, Micro-Gold Layer, Real Glass Kundan",
   },
   {
     id: "jhumka-4",
@@ -193,8 +191,7 @@ export const PRODUCTS: Product[] = [
     ],
     stylingTip:
       "Wear on one wrist with a luxury watch or split across both wrists with a silk lehenga.",
-    material: "Plush Micro Velvet, Brass base with Gold Micron Plating",
-    isBestSeller: true,
+    material: "Plush Micro-Velvet, Alloy Core, Micro-pearl beads",
   },
   {
     id: "bangles-2",
@@ -270,8 +267,7 @@ export const PRODUCTS: Product[] = [
       "Wrinkle-resistant luxurious organza",
     ],
     stylingTip: "Clip onto a loose half-up crown braid or low messy bun.",
-    material: "100% Pure Viscose Organza, Premium Metal Clip",
-    isBestSeller: true,
+    material: "Hand-spun Raw Silk Thread, Brass Core, Metallic Zari",
   },
   {
     id: "hair-2",
@@ -397,7 +393,6 @@ export const PRODUCTS: Product[] = [
       'Gift on anniversary, birthday, or as the ultimate "I’m sorry" gesture.',
     material:
       "Handcrafted Wooden Trunk, Soy Wax Candle, 22k Polish Jewelry, Wax Seal",
-    isBestSeller: true,
   },
   {
     id: "gift-2",
@@ -447,8 +442,7 @@ export const PRODUCTS: Product[] = [
     ],
     stylingTip:
       "Slip your favorite song lyrics or couple photo into the lid frame.",
-    material: "Hardbound Vegan Suede Leather, Satin Lining, Fairy LED string",
-    isBestSeller: true,
+    material: "Heavy Weight Velvet, Satin Lining, Micro Gold Filigree",
   },
   {
     id: "gift-4",
@@ -524,7 +518,6 @@ export const PRODUCTS: Product[] = [
       "For the girlfriend or bride-to-be who deserves Bollywood level pampering.",
     material:
       "Lacquered Wooden Keepsake Chest with Gold Hardware, Silk Cushions",
-    isBestSeller: true,
   },
 ];
 

@@ -1,18 +1,15 @@
 import React from "react";
-import { ArrowRight, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { CategoryId } from "../types";
+import { StarRating } from "./StarRating";
+import { useShop } from "../context/ShopContext";
 
 interface HeroBannerProps {
-  onSelectCategory: (cat: CategoryId) => void;
-  onOpenHamperBuilder: () => void;
-  onOpenGiftQuiz: () => void;
+  onSelectCategory?: (cat: CategoryId) => void;
 }
 
-export const HeroBanner: React.FC<HeroBannerProps> = ({
-  onSelectCategory,
-  onOpenHamperBuilder,
-  onOpenGiftQuiz,
-}) => {
+export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
+  const { setIsHamperBuilderOpen, setIsGiftQuizOpen } = useShop();
   return (
     <section className="relative overflow-hidden bg-[#FAF7F2] border-b border-[#EAE1D7] py-10 sm:py-16">
       {/* Subtle ambient luxury warmth */}
@@ -63,7 +60,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
               <button
                 id="hero-hamper-btn"
-                onClick={onOpenHamperBuilder}
+                onClick={() => setIsHamperBuilderOpen(true)}
                 className="px-6 py-3.5 bg-[#1C1412] hover:bg-[#2D201C] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 group"
               >
                 <span>Curate A Gift Hamper</span>
@@ -72,7 +69,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
               <button
                 id="hero-quiz-btn"
-                onClick={onOpenGiftQuiz}
+                onClick={() => setIsGiftQuizOpen(true)}
                 className="px-5 py-3.5 bg-white hover:bg-[#F7F2EC] text-[#2C211E] border border-[#D9C8B8] font-semibold text-xs tracking-wider uppercase rounded-full transition-all"
               >
                 <span>Boyfriend Gift Concierge</span>
@@ -82,11 +79,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             {/* Understated Trust Proofs */}
             <div className="pt-4 border-t border-[#EAE1D7] flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-[#7A6B65]">
               <div className="flex items-center space-x-1.5">
-                <div className="flex text-[#C5A880]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-current" />
-                  ))}
-                </div>
+                <StarRating rating={5} />
                 <span className="font-semibold text-[#1C1412]">4.9 / 5</span>
                 <span>(14,200+ lovers)</span>
               </div>
@@ -137,7 +130,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               {/* Four Range Quick Switcher Strip Below */}
               <div className="grid grid-cols-4 gap-1.5 pt-3">
                 <button
-                  onClick={() => onSelectCategory("earrings")}
+                  onClick={() => onSelectCategory?.("earrings")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
@@ -148,7 +141,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                   </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory("bangles")}
+                  onClick={() => onSelectCategory?.("bangles")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
@@ -159,7 +152,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                   </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory("hair")}
+                  onClick={() => onSelectCategory?.("hair")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
@@ -170,7 +163,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                   </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory("romantic-gifts")}
+                  onClick={() => onSelectCategory?.("romantic-gifts")}
                   className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">

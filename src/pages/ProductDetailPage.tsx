@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   Heart,
   ShoppingBag,
-  Star,
   Sparkles,
   Check,
   Gift,
@@ -18,7 +17,9 @@ import {
 import { PRODUCTS, BOLLYWOOD_LOVE_NOTES, CATEGORIES } from "../data/products";
 import { useShop } from "../context/ShopContext";
 import { ProductCard } from "../components/ProductCard";
+import { StarRating } from "../components/StarRating";
 import { handleImageError } from "../utils/imageFallback";
+import { getDiscountPercent } from "../utils/productUtils";
 import { ProductCraftsmanship } from "../components/ProductCraftsmanship";
 import { ProductGiftingJourney } from "../components/ProductGiftingJourney";
 import { ProductReviewsSection } from "../components/ProductReviewsSection";
@@ -54,8 +55,14 @@ export const ProductDetailPage: React.FC = () => {
     "details" | "styling" | "packaging"
   >("details");
 
-  const discountPercent = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100,
+  useEffect(() => {
+    setActiveImage(product.image);
+    setQuantity(1);
+  }, [product.id, product.image]);
+
+  const discountPercent = getDiscountPercent(
+    product.originalPrice,
+    product.price,
   );
 
   const finalNote = customNote.trim() ? customNote : selectedNote;
@@ -142,7 +149,7 @@ export const ProductDetailPage: React.FC = () => {
                 src={activeImage}
                 alt={product.name}
                 referrerPolicy="no-referrer"
-                onError={(e) => handleImageError(e, product.category)}
+                onError={handleImageError}
                 className="w-full h-full object-cover transition-all duration-300"
               />
 
@@ -203,7 +210,7 @@ export const ProductDetailPage: React.FC = () => {
                     src={img}
                     alt=""
                     referrerPolicy="no-referrer"
-                    onError={(e) => handleImageError(e, product.category)}
+                    onError={handleImageError}
                     className="w-full h-full object-cover"
                   />
                 </button>
@@ -250,18 +257,10 @@ export const ProductDetailPage: React.FC = () => {
                 href="#reviews-section"
                 className="inline-flex items-center space-x-2 mt-2.5 group cursor-pointer"
               >
-                <div className="flex text-[#C5A880]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-3.5 h-3.5 ${
-                        i < Math.floor(product.rating)
-                          ? "fill-current"
-                          : "text-[#DECFC2]"
-                      }`}
-                    />
-                  ))}
-                </div>
+                <StarRating
+                  rating={product.rating}
+                  starClassName="w-3.5 h-3.5"
+                />
                 <span className="text-xs font-bold text-[#1C1412]">
                   {product.rating} / 5.0
                 </span>
@@ -608,7 +607,6 @@ export const ProductDetailPage: React.FC = () => {
               isWishlisted={isWishlisted(relProduct.id)}
               onToggleWishlist={toggleWishlist}
               onAddToCart={() => addToCart(relProduct)}
-              onOpenQuickView={() => navigate(`/product/${relProduct.id}`)}
             />
           ))}
         </div>

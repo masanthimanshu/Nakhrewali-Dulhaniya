@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import { X, Heart, Trash2, ShoppingBag, Share2, Check } from "lucide-react";
-import { Product } from "../types";
+import { useShop } from "../context/ShopContext";
+import { handleImageError } from "../utils/imageFallback";
 
 interface WishlistDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  wishlist: Product[];
-  onRemoveFromWishlist: (product: Product) => void;
-  onMoveToCart: (product: Product) => void;
 }
 
 export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
   isOpen,
   onClose,
-  wishlist,
-  onRemoveFromWishlist,
-  onMoveToCart,
 }) => {
   if (!isOpen) return null;
 
+  const { wishlist, toggleWishlist, addToCart } = useShop();
   const [copied, setCopied] = useState(false);
 
   const handleShareHint = () => {
@@ -27,6 +23,11 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
     navigator.clipboard.writeText(message);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleMoveToCart = (product: (typeof wishlist)[0]) => {
+    addToCart(product, 1);
+    toggleWishlist(product);
   };
 
   return (
@@ -58,24 +59,28 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
           {wishlist.length > 0 && (
             <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-3.5 border-b border-rose-100 text-xs text-stone-700 flex items-center justify-between">
               <div>
-                <span className="font-bold text-[#880E4F] block">
-                  Drop a Hint to Your Boyfriend 😉
-                </span>
-                <span className="text-[11px] text-stone-500">
-                  Copy your wishlist to send on WhatsApp
-                </span>
+                <p className="font-bold text-[#A51A4C]">
+                  Drop A Subtle Hint 😉
+                </p>
+                <p className="text-[10px] text-stone-500">
+                  Copy your wishlist to send him on WhatsApp.
+                </p>
               </div>
               <button
-                id="share-wishlist-hint-btn"
                 onClick={handleShareHint}
-                className="px-3 py-1.5 bg-[#E60050] hover:bg-[#C2185B] text-white text-[11px] font-bold rounded-lg shadow-xs flex items-center gap-1 transition-all"
+                className="px-3 py-1.5 bg-white border border-rose-200 rounded-lg text-xs font-semibold text-[#A51A4C] hover:bg-rose-50 transition-colors flex items-center space-x-1"
               >
                 {copied ? (
-                  <Check className="w-3.5 h-3.5" />
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Copied!</span>
+                  </>
                 ) : (
-                  <Share2 className="w-3.5 h-3.5" />
+                  <>
+                    <Share2 className="w-3.5 h-3.5" />
+                    <span>Copy Hint</span>
+                  </>
                 )}
-                <span>{copied ? "Copied!" : "Copy Hint"}</span>
               </button>
             </div>
           )}
@@ -96,7 +101,7 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
                 </p>
                 <button
                   onClick={onClose}
-                  className="px-5 py-2.5 bg-[#2B1B17] text-white rounded-full text-xs font-bold"
+                  className="px-5 py-2.5 bg-[#2B1B17] text-white rounded-full text-xs font-bold cursor-pointer"
                 >
                   Start Exploring
                 </button>
@@ -111,6 +116,7 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
                     <img
                       src={product.image}
                       alt={product.name}
+                      onError={handleImageError}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
                     />
@@ -123,8 +129,8 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
                           {product.name}
                         </h4>
                         <button
-                          onClick={() => onRemoveFromWishlist(product)}
-                          className="text-stone-400 hover:text-rose-600 transition-colors"
+                          onClick={() => toggleWishlist(product)}
+                          className="text-stone-400 hover:text-rose-600 transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -139,8 +145,8 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
 
                     <div className="pt-2 flex justify-end">
                       <button
-                        onClick={() => onMoveToCart(product)}
-                        className="px-3 py-1.5 bg-[#2B1B17] hover:bg-[#E60050] text-white text-[11px] font-bold rounded-lg transition-colors flex items-center space-x-1"
+                        onClick={() => handleMoveToCart(product)}
+                        className="px-3 py-1.5 bg-[#2B1B17] hover:bg-[#E60050] text-white text-[11px] font-bold rounded-lg transition-colors flex items-center space-x-1 cursor-pointer"
                       >
                         <ShoppingBag className="w-3 h-3" />
                         <span>Move to Trunk</span>
@@ -157,10 +163,10 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
             <div className="p-4 border-t border-stone-200 bg-[#FFFDF9]">
               <button
                 onClick={() => {
-                  wishlist.forEach((p) => onMoveToCart(p));
+                  wishlist.forEach((p) => handleMoveToCart(p));
                   onClose();
                 }}
-                className="w-full py-3 bg-[#E60050] hover:bg-[#C2185B] text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center space-x-1.5"
+                className="w-full py-3 bg-[#E60050] hover:bg-[#C2185B] text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center space-x-1.5 cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Move All to Shopping Trunk</span>

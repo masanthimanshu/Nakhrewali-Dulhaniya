@@ -1,6 +1,17 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
 import { Product, CartItem, OrderDetails } from "../types";
 import { PRODUCTS } from "../data/products";
+import {
+  VALID_COUPONS,
+  FREE_SHIPPING_THRESHOLD,
+  SHIPPING_FEE,
+} from "../utils/productUtils";
 
 interface ShopContextType {
   cart: CartItem[];
@@ -37,6 +48,12 @@ interface ShopContextType {
   cartCount: number;
   cartSubtotal: number;
   cartTotalDiscount: number;
+  activeCoupon: string | null;
+  discountAmount: number;
+  applyCoupon: (code: string) => boolean;
+  shippingFee: number;
+  finalTotal: number;
+  freeShippingThreshold: number;
   lastOrder: OrderDetails | null;
   setLastOrder: (order: OrderDetails | null) => void;
 }
@@ -241,16 +258,53 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
     return wishlist.some((p) => p.id === productId);
   };
 
-  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const cartSubtotal = cart.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0,
+  const [activeCoupon, setActiveCoupon] = useState<string | null>("NAKHRA15");
+
+  const cartCount = useMemo(
+    () => cart.reduce((sum, item) => sum + item.quantity, 0),
+    [cart],
   );
-  const cartTotalDiscount = cart.reduce(
-    (sum, item) =>
-      sum + (item.product.originalPrice - item.product.price) * item.quantity,
-    0,
+
+  const cartSubtotal = useMemo(
+    () =>
+      cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
+    [cart],
   );
+
+  const cartTotalDiscount = useMemo(
+    () =>
+      cart.reduce(
+        (sum, item) =>
+          sum +
+          (item.product.originalPrice - item.product.price) * item.quantity,
+        0,
+      ),
+    [cart],
+  );
+
+  const discountAmount = useMemo(() => {
+    if (!activeCoupon || !VALID_COUPONS[activeCoupon]) return 0;
+    return Math.round(cartSubtotal * VALID_COUPONS[activeCoupon]);
+  }, [activeCoupon, cartSubtotal]);
+
+  const shippingFee = useMemo(() => {
+    return cartSubtotal >= FREE_SHIPPING_THRESHOLD || cartSubtotal === 0
+      ? 0
+      : SHIPPING_FEE;
+  }, [cartSubtotal]);
+
+  const finalTotal = useMemo(() => {
+    return Math.max(0, cartSubtotal - discountAmount + shippingFee);
+  }, [cartSubtotal, discountAmount, shippingFee]);
+
+  const applyCoupon = (code: string): boolean => {
+    const normalized = code.trim().toUpperCase();
+    if (VALID_COUPONS[normalized] !== undefined) {
+      setActiveCoupon(normalized);
+      return true;
+    }
+    return false;
+  };
 
   return (
     <ShopContext.Provider
@@ -275,6 +329,12 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
         cartCount,
         cartSubtotal,
         cartTotalDiscount,
+        activeCoupon,
+        discountAmount,
+        applyCoupon,
+        shippingFee,
+        finalTotal,
+        freeShippingThreshold: FREE_SHIPPING_THRESHOLD,
         lastOrder,
         setLastOrder,
       }}

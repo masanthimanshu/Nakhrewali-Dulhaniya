@@ -9,6 +9,7 @@ import {
   X,
 } from "lucide-react";
 import { Product } from "../types";
+import { StarRating } from "./StarRating";
 
 interface ReviewItem {
   id: string;
@@ -225,11 +226,11 @@ export const ProductReviewsSection: React.FC<ProductReviewsSectionProps> = ({
                 / 5.0
               </span>
             </div>
-            <div className="flex items-center justify-center lg:justify-start text-[#C5A880] space-x-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-current" />
-              ))}
-            </div>
+            <StarRating
+              rating={5}
+              className="flex items-center justify-center lg:justify-start text-[#C5A880] space-x-1"
+              starClassName="w-4 h-4"
+            />
             <p className="text-xs font-semibold text-[#1C1412]">
               Based on {product.reviewsCount + reviews.length - 5} verified
               customers
@@ -342,11 +343,10 @@ export const ProductReviewsSection: React.FC<ProductReviewsSectionProps> = ({
                 <div>
                   {/* Rating Stars & Tag */}
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex text-[#C5A880]">
-                      {[...Array(rev.rating)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                      ))}
-                    </div>
+                    <StarRating
+                      rating={rev.rating}
+                      starClassName="w-3.5 h-3.5"
+                    />
                     <span className="px-2.5 py-0.5 bg-white text-[#7A152E] text-[10px] font-bold uppercase tracking-wider rounded-full border border-[#DFCFC1]">
                       {rev.tag}
                     </span>

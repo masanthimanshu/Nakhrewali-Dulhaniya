@@ -205,7 +205,7 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                           src={box.image}
                           alt={box.name}
                           referrerPolicy="no-referrer"
-                          onError={(e) => handleImageError(e, "romantic-gifts")}
+                          onError={handleImageError}
                           className="w-full h-full object-cover"
                         />
                         {isSelected && (
@@ -275,7 +275,7 @@ export const HamperBuilderModal: React.FC<HamperBuilderModalProps> = ({
                           src={prod.image}
                           alt={prod.name}
                           referrerPolicy="no-referrer"
-                          onError={(e) => handleImageError(e, prod.category)}
+                          onError={handleImageError}
                           className="w-full h-full object-cover"
                         />
                         <div

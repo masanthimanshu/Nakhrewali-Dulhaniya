@@ -1,48 +1,37 @@
 import React, { useState, useMemo } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { SlidersHorizontal, ChevronRight } from "lucide-react";
+import { useParams, Link, useSearchParams } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 import { CATEGORIES, PRODUCTS } from "../data/products";
 import { ProductCard } from "../components/ProductCard";
+import { FilterSortControls } from "../components/FilterSortControls";
 import { useShop } from "../context/ShopContext";
-import { CategoryId } from "../types";
+import { CategoryId, PriceFilter, SortOption } from "../types";
+import { filterAndSortProducts } from "../utils/productUtils";
 
 export const CollectionPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q") || "";
   const { addToCart, isWishlisted, toggleWishlist } = useShop();
 
   const activeCategory = (categoryId as CategoryId) || "earrings";
   const categoryMeta =
     CATEGORIES.find((c) => c.id === activeCategory) || CATEGORIES[1];
 
-  const [filterPrice, setFilterPrice] = useState<
-    "all" | "under1000" | "1000to1500" | "above1500"
-  >("all");
-  const [sortBy, setSortBy] = useState<
-    "popular" | "price-asc" | "price-desc" | "rating"
-  >("popular");
+  const [filterPrice, setFilterPrice] = useState<PriceFilter>("all");
+  const [sortBy, setSortBy] = useState<SortOption>("popular");
 
-  const products = useMemo(() => {
-    let list = PRODUCTS.filter((p) => p.category === activeCategory);
-
-    if (filterPrice === "under1000") {
-      list = list.filter((p) => p.price < 1000);
-    } else if (filterPrice === "1000to1500") {
-      list = list.filter((p) => p.price >= 1000 && p.price <= 1500);
-    } else if (filterPrice === "above1500") {
-      list = list.filter((p) => p.price > 1500);
-    }
-
-    if (sortBy === "price-asc") {
-      list.sort((a, b) => a.price - b.price);
-    } else if (sortBy === "price-desc") {
-      list.sort((a, b) => b.price - a.price);
-    } else if (sortBy === "rating") {
-      list.sort((a, b) => b.rating - a.rating);
-    }
-
-    return list;
-  }, [activeCategory, filterPrice, sortBy]);
+  const products = useMemo(
+    () =>
+      filterAndSortProducts(
+        PRODUCTS,
+        activeCategory,
+        filterPrice,
+        sortBy,
+        searchQuery,
+      ),
+    [activeCategory, filterPrice, sortBy, searchQuery],
+  );
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] py-8 sm:py-12">
@@ -103,65 +92,37 @@ export const CollectionPage: React.FC = () => {
         </div>
 
         {/* Filters & Sorting */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pb-6 border-b border-[#EAE1D7]">
-          <div className="flex items-center space-x-2 text-xs text-[#70605A] overflow-x-auto w-full sm:w-auto">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-[#961A38] shrink-0" />
-            <span className="font-semibold text-[#1C1412] shrink-0">
-              Budget:
-            </span>
-            {(["all", "under1000", "1000to1500", "above1500"] as const).map(
-              (filter) => (
-                <button
-                  key={filter}
-                  onClick={() => setFilterPrice(filter)}
-                  className={`px-3 py-1 rounded-full text-[11px] font-medium transition-all shrink-0 ${
-                    filterPrice === filter
-                      ? "bg-[#1C1412] text-white font-bold"
-                      : "bg-white border border-[#EAE1D7] text-[#6E5D57] hover:border-[#1C1412]"
-                  }`}
-                >
-                  {filter === "all"
-                    ? "All Prices"
-                    : filter === "under1000"
-                      ? "Under ₹1,000"
-                      : filter === "1000to1500"
-                        ? "₹1,000 - ₹1,500"
-                        : "₹1,500+"}
-                </button>
-              ),
-            )}
-          </div>
-
-          <div className="flex items-center space-x-2 self-end sm:self-auto">
-            <span className="text-[11px] font-medium text-[#70605A]">
-              Sort:
-            </span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs bg-white border border-[#DFCFC1] rounded-xl px-2.5 py-1.5 text-[#1C1412] focus:outline-none focus:border-[#961A38]"
-            >
-              <option value="popular">Most Loved</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="rating">Highest Rated</option>
-            </select>
-          </div>
-        </div>
+        <FilterSortControls
+          filterPrice={filterPrice}
+          onFilterChange={setFilterPrice}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+          filterLabel="Budget:"
+        />
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              isWishlisted={isWishlisted(product.id)}
-              onToggleWishlist={toggleWishlist}
-              onAddToCart={() => addToCart(product)}
-              onOpenQuickView={() => navigate(`/product/${product.id}`)}
-            />
-          ))}
-        </div>
+        {products.length === 0 ? (
+          <div className="text-center py-16 bg-white rounded-3xl border border-[#EAE1D7] mt-8 p-6">
+            <p className="text-lg font-display font-semibold text-[#1C1412] mb-1">
+              No matching pieces found
+            </p>
+            <p className="text-xs text-[#8C7A75]">
+              Try adjusting your budget filter or search terms.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8">
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                isWishlisted={isWishlisted(product.id)}
+                onToggleWishlist={toggleWishlist}
+                onAddToCart={() => addToCart(product)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

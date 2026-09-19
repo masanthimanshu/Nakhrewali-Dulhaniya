@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Heart, ShoppingBag, Star, ArrowUpRight } from "lucide-react";
+import { Heart, ShoppingBag, ArrowUpRight } from "lucide-react";
 import { Product } from "../types";
 import { handleImageError } from "../utils/imageFallback";
+import { StarRating } from "./StarRating";
+import { getDiscountPercent } from "../utils/productUtils";
 
 interface ProductCardProps {
   product: Product;
   isWishlisted: boolean;
   onToggleWishlist: (product: Product) => void;
   onAddToCart: (product: Product) => void;
-  onOpenQuickView?: (product: Product) => void;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -18,8 +19,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onToggleWishlist,
   onAddToCart,
 }) => {
-  const discountPercent = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100,
+  const discountPercent = getDiscountPercent(
+    product.originalPrice,
+    product.price,
   );
 
   return (
@@ -34,8 +36,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             src={product.image}
             alt={product.name}
             loading="lazy"
+            decoding="async"
             referrerPolicy="no-referrer"
-            onError={(e) => handleImageError(e, product.category)}
+            onError={handleImageError}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </Link>
@@ -110,18 +113,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           {/* Rating */}
           <div className="flex items-center space-x-1.5 mt-2 text-xs text-[#7A6B65]">
-            <div className="flex text-[#C5A880]">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-3 h-3 ${
-                    i < Math.floor(product.rating)
-                      ? "fill-current"
-                      : "fill-transparent text-[#E0D4C7]"
-                  }`}
-                />
-              ))}
-            </div>
+            <StarRating rating={product.rating} />
             <span className="font-semibold text-[#1C1412] text-[11px]">
               {product.rating}
             </span>
@@ -154,7 +146,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               onAddToCart(product);
             }}
-            className="px-3.5 py-2 bg-[#FAF7F2] hover:bg-[#1C1412] text-[#1C1412] hover:text-white border border-[#DFCFC1] hover:border-[#1C1412] rounded-xl text-xs font-semibold tracking-wider transition-all flex items-center space-x-1.5 shadow-2xs active:scale-95"
+            className="px-3.5 py-2 bg-[#FAF7F2] hover:bg-[#1C1412] text-[#1C1412] hover:text-white border border-[#DFCFC1] hover:border-[#1C1412] rounded-xl text-xs font-semibold tracking-wider transition-all flex items-center space-x-1.5 shadow-2xs active:scale-95 cursor-pointer"
             title="Add to Shopping Trunk"
           >
             <ShoppingBag className="w-3.5 h-3.5 text-[#961A38] group-hover:text-[#D4AF37]" />

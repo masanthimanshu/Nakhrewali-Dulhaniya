@@ -1,37 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Heart, ShoppingBag, Search, Gift, HelpCircle, X } from "lucide-react";
 import { CategoryId } from "../types";
+import { useShop } from "../context/ShopContext";
 
-interface NavbarProps {
-  selectedCategory?: CategoryId;
-  onSelectCategory?: (cat: CategoryId) => void;
-  searchQuery?: string;
-  onSearchChange?: (q: string) => void;
-  wishlistCount: number;
-  onOpenWishlist: () => void;
-  cartCount: number;
-  cartSubtotal: number;
-  onOpenCart: () => void;
-  onOpenHamperBuilder: () => void;
-  onOpenGiftQuiz: () => void;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({
-  selectedCategory = "all",
-  onSelectCategory,
-  searchQuery = "",
-  onSearchChange,
-  wishlistCount,
-  onOpenWishlist,
-  cartCount,
-  cartSubtotal,
-  onOpenCart,
-  onOpenHamperBuilder,
-  onOpenGiftQuiz,
-}) => {
+export const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const {
+    wishlist,
+    cartCount,
+    cartSubtotal,
+    setIsWishlistOpen,
+    setIsCartOpen,
+    setIsHamperBuilderOpen,
+    setIsGiftQuizOpen,
+  } = useShop();
+
+  const [searchQuery, setSearchQuery] = useState("");
 
   const categories: { id: CategoryId; label: string; roman: string }[] = [
     { id: "all", label: "All Drops", roman: "✦" },
@@ -42,12 +28,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const handleCategoryClick = (catId: CategoryId) => {
-    if (catId === "all") {
-      navigate("/");
-      if (onSelectCategory) onSelectCategory("all");
-    } else {
-      navigate(`/collection/${catId}`);
-      if (onSelectCategory) onSelectCategory(catId);
+    navigate(catId === "all" ? "/" : `/collection/${catId}`);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/collection/all?q=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
@@ -56,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Header Bar */}
         <div className="flex items-center justify-between h-20 gap-4">
-          {/* Brand Wordmark (Clean editorial typography, without cluttered icons) */}
+          {/* Brand Wordmark */}
           <Link
             to="/"
             id="brand-logo-btn"
@@ -77,27 +64,26 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Search Bar - Desktop */}
           <div className="hidden md:flex flex-1 max-w-xs lg:max-w-sm mx-4">
-            <div className="relative w-full">
+            <form onSubmit={handleSearch} className="relative w-full">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#9E8E89]" />
               <input
                 id="search-input"
                 type="text"
                 placeholder="Search jhumkas, choodiyan, hair bows..."
                 value={searchQuery}
-                onChange={(e) =>
-                  onSearchChange && onSearchChange(e.target.value)
-                }
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-9 pr-8 py-2 text-xs bg-[#F2ECE4] border border-[#DECFC2] rounded-full text-[#1C1412] placeholder-[#9E8E89] focus:outline-none focus:border-[#961A38] focus:bg-white transition-all"
               />
               {searchQuery && (
                 <button
-                  onClick={() => onSearchChange && onSearchChange("")}
+                  type="button"
+                  onClick={() => setSearchQuery("")}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-0.5"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
               )}
-            </div>
+            </form>
           </div>
 
           {/* Luxury Utility CTAs (Hamper Studio, Quiz, Wishlist, Cart) */}
@@ -105,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Hamper Studio CTA */}
             <button
               id="nav-hamper-btn"
-              onClick={onOpenHamperBuilder}
+              onClick={() => setIsHamperBuilderOpen(true)}
               className="hidden lg:inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-white border border-[#C5A880] text-[#7A152E] rounded-full text-xs font-semibold hover:bg-[#FDF9F5] transition-colors shadow-2xs cursor-pointer"
             >
               <Gift className="w-3.5 h-3.5 text-[#961A38]" />
@@ -115,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Gift Quiz CTA */}
             <button
               id="nav-quiz-btn"
-              onClick={onOpenGiftQuiz}
+              onClick={() => setIsGiftQuizOpen(true)}
               className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 bg-transparent hover:bg-[#F2ECE4] text-[#4A3B36] border border-[#E0D4C7] rounded-full text-xs font-medium transition-colors cursor-pointer"
             >
               <HelpCircle className="w-3.5 h-3.5 text-[#961A38]" />
@@ -125,15 +111,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Wishlist Button */}
             <button
               id="nav-wishlist-btn"
-              onClick={onOpenWishlist}
+              onClick={() => setIsWishlistOpen(true)}
               className="relative p-2 rounded-full text-[#4A3B36] hover:text-[#961A38] hover:bg-[#F2ECE4] transition-colors cursor-pointer"
               title="Saved Wishlist"
               aria-label="Wishlist"
             >
               <Heart className="w-4 h-4" />
-              {wishlistCount > 0 && (
+              {wishlist.length > 0 && (
                 <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-[#961A38] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {wishlistCount}
+                  {wishlist.length}
                 </span>
               )}
             </button>
@@ -141,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Shopping Trunk Button */}
             <button
               id="nav-cart-btn"
-              onClick={onOpenCart}
+              onClick={() => setIsCartOpen(true)}
               className="flex items-center space-x-2 pl-3 pr-3.5 py-2 bg-[#1C1412] hover:bg-[#2A1D1A] text-white rounded-full transition-colors shadow-sm cursor-pointer"
               aria-label="Shopping Trunk"
             >

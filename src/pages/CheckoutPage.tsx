@@ -18,8 +18,18 @@ import { handleImageError } from "../utils/imageFallback";
 
 export const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart, updateCartQuantity, clearCart, setLastOrder } =
-    useShop();
+  const {
+    cart,
+    removeFromCart,
+    clearCart,
+    setLastOrder,
+    cartSubtotal,
+    activeCoupon,
+    discountAmount,
+    applyCoupon,
+    shippingFee,
+    finalTotal,
+  } = useShop();
 
   // Customer & Shipping State
   const [formData, setFormData] = useState({
@@ -38,31 +48,17 @@ export const CheckoutPage: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState<"upi" | "card" | "cod">(
     "upi",
   );
-  const [couponCode, setCouponCode] = useState("NAKHRA15");
-  const [isCouponApplied, setIsCouponApplied] = useState(true);
+  const [couponCode, setCouponCode] = useState(activeCoupon || "NAKHRA15");
   const [couponError, setCouponError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Calculations
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0,
-  );
-  const discount = isCouponApplied ? Math.round(subtotal * 0.15) : 0;
-  const shipping = subtotal > 800 ? 0 : 99;
-  const total = subtotal - discount + shipping;
-
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      couponCode.toUpperCase() === "NAKHRA15" ||
-      couponCode.toUpperCase() === "BAE15"
-    ) {
-      setIsCouponApplied(true);
+    const success = applyCoupon(couponCode);
+    if (success) {
       setCouponError("");
     } else {
-      setIsCouponApplied(false);
-      setCouponError("Invalid coupon code. Try NAKHRA15 for 15% off.");
+      setCouponError("Invalid coupon code. Try NAKHRA15 or BAE15.");
     }
   };
 
@@ -93,10 +89,10 @@ export const CheckoutPage: React.FC = () => {
         city: formData.city || "Mumbai",
         pincode: formData.pincode,
         items: [...cart],
-        subtotal,
-        discount,
-        shipping,
-        total,
+        subtotal: cartSubtotal,
+        discount: discountAmount,
+        shipping: shippingFee,
+        total: finalTotal,
         paymentMethod:
           paymentMethod === "upi"
             ? "UPI (Instant / QR)"
@@ -460,7 +456,7 @@ export const CheckoutPage: React.FC = () => {
                 <span>
                   {isSubmitting
                     ? "Sealing Order in Atelier..."
-                    : `Place Order • ₹${total.toLocaleString()}`}
+                    : `Place Order • ₹${finalTotal.toLocaleString()}`}
                 </span>
               </button>
             </form>
@@ -485,9 +481,7 @@ export const CheckoutPage: React.FC = () => {
                       src={item.product.image}
                       alt={item.product.name}
                       referrerPolicy="no-referrer"
-                      onError={(e) =>
-                        handleImageError(e, item.product.category)
-                      }
+                      onError={handleImageError}
                       className="w-14 h-16 object-cover rounded-xl border border-[#EAE1D7] shrink-0"
                     />
                     <div className="flex-1 min-w-0">
@@ -507,7 +501,7 @@ export const CheckoutPage: React.FC = () => {
                       </span>
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="text-[10px] text-[#A89893] hover:text-red-700 mt-1"
+                        className="text-[10px] text-[#A89893] hover:text-red-700 mt-1 cursor-pointer"
                       >
                         Remove
                       </button>
@@ -531,16 +525,17 @@ export const CheckoutPage: React.FC = () => {
                   />
                   <button
                     type="submit"
-                    className="px-3.5 py-2 bg-[#1C1412] text-white text-xs font-semibold rounded-xl hover:bg-[#332420]"
+                    className="px-3.5 py-2 bg-[#1C1412] text-white text-xs font-semibold rounded-xl hover:bg-[#332420] cursor-pointer"
                   >
                     Apply
                   </button>
                 </div>
-                {isCouponApplied && (
+                {activeCoupon && (
                   <p className="text-[10px] font-semibold text-emerald-800 mt-1.5 flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" />
                     <span>
-                      Coupon NAKHRA15 applied: 15% Bollywood Lover discount!
+                      Coupon {activeCoupon} applied: Bollywood Lover privilege
+                      discount!
                     </span>
                   </p>
                 )}
@@ -554,14 +549,14 @@ export const CheckoutPage: React.FC = () => {
                 <div className="flex justify-between">
                   <span>Subtotal</span>
                   <span className="font-semibold text-[#1C1412]">
-                    ₹{subtotal.toLocaleString()}
+                    ₹{cartSubtotal.toLocaleString()}
                   </span>
                 </div>
-                {discount > 0 && (
+                {discountAmount > 0 && (
                   <div className="flex justify-between text-emerald-800">
-                    <span>Coupon Discount (15%)</span>
+                    <span>Coupon Discount</span>
                     <span className="font-semibold">
-                      -₹{discount.toLocaleString()}
+                      -₹{discountAmount.toLocaleString()}
                     </span>
                   </div>
                 )}
@@ -572,13 +567,13 @@ export const CheckoutPage: React.FC = () => {
                 <div className="flex justify-between">
                   <span>Express Shipping</span>
                   <span className="font-semibold text-emerald-800">
-                    {shipping === 0 ? "FREE" : `₹${shipping}`}
+                    {shippingFee === 0 ? "FREE" : `₹${shippingFee}`}
                   </span>
                 </div>
 
                 <div className="flex justify-between pt-3 border-t border-[#EAE1D7] text-base font-bold text-[#1C1412]">
                   <span>Total Amount</span>
-                  <span>₹{total.toLocaleString()}</span>
+                  <span>₹{finalTotal.toLocaleString()}</span>
                 </div>
               </div>
 

@@ -112,7 +112,7 @@ export const AestheticLookbook: React.FC = () => {
                   src={look.image}
                   alt={look.heading}
                   referrerPolicy="no-referrer"
-                  onError={(e) => handleImageError(e, "earrings")}
+                  onError={handleImageError}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
