@@ -10,6 +10,26 @@ interface HeroBannerProps {
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
   const { setIsHamperBuilderOpen, setIsGiftQuizOpen } = useShop();
+
+  const handleSelectRange = (cat: CategoryId) => {
+    onSelectCategory?.(cat);
+    const target =
+      document.getElementById("ranges-section") ||
+      document.getElementById("catalog-section");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToRanges = () => {
+    const target =
+      document.getElementById("ranges-section") ||
+      document.getElementById("catalog-section");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-[#FAF7F2] border-b border-[#EAE1D7] py-10 sm:py-16">
       {/* Subtle ambient luxury warmth */}
@@ -35,44 +55,69 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
               </span>
             </h1>
 
-            {/* Subtitle */}
+            {/* Subtitle with interactive range links that scroll down */}
             <p className="text-sm sm:text-base text-[#61514B] max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Curated across four distinct cinematic ranges: iconic{" "}
-              <strong className="text-[#1C1412] font-semibold">
+              Curated across four distinct cinematic ranges:{" "}
+              <button
+                type="button"
+                onClick={() => handleSelectRange("earrings")}
+                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
+              >
                 Haye Jhumka
-              </strong>
-              , musical{" "}
-              <strong className="text-[#1C1412] font-semibold">
+              </button>
+              ,{" "}
+              <button
+                type="button"
+                onClick={() => handleSelectRange("bangles")}
+                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
+              >
                 Bole Chudiyan
-              </strong>
-              , poetic{" "}
-              <strong className="text-[#1C1412] font-semibold">
+              </button>
+              ,{" "}
+              <button
+                type="button"
+                onClick={() => handleSelectRange("hair")}
+                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
+              >
                 Yeh Reshmi Zulfen
-              </strong>
+              </button>
               , and heirloom{" "}
-              <strong className="text-[#1C1412] font-semibold">
+              <button
+                type="button"
+                onClick={() => handleSelectRange("romantic-gifts")}
+                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
+              >
                 Dil Tu Jaan Tu
-              </strong>{" "}
+              </button>{" "}
               keepsakes.
             </p>
 
             {/* Premium CTAs */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
               <button
+                id="hero-explore-ranges-btn"
+                onClick={scrollToRanges}
+                className="px-6 py-3.5 bg-[#961A38] hover:bg-[#7D152E] text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 group cursor-pointer"
+              >
+                <span>Explore The 4 Ranges</span>
+                <ArrowRight className="w-3.5 h-3.5 rotate-90 text-[#F5EFEB] group-hover:translate-y-0.5 transition-transform" />
+              </button>
+
+              <button
                 id="hero-hamper-btn"
                 onClick={() => setIsHamperBuilderOpen(true)}
-                className="px-6 py-3.5 bg-[#1C1412] hover:bg-[#2D201C] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 group"
+                className="px-5 py-3.5 bg-[#1C1412] hover:bg-[#2D201C] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 group cursor-pointer"
               >
-                <span>Curate A Gift Hamper</span>
+                <span>Curate Hamper</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
                 id="hero-quiz-btn"
                 onClick={() => setIsGiftQuizOpen(true)}
-                className="px-5 py-3.5 bg-white hover:bg-[#F7F2EC] text-[#2C211E] border border-[#D9C8B8] font-semibold text-xs tracking-wider uppercase rounded-full transition-all"
+                className="px-5 py-3.5 bg-white hover:bg-[#F7F2EC] text-[#2C211E] border border-[#D9C8B8] font-semibold text-xs tracking-wider uppercase rounded-full transition-all cursor-pointer"
               >
-                <span>Boyfriend Gift Concierge</span>
+                <span>Gift Concierge</span>
               </button>
             </div>
 
@@ -97,13 +142,19 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
           {/* Right Column: Refined Editorial Showcase (No angled stickers or chaotic clutter) */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-sm rounded-2xl p-3 bg-white border border-[#E8DDD2] shadow-xl">
-              {/* Main Portrait Showcase Image */}
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#F5EFEB]">
+              {/* Main Portrait Showcase Image - Clickable to scroll to Range IV */}
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => handleSelectRange("romantic-gifts")}
+                className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#F5EFEB] cursor-pointer group"
+                title="Click to view Range IV Dil Tu Jaan Tu"
+              >
                 <img
                   src="https://i.pinimg.com/1200x/67/b4/b4/67b4b4c4f8eb32d68b45123acb0e0f90.jpg"
                   alt="Nakhrewali Dulhaniya Signature Trunk"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
 
@@ -124,14 +175,19 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
                     Velvet bridal trunk with complimentary wax-sealed parchment
                     note.
                   </p>
+                  <span className="inline-flex items-center text-[11px] text-[#F5EFEB] font-medium mt-1 underline decoration-[#D4AF37] underline-offset-2">
+                    View Range IV below ↓
+                  </span>
                 </div>
               </div>
 
               {/* Four Range Quick Switcher Strip Below */}
               <div className="grid grid-cols-4 gap-1.5 pt-3">
                 <button
-                  onClick={() => onSelectCategory?.("earrings")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
+                  type="button"
+                  onClick={() => handleSelectRange("earrings")}
+                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  title="View Range I: Haye Jhumka"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
                     I
@@ -141,8 +197,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
                   </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory?.("bangles")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
+                  type="button"
+                  onClick={() => handleSelectRange("bangles")}
+                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  title="View Range II: Bole Chudiyan"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
                     II
@@ -152,8 +210,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
                   </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory?.("hair")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
+                  type="button"
+                  onClick={() => handleSelectRange("hair")}
+                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  title="View Range III: Yeh Reshmi Zulfen"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
                     III
@@ -163,8 +223,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
                   </span>
                 </button>
                 <button
-                  onClick={() => onSelectCategory?.("romantic-gifts")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group"
+                  type="button"
+                  onClick={() => handleSelectRange("romantic-gifts")}
+                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  title="View Range IV: Dil Tu Jaan Tu"
                 >
                   <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
                     IV

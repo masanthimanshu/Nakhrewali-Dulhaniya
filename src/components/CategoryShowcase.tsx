@@ -12,6 +12,14 @@ export const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
   selectedCategory,
   onSelectCategory,
 }) => {
+  const handleCategoryCardClick = (catId: CategoryId) => {
+    onSelectCategory(catId);
+    const catalogEl = document.getElementById("catalog-section");
+    if (catalogEl) {
+      catalogEl.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const ranges = [
     {
       id: "earrings" as const,
@@ -56,7 +64,10 @@ export const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
   ];
 
   return (
-    <section className="py-12 bg-white border-b border-[#EAE1D7]">
+    <section
+      id="ranges-section"
+      className="py-12 bg-white border-b border-[#EAE1D7] scroll-mt-20"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
@@ -80,7 +91,7 @@ export const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
               <button
                 key={range.id}
                 id={`cat-card-${range.id}`}
-                onClick={() => onSelectCategory(range.id)}
+                onClick={() => handleCategoryCardClick(range.id)}
                 className={`group text-left relative rounded-2xl overflow-hidden bg-[#FAF7F2] border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
                   isSelected
                     ? "border-[#961A38] ring-1 ring-[#961A38] shadow-md"

@@ -46,7 +46,7 @@ export const HomePage: React.FC = () => {
       {/* 3. Products Catalog Grid Section */}
       <section
         id="catalog-section"
-        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-24"
       >
         {/* Category Header (if filtered) */}
         {selectedCategory !== "all" && activeCategoryMeta && (
