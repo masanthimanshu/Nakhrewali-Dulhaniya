@@ -116,70 +116,60 @@ export const HomePage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center space-x-1.5 text-[11px] font-semibold text-[#7A152E] uppercase tracking-widest bg-[#FAF2F4] px-3.5 py-1 rounded-full border border-[#F2D6DC]">
-                <span>💌</span>
-                <span>The Unboxing Ritual</span>
+              <div className="text-xs font-semibold text-[#8C2038] uppercase tracking-[0.2em]">
+                The Unboxing Experience
               </div>
 
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#1C1412]">
-                Packed Like A Bollywood Climax
+              <h3 className="text-3xl sm:text-4xl font-display font-bold text-[#140F0D] tracking-tight">
+                Crafted for Pure Emotion
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#6E5D57] leading-relaxed">
-                Every parcel from <strong>nakhrewalidulhaniya.com</strong> is
-                packed to evoke pure emotion. You choose her favorite piece
-                across our 4 ranges, and our atelier completes the magic with
-                rose-scented potpourri, a signature Gulabi velvet box, and a
-                hand-poured crimson wax seal enclosing your personalized
-                Bollywood love letter.
+              <p className="text-sm text-[#4E3F3A] leading-relaxed">
+                Every piece arrives nestled in our signature velvet box, scented with dried rose potpourri, and sealed with a hand-poured crimson wax stamp over your personalized letter.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
-                <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-[#EAE1D7]">
-                  <span className="text-lg">💌</span>
-                  <h5 className="text-xs font-bold text-[#1C1412] mt-1.5">
+                <div className="bg-[#FAF7F2] p-4 rounded-xl border border-[#EAE1D7]">
+                  <h5 className="text-xs font-bold text-[#140F0D]">
                     Wax-Sealed Letter
                   </h5>
-                  <p className="text-[11px] text-[#8C7A75] mt-0.5">
-                    Calligraphy parchment letter included free.
+                  <p className="text-xs text-[#594843] mt-1 leading-normal">
+                    Custom message on calligraphy parchment.
                   </p>
                 </div>
-                <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-[#EAE1D7]">
-                  <span className="text-lg">👑</span>
-                  <h5 className="text-xs font-bold text-[#1C1412] mt-1.5">
+                <div className="bg-[#FAF7F2] p-4 rounded-xl border border-[#EAE1D7]">
+                  <h5 className="text-xs font-bold text-[#140F0D]">
                     Weightless Craft
                   </h5>
-                  <p className="text-[11px] text-[#8C7A75] mt-0.5">
-                    Hollow brass core for pain-free dancing.
+                  <p className="text-xs text-[#594843] mt-1 leading-normal">
+                    Hollow brass core for all-night wear.
                   </p>
                 </div>
-                <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-[#EAE1D7]">
-                  <span className="text-lg">🌹</span>
-                  <h5 className="text-xs font-bold text-[#1C1412] mt-1.5">
-                    Gulabi Velvet Box
+                <div className="bg-[#FAF7F2] p-4 rounded-xl border border-[#EAE1D7]">
+                  <h5 className="text-xs font-bold text-[#140F0D]">
+                    Signature Velvet Box
                   </h5>
-                  <p className="text-[11px] text-[#8C7A75] mt-0.5">
-                    Scented rose potpourri keepsake box.
+                  <p className="text-xs text-[#594843] mt-1 leading-normal">
+                    Scented keepsake trunk ready to gift.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-5 bg-[#FAF7F2] p-8 rounded-3xl border border-[#EAE1D7] shadow-xs text-center space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#1C1412] border border-[#C5A880]/40 flex items-center justify-center text-[#D4AF37] mx-auto text-xl">
+            <div className="lg:col-span-5 bg-[#FAF7F2] p-8 rounded-2xl border border-[#EAE1D7] shadow-2xs text-center space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-[#140F0D] flex items-center justify-center text-[#D4AF37] mx-auto text-xl">
                 🎁
               </div>
-              <h4 className="text-lg sm:text-xl font-display font-bold text-[#1C1412]">
+              <h4 className="text-xl font-display font-bold text-[#140F0D]">
                 Curate A Bespoke Hamper
               </h4>
-              <p className="text-xs text-[#6E5D57] max-w-sm mx-auto leading-relaxed">
-                Mix and match pieces across Haye Jhumka, Bole Chudiyan, and Yeh
-                Reshmi Zulfen to create a custom royal gift box with automatic
-                15% privilege savings.
+              <p className="text-xs sm:text-sm text-[#4E3F3A] max-w-sm mx-auto leading-relaxed">
+                Combine your favorite earrings, bangles, and hair accessories to build a personalized gifting trunk with complimentary wax seal and savings.
               </p>
               <button
+                id="unboxing-hamper-btn"
                 onClick={() => setIsHamperBuilderOpen(true)}
-                className="w-full py-3.5 bg-[#1C1412] hover:bg-[#2D201C] text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm transition-all flex items-center justify-center space-x-2 cursor-pointer"
+                className="w-full py-3.5 bg-[#140F0D] hover:bg-[#961A38] text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <span>Launch Hamper Studio</span>
                 <ArrowRight className="w-4 h-4 text-[#D4AF37]" />

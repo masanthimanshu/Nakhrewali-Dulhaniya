@@ -5,26 +5,25 @@ export const AnnouncementTicker: React.FC = () => {
   const items = [
     {
       icon: Gift,
-      text: "COMPLIMENTARY WAX-SEALED LOVE LETTER WITH EVERY ORDER",
+      text: "Complimentary wax-sealed love letter with every order",
+    },
+    {
+      icon: Heart,
+      text: "Use code NAKHRA10 for 10% off your first order",
+    },
+    {
+      icon: ShieldCheck,
+      text: "22K anti-tarnish finish · Hypoallergenic & lightweight",
     },
     {
       icon: Sparkles,
-      text: "THE FOUR SIGNATURE RANGES: HAYE JHUMKA • BOLE CHUDIYAN • YEH RESHMI ZULFEN • DIL TU JAAN TU",
-    },
-    { icon: Heart, text: "USE CODE 'NAKHRA10' FOR 10% PRIVILEGE SAVINGS" },
-    {
-      icon: ShieldCheck,
-      text: "HANDCRAFTED 22K GOLD POLISH • HYPOALLERGENIC & WEIGHTLESS",
-    },
-    {
-      icon: Gift,
-      text: "EXPRESS GIFTING: DISPATCHED WITHIN 24 HOURS IN GULABI VELVET TRUNKS",
+      text: "Express dispatch within 24 hours in signature velvet trunks",
     },
   ];
 
   return (
-    <div className="bg-[#1C1412] text-[#EAD8C7] py-2 overflow-hidden text-[11px] font-medium tracking-widest uppercase select-none border-b border-[#2E201C]">
-      <div className="flex animate-marquee">
+    <div className="bg-[#191210] text-[#E8DCD4] py-2 overflow-hidden text-xs font-medium select-none border-b border-[#2C1F1B]">
+      <div className="flex animate-marquee items-center">
         {[...items, ...items].map((item, idx) => {
           const Icon = item.icon;
           return (
@@ -32,9 +31,9 @@ export const AnnouncementTicker: React.FC = () => {
               key={idx}
               className="flex items-center space-x-2.5 mx-8 whitespace-nowrap"
             >
-              <Icon className="w-3 h-3 text-[#D4AF37] shrink-0" />
-              <span>{item.text}</span>
-              <span className="text-[#C5A880]/50 ml-6 font-serif-romance text-sm">
+              <Icon className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+              <span className="tracking-wide">{item.text}</span>
+              <span className="text-[#C5A880]/60 ml-6 text-xs">
                 ✦
               </span>
             </div>

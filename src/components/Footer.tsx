@@ -27,14 +27,14 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-10 border-b border-[#2E201C] text-xs">
           <div className="flex items-start space-x-3">
             <div className="p-2 rounded-xl bg-[#2A1D1A] text-[#D4AF37] shrink-0 border border-[#C5A880]/20">
-              <span className="text-sm">👑</span>
+              <Heart className="w-4 h-4 text-[#D4AF37]" />
             </div>
             <div>
               <h4 className="font-semibold text-white text-xs">
-                Bollywood Romance
+                Heirloom Craft
               </h4>
-              <p className="text-[#8C7A75] mt-0.5">
-                Bespoke jewelry & keepsakes for your drama queen.
+              <p className="text-[#C7B8B1] mt-0.5">
+                Bespoke jewelry & keepsake trunks.
               </p>
             </div>
           </div>
@@ -47,8 +47,8 @@ export const Footer: React.FC = () => {
               <h4 className="font-semibold text-white text-xs">
                 22K Anti-Tarnish
               </h4>
-              <p className="text-[#8C7A75] mt-0.5">
-                Tested for sensitive skin and featherlight comfort.
+              <p className="text-[#C7B8B1] mt-0.5">
+                Hypoallergenic with featherlight hollow craft.
               </p>
             </div>
           </div>
@@ -61,8 +61,8 @@ export const Footer: React.FC = () => {
               <h4 className="font-semibold text-white text-xs">
                 Express Gifting
               </h4>
-              <p className="text-[#8C7A75] mt-0.5">
-                Dispatched in 24 hours in velvet presentation trunks.
+              <p className="text-[#C7B8B1] mt-0.5">
+                Dispatched within 24 hours in velvet trunks.
               </p>
             </div>
           </div>
@@ -75,8 +75,8 @@ export const Footer: React.FC = () => {
               <h4 className="font-semibold text-white text-xs">
                 Seamless Exchange
               </h4>
-              <p className="text-[#8C7A75] mt-0.5">
-                Complimentary sizing assistance and doorstep exchanges.
+              <p className="text-[#C7B8B1] mt-0.5">
+                Complimentary sizing assistance & exchanges.
               </p>
             </div>
           </div>
@@ -95,20 +95,18 @@ export const Footer: React.FC = () => {
                   Dulhaniya
                 </span>
               </div>
-              <p className="text-[10px] text-[#8C7A75] tracking-[0.18em] uppercase mt-0.5">
-                nakhrewalidulhaniya.com
+              <p className="text-[10px] text-[#C7B8B1] tracking-[0.18em] uppercase mt-0.5">
+                Heirloom Jewelry & Romantic Gifts
               </p>
             </Link>
 
-            <p className="text-xs text-[#8C7A75] leading-relaxed">
-              Curated with high drama, deep romance, and cinematic nostalgia.
-              The premier gifting haven for lovers, bride squads, and hopeless
-              romantics.
+            <p className="text-xs text-[#C7B8B1] leading-relaxed">
+              Curated with high drama, deep romance, and cinematic nostalgia. The premier gifting atelier for unforgettable love stories.
             </p>
 
-            <div className="text-xs text-[#8C7A75] space-y-1">
-              <p>📍 Atelier: Mumbai & Jaipur</p>
-              <p>WhatsApp Concierge: +91 98200 12345</p>
+            <div className="text-xs text-[#C7B8B1] space-y-1">
+              <p>Ateliers: Mumbai & Jaipur</p>
+              <p>Concierge WhatsApp: +91 98200 12345</p>
             </div>
           </div>
 

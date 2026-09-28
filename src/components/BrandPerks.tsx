@@ -5,31 +5,31 @@ export const BrandPerks: React.FC = () => {
   const perks = [
     {
       icon: Feather,
-      title: "Featherlight Hollow Craft",
+      title: "Weightless Comfort",
       description:
-        "Engineered with hollowed brass cores so she can dance to Bole Chudiyan all night without heavy, pulled earlobes or sore ears.",
+        "Hollowed brass cores ensure effortless, pain-free wear through long festivities without pulling on earlobes.",
       metric: "Under 16 Grams",
     },
     {
       icon: ShieldCheck,
-      title: "22K Anti-Tarnish Shield",
+      title: "22K Anti-Tarnish Finish",
       description:
-        "Electro-plated with 22K micro gold and sealed with a nano-ceramic barrier. Impervious to party perfumes, humid weather, and sweat.",
-      metric: "Lifetime Finish Assurance",
+        "Micro-plated in 22K gold with a protective nano-seal resistant to perfumes, sweat, and humid weather.",
+      metric: "Lasting Luster",
     },
     {
       icon: Mail,
-      title: "Wax-Sealed Bollywood Letter",
+      title: "Wax-Sealed Keepsake Letter",
       description:
-        "Every order includes your personal quote printed on vintage deckle-edge parchment, hand-sealed with authentic crimson wax.",
-      metric: "Complimentary ₹199 Gift",
+        "Each order includes your personal quote printed on deckle-edge parchment and sealed with crimson wax.",
+      metric: "Complimentary Included",
     },
     {
       icon: Package,
-      title: "100% Discreet Gift Packaging",
+      title: "Signature Velvet Packaging",
       description:
-        "Shipped in a plain outer box so she won’t suspect a thing. Inside is our signature Gulabi velvet box with zero price tags or receipts.",
-      metric: "Doorstep Ready",
+        "Presented in our velvet keepsake trunk with zero exterior price tags for a picture-perfect surprise.",
+      metric: "Ready to Gift",
     },
   ];
 
@@ -38,16 +38,14 @@ export const BrandPerks: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#FAF2F4] text-[#7A152E] text-[11px] font-semibold uppercase tracking-widest border border-[#F2D6DC]">
-            <Sparkles className="w-3.5 h-3.5 text-[#961A38]" />
-            <span>Craft & Gifting Standards</span>
+          <div className="text-xs font-semibold text-[#8C2038] uppercase tracking-[0.2em]">
+            Craft Standards
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#1C1412]">
-            Why A Nakhrewali Gift Hits Different
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#140F0D] tracking-tight">
+            Heirloom Quality & Detail
           </h2>
-          <p className="text-xs sm:text-sm text-[#70605A]">
-            We threw out heavy costume jewelry and generic brown courier boxes.
-            Here is why she will scream when she opens this.
+          <p className="text-sm text-[#4E3F3A] leading-relaxed">
+            Thoughtfully engineered for all-day comfort, enduring luster, and unforgettable presentation.
           </p>
         </div>
 
@@ -58,24 +56,24 @@ export const BrandPerks: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-white p-6 rounded-3xl border border-[#EAE1D7] shadow-xs flex flex-col justify-between hover:border-[#C5A880] transition-all hover:shadow-md space-y-4"
+                className="bg-white p-6 rounded-2xl border border-[#EAE1D7] shadow-2xs flex flex-col justify-between hover:border-[#C5A880] transition-all hover:shadow-sm space-y-4"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#EAE1D7] flex items-center justify-center text-[#961A38] mb-4">
-                    <Icon className="w-6 h-6" />
+                  <div className="w-11 h-11 rounded-xl bg-[#FAF7F2] border border-[#EAE1D7] flex items-center justify-center text-[#961A38] mb-4">
+                    <Icon className="w-5 h-5" />
                   </div>
 
-                  <h3 className="text-base font-bold text-[#1C1412] leading-snug">
+                  <h3 className="text-base font-bold text-[#140F0D] leading-snug">
                     {perk.title}
                   </h3>
 
-                  <p className="text-xs text-[#6E5D57] leading-relaxed mt-2">
+                  <p className="text-xs text-[#52443F] leading-relaxed mt-2">
                     {perk.description}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#EAE1D7]/80">
-                  <span className="inline-block px-2.5 py-1 bg-[#FAF7F2] text-[#1C1412] text-[10px] font-bold uppercase tracking-wider rounded-full border border-[#DFCFC1]">
+                <div className="pt-3 border-t border-[#F2ECE4]">
+                  <span className="text-[11px] font-semibold text-[#8C2038] uppercase tracking-wider">
                     {perk.metric}
                   </span>
                 </div>

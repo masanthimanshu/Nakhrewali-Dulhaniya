@@ -40,76 +40,44 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: High-End Editorial Storytelling */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Range Monogram Eyebrow */}
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#F0E6DC] border border-[#DFCFC1] text-[#7A152E] text-[11px] font-semibold tracking-widest uppercase">
+            {/* Clean Monogram Kicker */}
+            <div className="inline-flex items-center space-x-2 text-xs font-semibold text-[#8C2038] tracking-[0.2em] uppercase">
               <span className="text-[#C5A880]">✦</span>
               <span>The Bollywood Gifting Atelier</span>
               <span className="text-[#C5A880]">✦</span>
             </div>
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-display font-bold text-[#1C1412] leading-[1.16]">
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] font-display font-bold text-[#140F0D] leading-[1.14] tracking-tight">
               She isn’t high maintenance, she’s{" "}
               <span className="font-serif-romance italic font-normal text-[#961A38] block sm:inline">
                 Nakhrewali.
               </span>
             </h1>
 
-            {/* Subtitle with interactive range links that scroll down */}
-            <p className="text-sm sm:text-base text-[#61514B] max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Curated across four distinct cinematic ranges:{" "}
-              <button
-                type="button"
-                onClick={() => handleSelectRange("earrings")}
-                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
-              >
-                Haye Jhumka
-              </button>
-              ,{" "}
-              <button
-                type="button"
-                onClick={() => handleSelectRange("bangles")}
-                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
-              >
-                Bole Chudiyan
-              </button>
-              ,{" "}
-              <button
-                type="button"
-                onClick={() => handleSelectRange("hair")}
-                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
-              >
-                Yeh Reshmi Zulfen
-              </button>
-              , and heirloom{" "}
-              <button
-                type="button"
-                onClick={() => handleSelectRange("romantic-gifts")}
-                className="text-[#1C1412] font-semibold underline decoration-[#C5A880] underline-offset-2 hover:text-[#961A38] hover:decoration-[#961A38] transition-colors cursor-pointer"
-              >
-                Dil Tu Jaan Tu
-              </button>{" "}
-              keepsakes.
+            {/* Clear, Punchy Subtitle - Zero Bluff */}
+            <p className="text-base sm:text-lg text-[#3E312C] max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              Heirloom jhumkas, velvet bangles, and bespoke gift trunks — handcrafted with 22K anti-tarnish finish for timeless romance.
             </p>
 
             {/* Premium CTAs */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
               <button
                 id="hero-explore-ranges-btn"
                 onClick={scrollToRanges}
-                className="px-6 py-3.5 bg-[#961A38] hover:bg-[#7D152E] text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 group cursor-pointer"
+                className="px-7 py-3.5 bg-[#961A38] hover:bg-[#7D152E] text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 group cursor-pointer"
               >
-                <span>Explore The 4 Ranges</span>
+                <span>Explore Collections</span>
                 <ArrowRight className="w-3.5 h-3.5 rotate-90 text-[#F5EFEB] group-hover:translate-y-0.5 transition-transform" />
               </button>
 
               <button
                 id="hero-hamper-btn"
                 onClick={() => setIsHamperBuilderOpen(true)}
-                className="px-5 py-3.5 bg-[#1C1412] hover:bg-[#2D201C] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 group cursor-pointer"
+                className="px-6 py-3.5 bg-[#140F0D] hover:bg-[#251A17] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase rounded-full shadow-sm transition-all flex items-center space-x-2 group cursor-pointer"
               >
-                <span>Curate Hamper</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
+                <span>Curate A Hamper</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-x-0.5 transition-transform" />
               </button>
 
               <button
@@ -121,25 +89,24 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
               </button>
             </div>
 
-            {/* Understated Trust Proofs */}
-            <div className="pt-4 border-t border-[#EAE1D7] flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-[#7A6B65]">
+            {/* Understated Trust Proofs - Crisp Typography */}
+            <div className="pt-4 border-t border-[#EAE1D7] flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-[#52443F] font-medium">
               <div className="flex items-center space-x-1.5">
                 <StarRating rating={5} />
-                <span className="font-semibold text-[#1C1412]">4.9 / 5</span>
-                <span>(14,200+ lovers)</span>
+                <span className="font-semibold text-[#140F0D]">4.9 / 5</span>
+                <span>(14,000+ reviews)</span>
               </div>
+              <span aria-hidden="true" className="text-[#C5A880]">·</span>
               <div className="flex items-center space-x-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-800" />
-                <span>22K Anti-Tarnish Polish</span>
+                <span>22K Anti-Tarnish Finish</span>
               </div>
-              <div className="flex items-center space-x-1.5">
-                <span className="text-[#961A38]">💌</span>
-                <span>Wax-Sealed Love Note Included</span>
-              </div>
+              <span aria-hidden="true" className="text-[#C5A880]">·</span>
+              <span>Complimentary Wax-Sealed Note</span>
             </div>
           </div>
 
-          {/* Right Column: Refined Editorial Showcase (No angled stickers or chaotic clutter) */}
+          {/* Right Column: Refined Editorial Showcase */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-sm rounded-2xl p-3 bg-white border border-[#E8DDD2] shadow-xl">
               {/* Main Portrait Showcase Image - Clickable to scroll to Range IV */}
@@ -148,7 +115,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
                 tabIndex={0}
                 onClick={() => handleSelectRange("romantic-gifts")}
                 className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#F5EFEB] cursor-pointer group"
-                title="Click to view Range IV Dil Tu Jaan Tu"
+                title="View Range IV: Dil Tu Jaan Tu"
               >
                 <img
                   src="https://i.pinimg.com/1200x/67/b4/b4/67b4b4c4f8eb32d68b45123acb0e0f90.jpg"
@@ -156,27 +123,22 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
-                {/* Top Subtle Seal */}
-                <div className="absolute top-3 left-3 bg-[#FAF7F2]/90 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-semibold text-[#1C1412] tracking-wider uppercase border border-[#E0D2C2]">
-                  Handcrafted Atelier
-                </div>
-
-                {/* Bottom Overlay Info */}
-                <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white">
-                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#D4AF37] block font-medium">
-                    Range IV • Dil Tu Jaan Tu
+                {/* Bottom Caption Overlay */}
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#D4AF37] font-semibold block">
+                    Range IV · Bridal Keepsake Trunk
                   </span>
-                  <p className="font-display font-bold text-base text-white mt-0.5">
-                    Tujh Mein Rab Dikhta Hai
+                  <p className="font-display font-bold text-lg text-white mt-0.5">
+                    Dil Tu Jaan Tu
                   </p>
-                  <p className="font-serif-romance italic text-xs text-[#EAD8C7]">
-                    Velvet bridal trunk with complimentary wax-sealed parchment
-                    note.
+                  <p className="text-xs text-[#EAD8C7] line-clamp-1 mt-0.5">
+                    Velvet keepsake trunk with wax-sealed parchment note
                   </p>
-                  <span className="inline-flex items-center text-[11px] text-[#F5EFEB] font-medium mt-1 underline decoration-[#D4AF37] underline-offset-2">
-                    View Range IV below ↓
+                  <span className="inline-flex items-center text-xs text-[#FAF7F2] font-semibold mt-2 group-hover:text-[#D4AF37] transition-colors">
+                    <span>View Collection</span>
+                    <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </div>
@@ -186,53 +148,41 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectCategory }) => {
                 <button
                   type="button"
                   onClick={() => handleSelectRange("earrings")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  className="p-2 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
                   title="View Range I: Haye Jhumka"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
-                    I
-                  </span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
-                    Jhumka
+                  <span className="text-[10px] text-[#7A6B65] block uppercase font-medium">
+                    I · Jhumkas
                   </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => handleSelectRange("bangles")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  className="p-2 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
                   title="View Range II: Bole Chudiyan"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
-                    II
-                  </span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
-                    Chudiyan
+                  <span className="text-[10px] text-[#7A6B65] block uppercase font-medium">
+                    II · Bangles
                   </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => handleSelectRange("hair")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  className="p-2 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
                   title="View Range III: Yeh Reshmi Zulfen"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
-                    III
-                  </span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
-                    Zulfen
+                  <span className="text-[10px] text-[#7A6B65] block uppercase font-medium">
+                    III · Hair
                   </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => handleSelectRange("romantic-gifts")}
-                  className="p-1.5 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
+                  className="p-2 rounded-lg text-center bg-[#FAF7F2] hover:bg-[#F2ECE4] border border-[#E8DDD2] transition-colors group cursor-pointer"
                   title="View Range IV: Dil Tu Jaan Tu"
                 >
-                  <span className="text-[9px] text-[#9E8E89] block uppercase tracking-wider font-semibold">
-                    IV
-                  </span>
-                  <span className="text-[10px] font-bold text-[#1C1412] block truncate group-hover:text-[#961A38]">
-                    Dil Tu
+                  <span className="text-[10px] text-[#7A6B65] block uppercase font-medium">
+                    IV · Hampers
                   </span>
                 </button>
               </div>

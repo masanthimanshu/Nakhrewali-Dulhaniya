@@ -50,29 +50,29 @@ export const Navbar: React.FC = () => {
             className="text-left focus:outline-none group shrink-0"
           >
             <div className="flex items-baseline space-x-2">
-              <span className="text-xl sm:text-2xl font-display font-bold text-[#1C1412] group-hover:text-[#961A38] transition-colors">
+              <span className="text-xl sm:text-2xl font-display font-bold text-[#140F0D] group-hover:text-[#961A38] transition-colors">
                 Nakhrewali
               </span>
               <span className="text-xl sm:text-2xl font-serif-romance italic font-normal text-[#961A38]">
                 Dulhaniya
               </span>
             </div>
-            <p className="text-[10px] font-medium tracking-[0.18em] text-[#8C7A75] uppercase">
-              Haute Filmy Gifting & Accessories
+            <p className="text-[10px] font-semibold tracking-[0.18em] text-[#63534D] uppercase">
+              Heirloom Jewelry & Romantic Gifts
             </p>
           </Link>
 
           {/* Search Bar - Desktop */}
           <div className="hidden md:flex flex-1 max-w-xs lg:max-w-sm mx-4">
             <form onSubmit={handleSearch} className="relative w-full">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#9E8E89]" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#7A6B65]" />
               <input
                 id="search-input"
                 type="text"
                 placeholder="Search jhumkas, choodiyan, hair bows..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-8 py-2 text-xs bg-[#F2ECE4] border border-[#DECFC2] rounded-full text-[#1C1412] placeholder-[#9E8E89] focus:outline-none focus:border-[#961A38] focus:bg-white transition-all"
+                className="w-full pl-9 pr-8 py-2 text-xs bg-[#F2ECE4] border border-[#DECFC2] rounded-full text-[#140F0D] placeholder-[#7A6B65] focus:outline-none focus:border-[#961A38] focus:bg-white transition-all font-medium"
               />
               {searchQuery && (
                 <button
@@ -95,14 +95,14 @@ export const Navbar: React.FC = () => {
               className="hidden lg:inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-white border border-[#C5A880] text-[#7A152E] rounded-full text-xs font-semibold hover:bg-[#FDF9F5] transition-colors shadow-2xs cursor-pointer"
             >
               <Gift className="w-3.5 h-3.5 text-[#961A38]" />
-              <span>Bana De Hamper</span>
+              <span>Curate Hamper</span>
             </button>
 
             {/* Gift Quiz CTA */}
             <button
               id="nav-quiz-btn"
               onClick={() => setIsGiftQuizOpen(true)}
-              className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 bg-transparent hover:bg-[#F2ECE4] text-[#4A3B36] border border-[#E0D4C7] rounded-full text-xs font-medium transition-colors cursor-pointer"
+              className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 bg-transparent hover:bg-[#F2ECE4] text-[#3D2F2A] border border-[#D9C8B8] rounded-full text-xs font-medium transition-colors cursor-pointer"
             >
               <HelpCircle className="w-3.5 h-3.5 text-[#961A38]" />
               <span>Gift Concierge</span>

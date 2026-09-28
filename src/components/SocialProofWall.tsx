@@ -9,36 +9,35 @@ export const SocialProofWall: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-          <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#F0E6DC] text-[#7A152E] text-[11px] font-semibold uppercase tracking-widest">
-            <span>✦ The Unboxing Chronicles ✦</span>
+          <div className="text-xs font-semibold text-[#8C2038] uppercase tracking-[0.2em]">
+            Client Stories
           </div>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#1C1412]">
-            Loved by Sweethearts & Drama Queens
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#140F0D] tracking-tight">
+            Loved Across India
           </h2>
-          <p className="text-xs sm:text-sm text-[#70605A]">
-            Real reactions, tearful unboxings, and boyfriend lifesavers across
-            India.
+          <p className="text-sm text-[#4E3F3A] leading-relaxed">
+            Real reactions and unforgettable unboxing moments shared by our community.
           </p>
         </div>
 
-        {/* Reviews Cards - Editorial 4 Column Grid in max-w-6xl */}
+        {/* Reviews Cards - Editorial 4 Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {REVIEWS_WALL.map((rev) => (
             <div
               key={rev.id}
-              className="bg-white rounded-2xl p-5 border border-[#EAE1D7] shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              className="bg-white rounded-2xl p-5 border border-[#EAE1D7] shadow-2xs hover:shadow-sm transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Stars & Tag */}
                 <div className="flex items-center justify-between mb-3">
                   <StarRating rating={rev.rating} />
-                  <span className="text-[9px] font-semibold text-[#7A152E] bg-[#FAF2F4] px-2 py-0.5 rounded-full uppercase tracking-wider">
+                  <span className="text-[10px] font-semibold text-[#8C2038] uppercase tracking-wider">
                     {rev.tag}
                   </span>
                 </div>
 
                 {/* Comment */}
-                <p className="font-serif-romance text-sm text-[#3E312D] leading-relaxed italic">
+                <p className="text-sm text-[#2C211E] leading-relaxed">
                   "{rev.comment}"
                 </p>
               </div>

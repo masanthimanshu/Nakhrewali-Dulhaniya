@@ -94,30 +94,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Product Details Area */}
       <div className="p-4 flex flex-col flex-1 justify-between bg-white">
         <div>
-          {/* Distinct Category Tag */}
-          <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-[#8C7A75] mb-1 font-semibold">
-            <span>{product.categoryLabel}</span>
+          {/* Distinct Collection Tag */}
+          <div className="text-[10px] uppercase tracking-widest text-[#8C2038] mb-1 font-semibold">
+            {product.categoryLabel}
           </div>
 
-          {/* Product Title */}
-          <h3 className="text-sm font-semibold text-[#1C1412] line-clamp-1 hover:text-[#961A38] transition-colors leading-snug">
+          {/* Primary Product Title - Bold, Clear & Highly Readable */}
+          <h3 className="text-base font-semibold text-[#140F0D] line-clamp-1 hover:text-[#961A38] transition-colors leading-snug">
             <Link to={`/product/${product.id}`} title={product.name}>
               {product.name}
             </Link>
           </h3>
 
-          {/* Filmy Dialogue Excerpt */}
-          <p className="font-serif-romance italic text-xs text-[#6E5D57] mt-1 line-clamp-1">
-            {product.bollywoodDialogue}
-          </p>
-
-          {/* Rating */}
-          <div className="flex items-center space-x-1.5 mt-2 text-xs text-[#7A6B65]">
+          {/* Clean Rating */}
+          <div className="flex items-center space-x-1.5 mt-2 text-xs text-[#52443F]">
             <StarRating rating={product.rating} />
-            <span className="font-semibold text-[#1C1412] text-[11px]">
+            <span className="font-semibold text-[#140F0D] text-xs">
               {product.rating}
             </span>
-            <span className="text-[#A89893] text-[10px]">
+            <span className="text-[#7A6B65] text-xs">
               ({product.reviewsCount})
             </span>
           </div>
@@ -125,18 +120,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Pricing & Add to Trunk */}
         <div className="pt-3 mt-3 border-t border-[#F2ECE4] flex items-center justify-between gap-2">
-          <div>
-            <div className="flex items-baseline space-x-1.5">
-              <span className="text-base font-bold text-[#1C1412]">
-                ₹{product.price.toLocaleString()}
-              </span>
-              <span className="text-xs text-[#A89893] line-through font-normal">
+          <div className="flex items-baseline space-x-2">
+            <span className="text-base sm:text-lg font-bold text-[#140F0D]">
+              ₹{product.price.toLocaleString()}
+            </span>
+            {product.originalPrice > product.price && (
+              <span className="text-xs text-[#8C7A75] line-through font-normal">
                 ₹{product.originalPrice.toLocaleString()}
               </span>
-            </div>
-            <span className="text-[9px] text-[#7A152E] font-medium tracking-wide uppercase">
-              Wax Seal Note Incl.
-            </span>
+            )}
           </div>
 
           <button
@@ -146,7 +138,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               onAddToCart(product);
             }}
-            className="px-3.5 py-2 bg-[#FAF7F2] hover:bg-[#1C1412] text-[#1C1412] hover:text-white border border-[#DFCFC1] hover:border-[#1C1412] rounded-xl text-xs font-semibold tracking-wider transition-all flex items-center space-x-1.5 shadow-2xs active:scale-95 cursor-pointer"
+            className="px-3.5 py-2 bg-[#FAF7F2] hover:bg-[#140F0D] text-[#140F0D] hover:text-white border border-[#DECFC2] hover:border-[#140F0D] rounded-xl text-xs font-semibold tracking-wider transition-all flex items-center space-x-1.5 shadow-2xs active:scale-95 cursor-pointer"
             title="Add to Shopping Trunk"
           >
             <ShoppingBag className="w-3.5 h-3.5 text-[#961A38] group-hover:text-[#D4AF37]" />
