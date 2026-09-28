@@ -60,19 +60,26 @@ interface ShopContextType {
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
 
+const getStorage = <T,>(key: string, fallback: T): T => {
+  try {
+    const saved = localStorage.getItem(key);
+    return saved ? JSON.parse(saved) : fallback;
+  } catch {
+    return fallback;
+  }
+};
+
+const setStorage = (key: string, value: unknown) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {}
+};
+
 export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // Local storage persistence
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    try {
-      const saved = localStorage.getItem("nakhrewali_cart");
-      if (saved) return JSON.parse(saved);
-    } catch (e) {
-      console.error(e);
-    }
-    // Default welcome items in bag
-    return [
+  const [cart, setCart] = useState<CartItem[]>(() =>
+    getStorage("nakhrewali_cart", [
       {
         id: "cart-init-1",
         product: PRODUCTS[0],
@@ -82,60 +89,25 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
           "“Main apni favorite hoon... par tum mere sabse favorite ho!”",
         giftRecipient: "My Sweetheart",
       },
-    ];
-  });
+    ]),
+  );
 
-  const [wishlist, setWishlist] = useState<Product[]>(() => {
-    try {
-      const saved = localStorage.getItem("nakhrewali_wishlist");
-      if (saved) return JSON.parse(saved);
-    } catch (e) {
-      console.error(e);
-    }
-    return [PRODUCTS[1], PRODUCTS[4]];
-  });
+  const [wishlist, setWishlist] = useState<Product[]>(() =>
+    getStorage("nakhrewali_wishlist", [PRODUCTS[1], PRODUCTS[4]]),
+  );
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isHamperBuilderOpen, setIsHamperBuilderOpen] = useState(false);
   const [isGiftQuizOpen, setIsGiftQuizOpen] = useState(false);
-  const [lastOrder, setLastOrder] = useState<OrderDetails | null>(() => {
-    try {
-      const saved = localStorage.getItem("nakhrewali_last_order");
-      if (saved) return JSON.parse(saved);
-    } catch (e) {
-      console.error(e);
-    }
-    return null;
-  });
+  const [lastOrder, setLastOrder] = useState<OrderDetails | null>(() =>
+    getStorage("nakhrewali_last_order", null),
+  );
 
+  useEffect(() => setStorage("nakhrewali_cart", cart), [cart]);
+  useEffect(() => setStorage("nakhrewali_wishlist", wishlist), [wishlist]);
   useEffect(() => {
-    try {
-      localStorage.setItem("nakhrewali_cart", JSON.stringify(cart));
-    } catch (e) {
-      console.error(e);
-    }
-  }, [cart]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem("nakhrewali_wishlist", JSON.stringify(wishlist));
-    } catch (e) {
-      console.error(e);
-    }
-  }, [wishlist]);
-
-  useEffect(() => {
-    if (lastOrder) {
-      try {
-        localStorage.setItem(
-          "nakhrewali_last_order",
-          JSON.stringify(lastOrder),
-        );
-      } catch (e) {
-        console.error(e);
-      }
-    }
+    if (lastOrder) setStorage("nakhrewali_last_order", lastOrder);
   }, [lastOrder]);
 
   const addToCart = (
@@ -226,17 +198,14 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const updateCartQuantity = (itemId: string, delta: number) => {
-    setCart(
-      (prev) =>
-        prev
-          .map((item) => {
-            if (item.id === itemId) {
-              const newQty = item.quantity + delta;
-              return newQty > 0 ? { ...item, quantity: newQty } : null;
-            }
-            return item;
-          })
-          .filter(Boolean) as CartItem[],
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === itemId
+            ? { ...item, quantity: item.quantity + delta }
+            : item,
+        )
+        .filter((item) => item.quantity > 0),
     );
   };
 

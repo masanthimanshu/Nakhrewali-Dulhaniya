@@ -41,7 +41,6 @@ export const CheckoutPage: React.FC = () => {
     state: "Maharashtra",
     pincode: "",
     recipientName: "",
-    specialInstructions: "",
   });
 
   // Payment Selection: 'upi' | 'card' | 'cod'

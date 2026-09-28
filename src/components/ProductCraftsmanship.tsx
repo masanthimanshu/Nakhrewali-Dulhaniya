@@ -18,7 +18,6 @@ export const ProductCraftsmanship: React.FC<ProductCraftsmanshipProps> = ({
 }) => {
   const isEarring = product.category === "earrings";
   const isBangle = product.category === "bangles";
-  const isHair = product.category === "hair";
 
   const specs = [
     {

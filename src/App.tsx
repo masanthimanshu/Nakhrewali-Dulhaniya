@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -68,7 +68,7 @@ const AppContent: React.FC = () => {
   } = useShop();
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#1C1412] flex flex-col font-body selection:bg-[#961A38] selection:text-white">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#1C1412] flex flex-col selection:bg-[#961A38] selection:text-white">
       <ScrollToTop />
 
       {/* Top Filmy Announcement Ticker */}

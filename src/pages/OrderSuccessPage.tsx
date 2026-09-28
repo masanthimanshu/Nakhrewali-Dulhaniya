@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { CheckCircle2, Gift, Truck, Calendar, ArrowRight } from "lucide-react";
+import { CheckCircle2, Truck, Calendar, ArrowRight } from "lucide-react";
 import { useShop } from "../context/ShopContext";
 
 export const OrderSuccessPage: React.FC = () => {

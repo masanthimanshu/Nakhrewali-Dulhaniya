@@ -13,14 +13,10 @@ export const VALID_COUPONS: Record<string, number> = {
 export const getDiscountPercent = (
   originalPrice: number,
   price: number,
-): number => {
-  if (originalPrice <= price || originalPrice <= 0) return 0;
-  return Math.round(((originalPrice - price) / originalPrice) * 100);
-};
-
-export const formatPrice = (amount: number): string => {
-  return `₹${amount.toLocaleString("en-IN")}`;
-};
+): number =>
+  originalPrice > price
+    ? Math.round(((originalPrice - price) / originalPrice) * 100)
+    : 0;
 
 export const filterAndSortProducts = (
   products: Product[],
@@ -34,7 +30,7 @@ export const filterAndSortProducts = (
       ? [...products]
       : products.filter((p) => p.category === category);
 
-  if (searchQuery && searchQuery.trim()) {
+  if (searchQuery?.trim()) {
     const q = searchQuery.toLowerCase().trim();
     list = list.filter(
       (p) =>

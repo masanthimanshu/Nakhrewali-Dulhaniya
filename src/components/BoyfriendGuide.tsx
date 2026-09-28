@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Gift,
   Sparkles,
@@ -25,7 +25,6 @@ interface GuideScenario {
 }
 
 export const BoyfriendGuide: React.FC = () => {
-  const navigate = useNavigate();
   const { addToCart, setIsHamperBuilderOpen, setIsGiftQuizOpen } = useShop();
 
   const scenarios: GuideScenario[] = [
